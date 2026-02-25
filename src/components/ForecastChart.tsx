@@ -59,7 +59,7 @@ export default function ForecastChart({ entries, metric, title }: ForecastChartP
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis dataKey="month" tick={{ fontSize: 11 }} />
           <YAxis tick={{ fontSize: 11 }} tickFormatter={fmtAxis} />
-          <Tooltip formatter={(value: number) => fmtTooltip(value)} contentStyle={{ fontSize: 12 }} />
+          <Tooltip formatter={(value) => fmtTooltip(Number(value))} contentStyle={{ fontSize: 12 }} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
           <Line type="monotone" dataKey="2025" stroke="#94a3b8" strokeWidth={2} dot={{ r: 3 }} connectNulls />
           <Line type="monotone" dataKey="2026" stroke="#7F8D40" strokeWidth={2} dot={{ r: 3 }} connectNulls />
