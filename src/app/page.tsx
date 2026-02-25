@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import RollupTable from "@/components/RollupTable";
 import ForecastChart from "@/components/ForecastChart";
+import SalesMixTable from "@/components/SalesMixTable";
 import { METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
 import { exportDashboardToExcel } from "@/lib/exportExcel";
 
@@ -192,6 +193,9 @@ export default function Dashboard() {
         metric={activeMetric}
         title={`${METRIC_LABELS[activeMetric]} by Department — Monthly`}
       />
+
+      {/* Sales Mix Comparison */}
+      <SalesMixTable entries={entries} />
     </div>
   );
 }

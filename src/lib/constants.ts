@@ -24,13 +24,12 @@ export const METRIC_LABELS: Record<MetricKey, string> = {
 };
 
 export function formatCurrency(value: number): string {
-  const millions = value / 1_000_000;
-  const abs = Math.abs(millions);
-  if (abs >= 10) return `$${millions.toFixed(1)}M`;
-  if (abs >= 1) return `$${millions.toFixed(2)}M`;
-  if (abs >= 0.01) return `$${millions.toFixed(3)}M`;
+  const abs = Math.abs(value);
+  if (abs >= 10_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
+  if (abs >= 1_000_000) return `$${(value / 1_000_000).toFixed(2)}M`;
+  if (abs >= 1_000) return `$${(value / 1_000).toFixed(0)}K`;
   if (value === 0) return "$0";
-  return `$${millions.toFixed(3)}M`;
+  return `$${value.toFixed(0)}`;
 }
 
 export function formatPct(value: number): string {
