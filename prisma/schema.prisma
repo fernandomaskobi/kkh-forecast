@@ -1,0 +1,45 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Department {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  category  String   @default("merch") // merch, marketing, tech
+  createdAt DateTime @default(now())
+
+  entries MonthlyEntry[]
+  users   User[]
+}
+
+model User {
+  id           String      @id @default(cuid())
+  name         String
+  role         String      @default("editor") // viewer, editor, admin
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  createdAt    DateTime    @default(now())
+}
+
+model MonthlyEntry {
+  id           String     @id @default(cuid())
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  year         Int
+  month        Int // 1-12
+  type         String // actual, forecast
+  grossBookedSales Float  @default(0)
+  gmPercent        Float  @default(0) // stored as decimal, e.g. 0.523 = 52.3%
+  cpPercent        Float  @default(0) // stored as decimal, e.g. 0.15 = 15%
+  updatedBy    String?
+  updatedAt    DateTime   @updatedAt
+  createdAt    DateTime   @default(now())
+
+  @@unique([departmentId, year, month, type])
+}
