@@ -106,12 +106,19 @@ export default function Dashboard() {
   const s25 = computeSummary(entries, 2025);
   const s26 = computeSummary(entries, 2026);
 
+  // AOP (Annual Operating Plan) targets
+  const aopSales = 57_050_000;
+  const aopGmPct = 0.505;
+  const aopGmDollars = aopSales * aopGmPct;
+  const aopCpPct = 0.467;
+  const aopCpDollars = aopSales * aopCpPct;
+
   const summaryRows = [
-    { label: "Gross Booked Sales", val26: s26.totalSales, val25: s25.totalSales, fmt: formatCurrency },
-    { label: "GM $", val26: s26.totalGmDollars, val25: s25.totalGmDollars, fmt: formatCurrency },
-    { label: "GM %", val26: s26.gmPct, val25: s25.gmPct, fmt: formatPct },
-    { label: "CP $", val26: s26.totalCpDollars, val25: s25.totalCpDollars, fmt: formatCurrency },
-    { label: "CP %", val26: s26.cpPct, val25: s25.cpPct, fmt: formatPct },
+    { label: "Gross Booked Sales", val25: s25.totalSales, aop: aopSales, val26: s26.totalSales, fmt: formatCurrency },
+    { label: "GM $", val25: s25.totalGmDollars, aop: aopGmDollars, val26: s26.totalGmDollars, fmt: formatCurrency },
+    { label: "GM %", val25: s25.gmPct, aop: aopGmPct, val26: s26.gmPct, fmt: formatPct },
+    { label: "CP $", val25: s25.totalCpDollars, aop: aopCpDollars, val26: s26.totalCpDollars, fmt: formatCurrency },
+    { label: "CP %", val25: s25.cpPct, aop: aopCpPct, val26: s26.cpPct, fmt: formatPct },
   ];
 
   return (
@@ -161,24 +168,38 @@ export default function Dashboard() {
               <tr className="border-b">
                 <th className="text-left py-2 font-medium text-gray-400 uppercase"></th>
                 <th className="text-right py-2 font-medium text-gray-400 uppercase">2025</th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">2026</th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">Delta</th>
+                <th className="text-right py-2 font-medium text-gray-400 uppercase">AOP</th>
+                <th className="text-right py-2 font-medium text-gray-400 uppercase">2026 (F)</th>
+                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Plan</th>
+                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Fcst</th>
               </tr>
             </thead>
             <tbody>
               {summaryRows.map((row) => {
                 const isPct = row.fmt === formatPct;
-                const delta = isPct ? row.val26 - row.val25 : (row.val25 !== 0 ? ((row.val26 - row.val25) / Math.abs(row.val25)) * 100 : 0);
-                const deltaStr = isPct
-                  ? `${delta >= 0 ? "+" : ""}${(delta * 100).toFixed(1)}pp`
-                  : (row.val25 !== 0 ? `${delta >= 0 ? "+" : ""}${delta.toFixed(1)}%` : "—");
-                const deltaColor = delta > 0 ? "text-green-600" : delta < 0 ? "text-red-600" : "text-gray-400";
+
+                // Delta vs Plan: 2026(F) vs AOP
+                const dvPlan = isPct ? row.val26 - row.aop : (row.aop !== 0 ? ((row.val26 - row.aop) / Math.abs(row.aop)) * 100 : 0);
+                const dvPlanStr = isPct
+                  ? `${dvPlan >= 0 ? "+" : ""}${(dvPlan * 100).toFixed(1)}pp`
+                  : (row.aop !== 0 ? `${dvPlan >= 0 ? "+" : ""}${dvPlan.toFixed(1)}%` : "—");
+                const dvPlanColor = dvPlan > 0 ? "text-green-600" : dvPlan < 0 ? "text-red-600" : "text-gray-400";
+
+                // Delta vs Fcst: 2026(F) vs 2025
+                const dvFcst = isPct ? row.val26 - row.val25 : (row.val25 !== 0 ? ((row.val26 - row.val25) / Math.abs(row.val25)) * 100 : 0);
+                const dvFcstStr = isPct
+                  ? `${dvFcst >= 0 ? "+" : ""}${(dvFcst * 100).toFixed(1)}pp`
+                  : (row.val25 !== 0 ? `${dvFcst >= 0 ? "+" : ""}${dvFcst.toFixed(1)}%` : "—");
+                const dvFcstColor = dvFcst > 0 ? "text-green-600" : dvFcst < 0 ? "text-red-600" : "text-gray-400";
+
                 return (
                   <tr key={row.label} className="border-b last:border-0">
                     <td className="py-2.5 font-semibold text-gray-600 uppercase">{row.label}</td>
                     <td className="py-2.5 text-right text-gray-500">{row.fmt(row.val25)}</td>
+                    <td className="py-2.5 text-right text-blue-600 font-medium">{row.fmt(row.aop)}</td>
                     <td className="py-2.5 text-right font-bold">{row.fmt(row.val26)}</td>
-                    <td className={`py-2.5 text-right font-semibold ${deltaColor}`}>{deltaStr}</td>
+                    <td className={`py-2.5 text-right font-semibold ${dvPlanColor}`}>{dvPlanStr}</td>
+                    <td className={`py-2.5 text-right font-semibold ${dvFcstColor}`}>{dvFcstStr}</td>
                   </tr>
                 );
               })}
