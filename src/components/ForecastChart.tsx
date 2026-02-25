@@ -49,7 +49,13 @@ export default function ForecastChart({ entries, metric, title }: ForecastChartP
   });
 
   const fmtTooltip = (value: number) => isPct ? formatPct(value) : formatCurrency(value);
-  const fmtAxis = (v: number) => isPct ? `${(v * 100).toFixed(0)}%` : formatCurrency(v);
+  const fmtAxis = (v: number) => {
+    if (isPct) return `${(v * 100).toFixed(0)}%`;
+    const abs = Math.abs(v);
+    if (abs >= 1_000_000) return `$${(v / 1_000_000).toFixed(1)}M`;
+    if (abs >= 1_000) return `$${(v / 1_000).toFixed(0)}K`;
+    return `$${v.toFixed(0)}`;
+  };
 
   return (
     <div className="bg-white rounded-lg border p-4">
