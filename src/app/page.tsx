@@ -45,6 +45,7 @@ export default function Dashboard() {
   const [entries, setEntries] = useState<EntryData[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeMetric, setActiveMetric] = useState<MetricKey>("grossBookedSales");
+  const [selectedDept, setSelectedDept] = useState<string>("all");
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -103,10 +104,26 @@ export default function Dashboard() {
     );
   }
 
-  const s25 = computeSummary(entries, 2025);
-  const s26 = computeSummary(entries, 2026);
+  // Build department list for dropdown
+  const deptMap = new Map<string, string>();
+  for (const e of entries) {
+    if (!deptMap.has(e.departmentId)) deptMap.set(e.departmentId, e.departmentName);
+  }
+  const deptOptions = Array.from(deptMap.entries())
+    .map(([id, name]) => ({ id, name }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-  // AOP (Annual Operating Plan) targets
+  // Filter entries for summary based on selected department
+  const summaryEntries = selectedDept === "all"
+    ? entries
+    : entries.filter((e) => e.departmentId === selectedDept);
+
+  const s25 = computeSummary(summaryEntries, 2025);
+  const s26 = computeSummary(summaryEntries, 2026);
+
+  const isAllDepts = selectedDept === "all";
+
+  // AOP (Annual Operating Plan) targets — only available at total level
   const aopSales = 57_050_000;
   const aopGmPct = 0.505;
   const aopGmDollars = aopSales * aopGmPct;
@@ -155,23 +172,35 @@ export default function Dashboard() {
       {/* Charts + Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         <ForecastChart
-          entries={entries}
+          entries={summaryEntries}
           metric={activeMetric}
-          title={`${METRIC_LABELS[activeMetric]} — 2025 vs 2026`}
+          title={`${METRIC_LABELS[activeMetric]} — 2025 vs 2026${!isAllDepts ? ` (${deptMap.get(selectedDept)})` : ""}`}
         />
         <div className="bg-white rounded-lg border p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">
-            FY Summary
-          </h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-gray-700">
+              FY Summary
+            </h3>
+            <select
+              value={selectedDept}
+              onChange={(e) => setSelectedDept(e.target.value)}
+              className="text-xs border rounded px-2 py-1.5 text-gray-700 bg-white focus:outline-none focus:ring-1 focus:ring-brand min-w-[160px]"
+            >
+              <option value="all">All Departments</option>
+              {deptOptions.map((d) => (
+                <option key={d.id} value={d.id}>{d.name}</option>
+              ))}
+            </select>
+          </div>
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b">
                 <th className="text-left py-2 font-medium text-gray-400 uppercase"></th>
                 <th className="text-right py-2 font-medium text-gray-400 uppercase">2025</th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">AOP</th>
+                {isAllDepts && <th className="text-right py-2 font-medium text-gray-400 uppercase">AOP</th>}
                 <th className="text-right py-2 font-medium text-gray-400 uppercase">2026 (F)</th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Plan</th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Fcst</th>
+                {isAllDepts && <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Plan</th>}
+                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs LY</th>
               </tr>
             </thead>
             <tbody>
@@ -185,7 +214,7 @@ export default function Dashboard() {
                   : (row.aop !== 0 ? `${dvPlan >= 0 ? "+" : ""}${dvPlan.toFixed(1)}%` : "—");
                 const dvPlanColor = dvPlan > 0 ? "text-green-600" : dvPlan < 0 ? "text-red-600" : "text-gray-400";
 
-                // Delta vs Fcst: 2026(F) vs 2025
+                // Delta vs LY: 2026(F) vs 2025
                 const dvFcst = isPct ? row.val26 - row.val25 : (row.val25 !== 0 ? ((row.val26 - row.val25) / Math.abs(row.val25)) * 100 : 0);
                 const dvFcstStr = isPct
                   ? `${dvFcst >= 0 ? "+" : ""}${(dvFcst * 100).toFixed(1)}pp`
@@ -196,9 +225,9 @@ export default function Dashboard() {
                   <tr key={row.label} className="border-b last:border-0">
                     <td className="py-2.5 font-semibold text-gray-600 uppercase">{row.label}</td>
                     <td className="py-2.5 text-right text-gray-500">{row.fmt(row.val25)}</td>
-                    <td className="py-2.5 text-right text-blue-600 font-medium">{row.fmt(row.aop)}</td>
+                    {isAllDepts && <td className="py-2.5 text-right text-blue-600 font-medium">{row.fmt(row.aop)}</td>}
                     <td className="py-2.5 text-right font-bold">{row.fmt(row.val26)}</td>
-                    <td className={`py-2.5 text-right font-semibold ${dvPlanColor}`}>{dvPlanStr}</td>
+                    {isAllDepts && <td className={`py-2.5 text-right font-semibold ${dvPlanColor}`}>{dvPlanStr}</td>}
                     <td className={`py-2.5 text-right font-semibold ${dvFcstColor}`}>{dvFcstStr}</td>
                   </tr>
                 );
