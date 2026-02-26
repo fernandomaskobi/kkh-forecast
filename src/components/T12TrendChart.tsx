@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
-import { formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
+import { formatCurrency, formatPct, METRIC_LABELS, type MetricKey } from "@/lib/constants";
 
 type EntryData = {
   departmentId: string;
@@ -45,23 +45,14 @@ export default function T12TrendChart({ entries, metric }: T12TrendChartProps) {
     monthMap.set(key, existing);
   }
 
-  const getMonthVal = (year: number, month: number): number => {
-    const data = monthMap.get(`${year}-${month}`);
-    if (!data) return 0;
-    if (isPct) return data.totalSales ? data.weightedMetric / data.totalSales : 0;
-    return data.rawSum;
-  };
-
   // Generate T12 data points from Dec 2025 through Dec 2026
-  // Each point = sum/avg of the trailing 12 months ending at that month
   const dataPoints: { label: string; t12: number }[] = [];
 
   for (let endYear = 2025; endYear <= 2026; endYear++) {
-    const startMonth = endYear === 2025 ? 12 : 1; // Start from Dec 2025
+    const startMonth = endYear === 2025 ? 12 : 1;
     const endMonth = endYear === 2025 ? 12 : 12;
 
     for (let endMo = startMonth; endMo <= endMonth; endMo++) {
-      // Collect 12 months ending at (endYear, endMo)
       let totalSales = 0;
       let weightedSum = 0;
       let rawSum = 0;
@@ -101,26 +92,70 @@ export default function T12TrendChart({ entries, metric }: T12TrendChartProps) {
     return `$${v.toFixed(0)}`;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (!active || !payload?.length) return null;
+    return (
+      <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl shadow-lg px-4 py-3">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-1">{label}</p>
+        <p className="text-sm font-bold text-gray-900">
+          {fmtTooltip(payload[0].value)}
+        </p>
+        <p className="text-[10px] text-gray-400 mt-0.5">Trailing 12 months</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="bg-white rounded-lg border p-4">
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">Trailing 12-Month Trend</h3>
+    <div className="card p-5">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-800">Trailing 12-Month Trend</h3>
+          <p className="text-[10px] text-gray-400 mt-0.5">{METRIC_LABELS[metric]} — rolling sum</p>
+        </div>
+        {dataPoints.length > 0 && (
+          <div className="text-right">
+            <span className="text-lg font-bold text-gray-900" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+              {fmtTooltip(dataPoints[dataPoints.length - 1].t12)}
+            </span>
+            <span className="text-[10px] text-gray-400 block">Latest T12</span>
+          </div>
+        )}
+      </div>
       <ResponsiveContainer width="100%" height={280}>
-        <LineChart data={dataPoints}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis dataKey="label" tick={{ fontSize: 10 }} />
-          <YAxis tick={{ fontSize: 11 }} tickFormatter={fmtAxis} />
-          <Tooltip formatter={(value) => fmtTooltip(Number(value))} contentStyle={{ fontSize: 12 }} />
-          <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Line
+        <AreaChart data={dataPoints} margin={{ top: 5, right: 10, bottom: 5, left: 10 }}>
+          <defs>
+            <linearGradient id="t12Gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#7F8D40" stopOpacity={0.25} />
+              <stop offset="95%" stopColor="#7F8D40" stopOpacity={0.02} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 10, fill: "#94a3b8" }}
+            axisLine={{ stroke: "#e2e8f0" }}
+            tickLine={false}
+          />
+          <YAxis
+            tick={{ fontSize: 10, fill: "#94a3b8" }}
+            tickFormatter={fmtAxis}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Area
             type="monotone"
             dataKey="t12"
             name="T12"
             stroke="#7F8D40"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#7F8D40" }}
+            fill="url(#t12Gradient)"
+            dot={{ r: 3, fill: "#7F8D40", strokeWidth: 2, stroke: "#fff" }}
+            activeDot={{ r: 5, fill: "#7F8D40", strokeWidth: 2, stroke: "#fff" }}
             connectNulls
           />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

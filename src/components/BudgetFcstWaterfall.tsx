@@ -162,7 +162,7 @@ export default function BudgetFcstWaterfall({ entries }: WaterfallProps) {
   const varianceColor = totalVariance >= 0 ? "text-teal-600" : "text-rose-600";
 
   return (
-    <div className="bg-white rounded-lg border p-4">
+    <div className="card p-5">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-sm font-semibold text-gray-800">Budget vs Forecast Bridge</h3>

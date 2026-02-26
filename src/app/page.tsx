@@ -43,6 +43,11 @@ function computeSummary(entries: EntryData[], year: number) {
   return { totalSales, totalGmDollars, totalCpDollars, gmPct, cpPct };
 }
 
+// AOP (Annual Operating Plan) targets
+const AOP_SALES = 57_050_000;
+const AOP_GM_PCT = 0.505;
+const AOP_CP_PCT = 0.467;
+
 export default function Dashboard() {
   const [entries, setEntries] = useState<EntryData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,8 +83,20 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20 text-gray-400">
-        Loading dashboard...
+      <div className="space-y-4 py-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="card p-5">
+              <div className="shimmer h-3 w-20 rounded mb-3" />
+              <div className="shimmer h-7 w-28 rounded mb-2" />
+              <div className="shimmer h-3 w-16 rounded" />
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="card p-4"><div className="shimmer h-[280px] rounded" /></div>
+          <div className="card p-4"><div className="shimmer h-[280px] rounded" /></div>
+        </div>
       </div>
     );
   }
@@ -125,12 +142,76 @@ export default function Dashboard() {
 
   const isAllDepts = selectedDept === "all";
 
-  // AOP (Annual Operating Plan) targets — only available at total level
-  const aopSales = 57_050_000;
-  const aopGmPct = 0.505;
+  const aopSales = AOP_SALES;
+  const aopGmPct = AOP_GM_PCT;
   const aopGmDollars = aopSales * aopGmPct;
-  const aopCpPct = 0.467;
+  const aopCpPct = AOP_CP_PCT;
   const aopCpDollars = aopSales * aopCpPct;
+
+  // KPI computations
+  const salesVsAop = aopSales ? ((s26.totalSales - aopSales) / aopSales) * 100 : 0;
+  const salesVsLy = s25.totalSales ? ((s26.totalSales - s25.totalSales) / s25.totalSales) * 100 : 0;
+  const gmVsAop = (s26.gmPct - aopGmPct) * 100; // pp
+  const cpVsAop = (s26.cpPct - aopCpPct) * 100; // pp
+
+  const kpiCards = [
+    {
+      label: "2026 Forecast Sales",
+      value: formatCurrency(s26.totalSales),
+      badge: isAllDepts ? `${salesVsAop >= 0 ? "+" : ""}${salesVsAop.toFixed(1)}% vs AOP` : `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}% vs LY`,
+      badgeColor: (isAllDepts ? salesVsAop : salesVsLy) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
+      accent: "from-brand/20 to-brand/5",
+      iconColor: "text-brand",
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Gross Margin %",
+      value: formatPct(s26.gmPct),
+      badge: isAllDepts ? `${gmVsAop >= 0 ? "+" : ""}${gmVsAop.toFixed(1)}pp vs AOP` : `${((s26.gmPct - s25.gmPct) * 100) >= 0 ? "+" : ""}${((s26.gmPct - s25.gmPct) * 100).toFixed(1)}pp vs LY`,
+      badgeColor: (isAllDepts ? gmVsAop : (s26.gmPct - s25.gmPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
+      accent: "from-teal-500/15 to-teal-500/5",
+      iconColor: "text-teal-600",
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+        </svg>
+      ),
+    },
+    {
+      label: "Contribution Profit %",
+      value: formatPct(s26.cpPct),
+      badge: isAllDepts ? `${cpVsAop >= 0 ? "+" : ""}${cpVsAop.toFixed(1)}pp vs AOP` : `${((s26.cpPct - s25.cpPct) * 100) >= 0 ? "+" : ""}${((s26.cpPct - s25.cpPct) * 100).toFixed(1)}pp vs LY`,
+      badgeColor: (isAllDepts ? cpVsAop : (s26.cpPct - s25.cpPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
+      accent: "from-indigo-500/15 to-indigo-500/5",
+      iconColor: "text-indigo-600",
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+        </svg>
+      ),
+    },
+    {
+      label: "YoY Growth",
+      value: `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}%`,
+      badge: `${formatCurrency(s26.totalSales - s25.totalSales)} delta`,
+      badgeColor: salesVsLy >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
+      accent: salesVsLy >= 0 ? "from-emerald-500/15 to-emerald-500/5" : "from-rose-500/15 to-rose-500/5",
+      iconColor: salesVsLy >= 0 ? "text-emerald-600" : "text-rose-600",
+      icon: salesVsLy >= 0 ? (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+        </svg>
+      ) : (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
+        </svg>
+      ),
+    },
+  ];
 
   const summaryRows = [
     { label: "Gross Booked Sales", val25: s25.totalSales, aop: aopSales, val26: s26.totalSales, fmt: formatCurrency },
@@ -142,20 +223,24 @@ export default function Dashboard() {
 
   return (
     <div>
+      {/* Header */}
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-        <h1 className="text-2xl font-bold text-gray-800">
-          FY Forecast Dashboard
-        </h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">
+            FY Forecast Dashboard
+          </h1>
+          <p className="text-xs text-gray-400 mt-0.5">2026 Rolling Forecast vs 2025 Actuals</p>
+        </div>
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex gap-1 bg-neutral-100 rounded p-1 flex-wrap">
+          <div className="flex gap-0.5 bg-white rounded-lg border p-1 flex-wrap shadow-sm">
             {METRIC_KEYS.map((m) => (
               <button
                 key={m}
                 onClick={() => setActiveMetric(m)}
-                className={`px-3 py-1.5 rounded text-xs font-medium uppercase tracking-wide transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-[10px] font-semibold uppercase tracking-wider transition-all ${
                   activeMetric === m
-                    ? "bg-brand text-white shadow"
-                    : "text-neutral-500 hover:text-black"
+                    ? "bg-brand text-white shadow-sm"
+                    : "text-gray-400 hover:text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {METRIC_LABELS[m]}
@@ -164,29 +249,59 @@ export default function Dashboard() {
           </div>
           <button
             onClick={() => exportDashboardToExcel(entries, activeMetric)}
-            className="px-4 py-1.5 rounded text-xs font-medium uppercase tracking-wide bg-black text-white hover:bg-neutral-800 transition-colors"
+            className="px-4 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-gray-900 text-white hover:bg-gray-700 transition-colors shadow-sm flex items-center gap-1.5"
           >
-            Export to Excel
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Export
           </button>
         </div>
       </div>
 
+      {/* Hero KPI Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {kpiCards.map((kpi, idx) => (
+          <div
+            key={kpi.label}
+            className={`card p-4 relative overflow-hidden animate-fade-in-delay-${idx + 1}`}
+          >
+            {/* Gradient accent background */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${kpi.accent} pointer-events-none`} />
+            <div className="relative">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                  {kpi.label}
+                </span>
+                <span className={kpi.iconColor}>{kpi.icon}</span>
+              </div>
+              <div className="text-2xl font-bold text-gray-900 mb-1.5" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                {kpi.value}
+              </div>
+              <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full ${kpi.badgeColor}`}>
+                {kpi.badge}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Charts + Summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6 animate-fade-in">
         <ForecastChart
           entries={summaryEntries}
           metric={activeMetric}
           title={`${METRIC_LABELS[activeMetric]} — 2025 vs 2026${!isAllDepts ? ` (${deptMap.get(selectedDept)})` : ""}`}
         />
-        <div className="bg-white rounded-lg border p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-gray-700">
+        <div className="card p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold text-gray-800">
               FY Summary
             </h3>
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="text-xs border rounded px-2 py-1.5 text-gray-700 bg-white focus:outline-none focus:ring-1 focus:ring-brand min-w-[160px]"
+              className="text-[10px] font-medium uppercase tracking-wider border border-gray-200 rounded-lg px-3 py-1.5 text-gray-600 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[160px] cursor-pointer"
             >
               <option value="all">All Departments</option>
               {deptOptions.map((d) => (
@@ -196,17 +311,17 @@ export default function Dashboard() {
           </div>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b">
-                <th className="text-left py-2 font-medium text-gray-400 uppercase"></th>
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">2025</th>
-                {isAllDepts && <th className="text-right py-2 font-medium text-gray-400 uppercase">AOP</th>}
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">2026 (F)</th>
-                {isAllDepts && <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs Plan</th>}
-                <th className="text-right py-2 font-medium text-gray-400 uppercase">Δ vs LY</th>
+              <tr className="border-b border-gray-100">
+                <th className="text-left py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400"></th>
+                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">2025</th>
+                {isAllDepts && <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">AOP</th>}
+                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">2026 (F)</th>
+                {isAllDepts && <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">Δ Plan</th>}
+                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">Δ LY</th>
               </tr>
             </thead>
             <tbody>
-              {summaryRows.map((row) => {
+              {summaryRows.map((row, i) => {
                 const isPct = row.fmt === formatPct;
 
                 // Delta vs Plan: 2026(F) vs AOP
@@ -214,23 +329,25 @@ export default function Dashboard() {
                 const dvPlanStr = isPct
                   ? `${dvPlan >= 0 ? "+" : ""}${(dvPlan * 100).toFixed(1)}pp`
                   : (row.aop !== 0 ? `${dvPlan >= 0 ? "+" : ""}${dvPlan.toFixed(1)}%` : "—");
-                const dvPlanColor = dvPlan > 0 ? "text-green-600" : dvPlan < 0 ? "text-red-600" : "text-gray-400";
+                const dvPlanColor = dvPlan > 0 ? "text-emerald-600" : dvPlan < 0 ? "text-rose-600" : "text-gray-400";
 
                 // Delta vs LY: 2026(F) vs 2025
                 const dvFcst = isPct ? row.val26 - row.val25 : (row.val25 !== 0 ? ((row.val26 - row.val25) / Math.abs(row.val25)) * 100 : 0);
                 const dvFcstStr = isPct
                   ? `${dvFcst >= 0 ? "+" : ""}${(dvFcst * 100).toFixed(1)}pp`
                   : (row.val25 !== 0 ? `${dvFcst >= 0 ? "+" : ""}${dvFcst.toFixed(1)}%` : "—");
-                const dvFcstColor = dvFcst > 0 ? "text-green-600" : dvFcst < 0 ? "text-red-600" : "text-gray-400";
+                const dvFcstColor = dvFcst > 0 ? "text-emerald-600" : dvFcst < 0 ? "text-rose-600" : "text-gray-400";
+
+                const isLast = i === summaryRows.length - 1;
 
                 return (
-                  <tr key={row.label} className="border-b last:border-0">
-                    <td className="py-2.5 font-semibold text-gray-600 uppercase">{row.label}</td>
-                    <td className="py-2.5 text-right text-gray-500">{row.fmt(row.val25)}</td>
-                    {isAllDepts && <td className="py-2.5 text-right text-blue-600 font-medium">{row.fmt(row.aop)}</td>}
-                    <td className="py-2.5 text-right font-bold">{row.fmt(row.val26)}</td>
-                    {isAllDepts && <td className={`py-2.5 text-right font-semibold ${dvPlanColor}`}>{dvPlanStr}</td>}
-                    <td className={`py-2.5 text-right font-semibold ${dvFcstColor}`}>{dvFcstStr}</td>
+                  <tr key={row.label} className={`${!isLast ? "border-b border-gray-50" : ""} hover:bg-gray-50/50 transition-colors`}>
+                    <td className="py-3 font-semibold text-[11px] text-gray-600 uppercase tracking-wide">{row.label}</td>
+                    <td className="py-3 text-right text-gray-400 tabular-nums">{row.fmt(row.val25)}</td>
+                    {isAllDepts && <td className="py-3 text-right text-blue-600/70 font-medium tabular-nums">{row.fmt(row.aop)}</td>}
+                    <td className="py-3 text-right font-bold text-gray-900 tabular-nums">{row.fmt(row.val26)}</td>
+                    {isAllDepts && <td className={`py-3 text-right font-semibold tabular-nums ${dvPlanColor}`}>{dvPlanStr}</td>}
+                    <td className={`py-3 text-right font-semibold tabular-nums ${dvFcstColor}`}>{dvFcstStr}</td>
                   </tr>
                 );
               })}
@@ -240,20 +357,24 @@ export default function Dashboard() {
       </div>
 
       {/* T12 Trend + Budget vs Forecast Waterfall */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6 animate-fade-in">
         <T12TrendChart entries={entries} metric={activeMetric} />
         <BudgetFcstWaterfall entries={entries} />
       </div>
 
       {/* Rollup Table */}
-      <RollupTable
-        entries={entries}
-        metric={activeMetric}
-        title={`${METRIC_LABELS[activeMetric]} by Department — Monthly`}
-      />
+      <div className="animate-fade-in">
+        <RollupTable
+          entries={entries}
+          metric={activeMetric}
+          title={`${METRIC_LABELS[activeMetric]} by Department — Monthly`}
+        />
+      </div>
 
       {/* Sales Mix Comparison */}
-      <SalesMixTable entries={entries} />
+      <div className="animate-fade-in">
+        <SalesMixTable entries={entries} />
+      </div>
     </div>
   );
 }

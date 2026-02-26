@@ -113,7 +113,7 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
   };
 
   // YTD helpers (through current month)
-  const ytdMonth = CURRENT_MONTH; // e.g., 2 for February
+  const ytdMonth = CURRENT_MONTH;
 
   const getYtd = (deptId: string, year: number): number => {
     if (isPctMetric) {
@@ -144,11 +144,6 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
   };
 
   // Variance helper
-  const calcVar = (val: number, base: number): number => {
-    if (isPctMetric) return val - base; // difference in pct points
-    return base !== 0 ? ((val - base) / Math.abs(base)) * 100 : 0;
-  };
-
   const fmtVar = (val: number, base: number): string => {
     if (isPctMetric) {
       const diff = val - base;
@@ -159,18 +154,18 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
 
   const varColor = (val: number, base: number): string => {
     const diff = isPctMetric ? val - base : (base !== 0 ? val - base : 0);
-    return diff > 0 ? "text-green-600" : diff < 0 ? "text-red-600" : "text-gray-400";
+    return diff > 0 ? "text-emerald-600" : diff < 0 ? "text-rose-600" : "text-gray-400";
   };
 
   // Row config for data rows
   const dataRows = [
-    { key: "2025a", label: "2025 (A)", year: 2025, style: "text-gray-500" },
-    { key: "2026f", label: "2026 (F)", year: 2026, style: "" },
-    { key: "2026a", label: "2026 (A)", year: null, style: "text-blue-600" }, // no data yet
+    { key: "2025a", label: "2025 (A)", year: 2025, style: "text-gray-400" },
+    { key: "2026f", label: "2026 (F)", year: 2026, style: "text-gray-900" },
+    { key: "2026a", label: "2026 (A)", year: null, style: "text-blue-600" },
   ];
 
-  // Render a department block (8 rows: 3 data + 5 variance)
-  const renderDeptBlock = (dept: { id: string; name: string } | null, label: string) => {
+  // Render a department block
+  const renderDeptBlock = (dept: { id: string; name: string } | null, label: string, deptIdx: number) => {
     const isDeptLevel = dept !== null;
     const deptRowSpan = 6;
 
@@ -181,8 +176,9 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     const getYtdVal = (year: number) =>
       isDeptLevel ? getYtd(dept!.id, year) : getGrandYtd(year);
 
-    const bgClass = isDeptLevel ? "" : "bg-gray-100 font-semibold";
-    const stickyBg = isDeptLevel ? "bg-white" : "bg-gray-100";
+    const isEvenDept = deptIdx % 2 === 0;
+    const baseBg = !isDeptLevel ? "bg-gray-800/[0.03]" : (isEvenDept ? "" : "bg-gray-50/50");
+    const stickyBg = !isDeptLevel ? "bg-[#f7f7f7]" : (isEvenDept ? "bg-white" : "bg-[#fbfbfb]");
 
     return (
       <React.Fragment key={label}>
@@ -191,29 +187,30 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
           const monthlyVals = MONTHS.map((_, i) => row.year ? getMonthly(row.year, i + 1) : 0);
           const ytdVal = row.year ? getYtdVal(row.year) : 0;
           const fyVal = row.year ? getFy(row.year) : 0;
+          const is2026f = row.key === "2026f";
 
           return (
-            <tr key={`${label}-${row.key}`} className={`${bgClass} ${row.style} hover:bg-gray-50`}>
+            <tr key={`${label}-${row.key}`} className={`${baseBg} ${row.style} ${is2026f && isDeptLevel ? "font-medium" : ""}`}>
               {rowIdx === 0 && (
-                <td className={`px-2 py-1.5 border font-medium sticky left-0 ${stickyBg} z-10 min-w-[120px]`} rowSpan={deptRowSpan}>
+                <td className={`px-3 py-1.5 font-medium sticky left-0 ${stickyBg} z-10 min-w-[130px] border-r border-gray-100 ${!isDeptLevel ? "font-bold text-[11px] uppercase tracking-wider text-gray-700" : ""}`} rowSpan={deptRowSpan}>
                   {isDeptLevel ? (
-                    <a href={`/department/${dept!.id}`} className="text-brand hover:underline">{label}</a>
+                    <a href={`/department/${dept!.id}`} className="text-brand hover:text-brand-dark hover:underline transition-colors">{label}</a>
                   ) : (
                     label
                   )}
                 </td>
               )}
-              <td className="px-2 py-1.5 border text-center font-medium text-[10px] whitespace-nowrap">{row.label}</td>
+              <td className={`px-2 py-1.5 text-center text-[9px] font-semibold uppercase tracking-wider whitespace-nowrap border-r border-gray-100 ${row.style}`}>{row.label}</td>
               {monthlyVals.map((val, i) => (
-                <td key={i} className="px-2 py-1.5 border text-right">
-                  {row.year === null ? "—" : (val ? fmtVal(metric, val) : "—")}
+                <td key={i} className="px-2 py-1.5 text-right tabular-nums">
+                  {row.year === null ? <span className="text-gray-300">—</span> : (val ? fmtVal(metric, val) : <span className="text-gray-300">—</span>)}
                 </td>
               ))}
-              <td className="px-2 py-1.5 border text-right font-semibold bg-blue-50">
-                {row.year === null ? "—" : (ytdVal ? fmtVal(metric, ytdVal) : "—")}
+              <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-brand-50/60" : "bg-blue-50/40"} border-l border-gray-100`}>
+                {row.year === null ? <span className="text-gray-300">—</span> : (ytdVal ? fmtVal(metric, ytdVal) : <span className="text-gray-300">—</span>)}
               </td>
-              <td className="px-2 py-1.5 border text-right font-semibold bg-gray-50">
-                {row.year === null ? "—" : (fyVal ? fmtVal(metric, fyVal) : "—")}
+              <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-gray-100/60" : "bg-gray-50/60"} border-l border-gray-100`}>
+                {row.year === null ? <span className="text-gray-300">—</span> : (fyVal ? fmtVal(metric, fyVal) : <span className="text-gray-300">—</span>)}
               </td>
             </tr>
           );
@@ -231,21 +228,21 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               key: "a-vs-fcst",
               label: "A vs Fcst",
               hasData: false,
-              getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
+              getMonthVar: () => ({ str: "—", color: "text-gray-300" }),
               ytdStr: "—",
-              ytdColor: "text-gray-400",
+              ytdColor: "text-gray-300",
               fyStr: "—",
-              fyColor: "text-gray-400",
+              fyColor: "text-gray-300",
             },
             {
               key: "a-vs-ly",
               label: "A vs LY",
               hasData: false,
-              getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
+              getMonthVar: () => ({ str: "—", color: "text-gray-300" }),
               ytdStr: "—",
-              ytdColor: "text-gray-400",
+              ytdColor: "text-gray-300",
               fyStr: "—",
-              fyColor: "text-gray-400",
+              fyColor: "text-gray-300",
             },
             {
               key: "f-vs-ly",
@@ -254,7 +251,7 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               getMonthVar: (month: number) => {
                 const v26 = getMonthly(2026, month);
                 const v25 = getMonthly(2025, month);
-                if (!v25 && !v26) return { str: "—", color: "text-gray-400" };
+                if (!v25 && !v26) return { str: "—", color: "text-gray-300" };
                 return { str: fmtVar(v26, v25), color: varColor(v26, v25) };
               },
               ytdStr: fmtVar(ytd26f, ytd25a),
@@ -265,52 +262,63 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
           ];
 
           return varRows.map((vr) => (
-            <tr key={`${label}-${vr.key}`} className="bg-yellow-50/50">
-              <td className="px-2 py-1 border text-center text-[10px] font-medium text-gray-400 whitespace-nowrap">{vr.label}</td>
+            <tr key={`${label}-${vr.key}`} className={`${baseBg} bg-amber-50/30`}>
+              <td className="px-2 py-1 text-center text-[9px] font-semibold text-gray-400 whitespace-nowrap uppercase tracking-wider border-r border-gray-100">{vr.label}</td>
               {MONTHS.map((_, i) => {
                 if (!vr.hasData) {
-                  return <td key={i} className="px-2 py-1 border text-right text-[10px] text-gray-400">—</td>;
+                  return <td key={i} className="px-2 py-1 text-right text-[10px] text-gray-300">—</td>;
                 }
                 const { str, color } = vr.getMonthVar(i + 1);
-                return <td key={i} className={`px-2 py-1 border text-right text-[10px] ${color}`}>{str}</td>;
+                return <td key={i} className={`px-2 py-1 text-right text-[10px] font-medium tabular-nums ${color}`}>{str}</td>;
               })}
-              <td className={`px-2 py-1 border text-right text-[10px] font-semibold bg-blue-50 ${vr.ytdColor}`}>
+              <td className={`px-2 py-1 text-right text-[10px] font-bold tabular-nums bg-brand-50/40 border-l border-gray-100 ${vr.ytdColor}`}>
                 {vr.ytdStr}
               </td>
-              <td className={`px-2 py-1 border text-right text-[10px] font-semibold ${vr.fyColor}`}>
+              <td className={`px-2 py-1 text-right text-[10px] font-bold tabular-nums bg-gray-50/60 border-l border-gray-100 ${vr.fyColor}`}>
                 {vr.fyStr}
               </td>
             </tr>
           ));
         })()}
+
+        {/* Separator between dept blocks */}
+        {isDeptLevel && (
+          <tr>
+            <td colSpan={MONTHS.length + 4} className="h-px bg-gray-200/80" />
+          </tr>
+        )}
       </React.Fragment>
     );
   };
 
   return (
-    <div className="mb-8">
-      <h3 className="text-sm font-semibold text-gray-700 mb-2 uppercase tracking-wide">{title}</h3>
-      <div className="overflow-x-auto">
-        <table className="w-full text-xs border-collapse">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="text-left px-2 py-2 border font-medium sticky left-0 bg-gray-100 z-10 min-w-[120px]">Department</th>
-              <th className="px-2 py-2 border font-medium bg-gray-200 text-center min-w-[70px]"></th>
-              {MONTHS.map((m) => (
-                <th key={m} className="px-2 py-2 border text-center font-medium">{m}</th>
-              ))}
-              <th className="px-2 py-2 border text-center font-semibold bg-blue-100">YTD</th>
-              <th className="px-2 py-2 border text-center font-semibold bg-gray-200">FY Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Department rows */}
-            {deptList.map((dept) => renderDeptBlock(dept, dept.name))}
-
-            {/* Grand total */}
-            {deptList.length > 1 && renderDeptBlock(null, "TOTAL")}
-          </tbody>
-        </table>
+    <div className="mb-6">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">{title}</h3>
+        <span className="text-[10px] text-gray-400 font-medium">
+          {deptList.length} department{deptList.length !== 1 ? "s" : ""}
+        </span>
+      </div>
+      <div className="card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-[11px] border-collapse">
+            <thead>
+              <tr className="bg-gray-900 text-white">
+                <th className="text-left px-3 py-2.5 font-semibold sticky left-0 bg-gray-900 z-10 min-w-[130px] text-[10px] uppercase tracking-wider">Department</th>
+                <th className="px-2 py-2.5 font-semibold text-center min-w-[60px] text-[10px] uppercase tracking-wider border-l border-gray-700"></th>
+                {MONTHS.map((m) => (
+                  <th key={m} className="px-2 py-2.5 text-center font-semibold text-[10px] uppercase tracking-wider">{m}</th>
+                ))}
+                <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-brand-dark border-l border-brand/30">YTD</th>
+                <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-gray-800 border-l border-gray-700">FY</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deptList.map((dept, idx) => renderDeptBlock(dept, dept.name, idx))}
+              {deptList.length > 1 && renderDeptBlock(null, "TOTAL", -1)}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
