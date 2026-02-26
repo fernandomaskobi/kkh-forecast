@@ -1,7 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { hashPassword } from "@/lib/auth";
 
 export async function POST() {
+  // Seed departments
   const departments = [
     "Art",
     "Bedding & Bath",
@@ -25,10 +27,20 @@ export async function POST() {
     });
   }
 
-  const existing = await prisma.user.findFirst({ where: { name: "Admin" } });
+  // Seed admin user (fernando@kathykuohome.com)
+  const adminEmail = "fernando@kathykuohome.com";
+  const existing = await prisma.user.findUnique({
+    where: { email: adminEmail },
+  });
   if (!existing) {
+    const passwordHash = await hashPassword("ChangeMe123!");
     await prisma.user.create({
-      data: { name: "Admin", role: "admin" },
+      data: {
+        email: adminEmail,
+        name: "Fernando",
+        role: "admin",
+        passwordHash,
+      },
     });
   }
 

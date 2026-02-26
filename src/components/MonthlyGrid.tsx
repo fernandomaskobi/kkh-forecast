@@ -108,9 +108,7 @@ export default function MonthlyGrid({
   const save = async () => {
     setSaving(true);
     const isCurrentYear = year === new Date().getFullYear();
-    // Get logged-in user from cookie for updatedBy stamp
-    const userMatch = document.cookie.match(/(^| )kkh_user=([^;]+)/);
-    const updatedBy = userMatch ? decodeURIComponent(userMatch[2]) : undefined;
+    // updatedBy is now set server-side from the JWT session
     const entries = data.map((entry) => ({
       departmentId,
       year,
@@ -119,7 +117,6 @@ export default function MonthlyGrid({
       grossBookedSales: entry.grossBookedSales,
       gmPercent: entry.gmPercent,
       cpPercent: entry.cpPercent,
-      updatedBy,
     }));
     await fetch("/api/entries", {
       method: "POST",

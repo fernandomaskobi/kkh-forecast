@@ -4,23 +4,31 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const links = [
-  { href: "/", label: "Dashboard" },
-  { href: "/input", label: "Input" },
-  { href: "/admin", label: "Admin" },
-];
+type UserInfo = {
+  name: string;
+  email: string;
+  role: string;
+};
 
-function getCookie(name: string): string | null {
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? decodeURIComponent(match[2]) : null;
-}
+// Nav links with role access
+const allLinks = [
+  { href: "/", label: "Dashboard", roles: ["viewer", "editor", "admin"] },
+  { href: "/input", label: "Input", roles: ["editor", "admin"] },
+  { href: "/admin", label: "Admin", roles: ["admin"] },
+];
 
 export default function Navigation() {
   const pathname = usePathname();
-  const [userName, setUserName] = useState<string | null>(null);
+  const [user, setUser] = useState<UserInfo | null>(null);
 
   useEffect(() => {
-    setUserName(getCookie("kkh_user"));
+    fetch("/api/auth")
+      .then((r) => {
+        if (r.ok) return r.json();
+        return { user: null };
+      })
+      .then((data) => setUser(data.user))
+      .catch(() => setUser(null));
   }, []);
 
   const logout = async () => {
@@ -30,16 +38,35 @@ export default function Navigation() {
 
   if (pathname === "/login") return null;
 
+  // Filter links based on user role
+  const visibleLinks = user
+    ? allLinks.filter((link) => link.roles.includes(user.role))
+    : [];
+
+  const roleBadgeColor: Record<string, string> = {
+    admin: "text-amber-400",
+    editor: "text-emerald-400",
+    viewer: "text-blue-400",
+  };
+
   return (
     <nav className="bg-black text-white border-b border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center gap-10">
-            <Link href="/" className="tracking-widest text-sm font-semibold uppercase" style={{ fontFamily: "'Playfair Display', serif", fontSize: "15px", letterSpacing: "0.15em" }}>
+            <Link
+              href="/"
+              className="tracking-widest text-sm font-semibold uppercase"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: "15px",
+                letterSpacing: "0.15em",
+              }}
+            >
               KKH Forecast
             </Link>
             <div className="flex gap-1">
-              {links.map((link) => {
+              {visibleLinks.map((link) => {
                 const isActive =
                   link.href === "/"
                     ? pathname === "/"
@@ -60,9 +87,20 @@ export default function Navigation() {
               })}
             </div>
           </div>
-          {userName && (
+          {user && (
             <div className="flex items-center gap-3">
-              <span className="text-xs text-neutral-400 tracking-wide">{userName}</span>
+              <div className="text-right">
+                <span className="text-xs text-neutral-300 tracking-wide block">
+                  {user.name}
+                </span>
+                <span
+                  className={`text-[10px] uppercase tracking-wider ${
+                    roleBadgeColor[user.role] || "text-neutral-500"
+                  }`}
+                >
+                  {user.role}
+                </span>
+              </div>
               <button
                 onClick={logout}
                 className="text-xs text-neutral-500 hover:text-white transition-colors uppercase tracking-wider"

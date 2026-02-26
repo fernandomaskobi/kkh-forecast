@@ -6,6 +6,7 @@ type Department = { id: string; name: string; category: string };
 type User = {
   id: string;
   name: string;
+  email: string;
   role: string;
   department: Department | null;
 };
@@ -15,8 +16,17 @@ export default function AdminPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [newDeptName, setNewDeptName] = useState("");
   const [newDeptCategory, setNewDeptCategory] = useState("merch");
+
+  // New user form state
+  const [newUserEmail, setNewUserEmail] = useState("");
   const [newUserName, setNewUserName] = useState("");
+  const [newUserPassword, setNewUserPassword] = useState("");
+  const [newUserRole, setNewUserRole] = useState("editor");
   const [newUserDept, setNewUserDept] = useState("");
+  const [userError, setUserError] = useState("");
+  const [userSuccess, setUserSuccess] = useState("");
+
+  // CSV upload state
   const [csvText, setCsvText] = useState("");
   const [csvDept, setCsvDept] = useState("");
   const [csvYear, setCsvYear] = useState("2025");
@@ -31,7 +41,8 @@ export default function AdminPage() {
       fetch("/api/users"),
     ]);
     setDepartments(await deptRes.json());
-    setUsers(await userRes.json());
+    const userData = await userRes.json();
+    setUsers(Array.isArray(userData) ? userData : []);
   }, []);
 
   useEffect(() => {
@@ -43,7 +54,10 @@ export default function AdminPage() {
     await fetch("/api/departments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: newDeptName.trim(), category: newDeptCategory }),
+      body: JSON.stringify({
+        name: newDeptName.trim(),
+        category: newDeptCategory,
+      }),
     });
     setNewDeptName("");
     loadData();
@@ -56,18 +70,40 @@ export default function AdminPage() {
   };
 
   const addUser = async () => {
-    if (!newUserName.trim()) return;
-    await fetch("/api/users", {
+    setUserError("");
+    setUserSuccess("");
+
+    if (!newUserEmail.trim() || !newUserName.trim() || !newUserPassword) {
+      setUserError("Email, name, and password are required");
+      return;
+    }
+
+    const res = await fetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        email: newUserEmail.trim().toLowerCase(),
         name: newUserName.trim(),
+        password: newUserPassword,
+        role: newUserRole,
         departmentId: newUserDept || null,
       }),
     });
+    const data = await res.json();
+
+    if (!res.ok) {
+      setUserError(data.error || "Failed to create user");
+      return;
+    }
+
+    setUserSuccess(`Created ${data.name} (${data.role})`);
+    setNewUserEmail("");
     setNewUserName("");
+    setNewUserPassword("");
+    setNewUserRole("editor");
     setNewUserDept("");
     loadData();
+    setTimeout(() => setUserSuccess(""), 3000);
   };
 
   const seedData = async () => {
@@ -94,7 +130,12 @@ export default function AdminPage() {
     }
 
     const lines = csvText.trim().split("\n");
-    const rows: Array<{ month: number; grossBookedSales: number; gmPercent: number; cpPercent: number }> = [];
+    const rows: Array<{
+      month: number;
+      grossBookedSales: number;
+      gmPercent: number;
+      cpPercent: number;
+    }> = [];
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -110,14 +151,16 @@ export default function AdminPage() {
         rows.push({
           month: parseInt(parts[0]),
           grossBookedSales: parseFloat(parts[1]) || 0,
-          gmPercent: parseFloat(parts[2]) / 100 || 0, // user enters 52.3, stored as 0.523
+          gmPercent: parseFloat(parts[2]) / 100 || 0,
           cpPercent: parseFloat(parts[3]) / 100 || 0,
         });
       }
     }
 
     if (rows.length === 0) {
-      setUploadMsg("No valid rows found. Format: month,grossBookedSales,gmPercent,cpPercent");
+      setUploadMsg(
+        "No valid rows found. Format: month,grossBookedSales,gmPercent,cpPercent"
+      );
       return;
     }
 
@@ -136,6 +179,12 @@ export default function AdminPage() {
     setCsvText("");
     if (fileInputRef.current) fileInputRef.current.value = "";
     setTimeout(() => setUploadMsg(""), 4000);
+  };
+
+  const roleBadge: Record<string, string> = {
+    admin: "bg-amber-100 text-amber-700",
+    editor: "bg-emerald-100 text-emerald-700",
+    viewer: "bg-blue-100 text-blue-700",
   };
 
   return (
@@ -175,10 +224,15 @@ export default function AdminPage() {
           </div>
           <div className="space-y-1">
             {departments.map((d) => (
-              <div key={d.id} className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-50">
+              <div
+                key={d.id}
+                className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-50"
+              >
                 <div>
                   <span className="text-sm font-medium">{d.name}</span>
-                  <span className="text-xs text-gray-400 ml-2">{d.category}</span>
+                  <span className="text-xs text-gray-400 ml-2">
+                    {d.category}
+                  </span>
                 </div>
                 <button
                   onClick={() => deleteDepartment(d.id)}
@@ -191,7 +245,11 @@ export default function AdminPage() {
             {departments.length === 0 && (
               <div className="text-sm text-gray-400 text-center py-4">
                 No departments yet.{" "}
-                <button onClick={seedData} className="text-brand hover:underline" disabled={seeding}>
+                <button
+                  onClick={seedData}
+                  className="text-brand hover:underline"
+                  disabled={seeding}
+                >
                   {seeding ? "Seeding..." : "Seed default departments"}
                 </button>
               </div>
@@ -204,43 +262,105 @@ export default function AdminPage() {
           <h2 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
             Users
           </h2>
-          <div className="flex gap-2 mb-4">
-            <input
-              type="text"
-              value={newUserName}
-              onChange={(e) => setNewUserName(e.target.value)}
-              placeholder="User name"
-              className="border rounded px-3 py-1.5 text-sm flex-1"
-              onKeyDown={(e) => e.key === "Enter" && addUser()}
-            />
-            <select
-              value={newUserDept}
-              onChange={(e) => setNewUserDept(e.target.value)}
-              className="border rounded px-2 py-1.5 text-sm"
-            >
-              <option value="">No department</option>
-              {departments.map((d) => (
-                <option key={d.id} value={d.id}>{d.name}</option>
-              ))}
-            </select>
+
+          {/* Add user form */}
+          <div className="space-y-2 mb-4 p-3 bg-gray-50 rounded border">
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                type="email"
+                value={newUserEmail}
+                onChange={(e) => setNewUserEmail(e.target.value)}
+                placeholder="email@kathykuohome.com"
+                className="border rounded px-3 py-1.5 text-sm col-span-2"
+              />
+              <input
+                type="text"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
+                placeholder="Full name"
+                className="border rounded px-3 py-1.5 text-sm"
+              />
+              <input
+                type="password"
+                value={newUserPassword}
+                onChange={(e) => setNewUserPassword(e.target.value)}
+                placeholder="Password (min 8 chars)"
+                className="border rounded px-3 py-1.5 text-sm"
+              />
+              <select
+                value={newUserRole}
+                onChange={(e) => setNewUserRole(e.target.value)}
+                className="border rounded px-2 py-1.5 text-sm"
+              >
+                <option value="viewer">Viewer</option>
+                <option value="editor">Editor</option>
+                <option value="admin">Admin</option>
+              </select>
+              <select
+                value={newUserDept}
+                onChange={(e) => setNewUserDept(e.target.value)}
+                className="border rounded px-2 py-1.5 text-sm"
+              >
+                <option value="">No department</option>
+                {departments.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <button
               onClick={addUser}
-              className="bg-black text-white px-3 py-1.5 rounded text-sm font-medium hover:bg-neutral-800"
+              className="w-full bg-brand text-white px-3 py-1.5 rounded text-sm font-medium hover:bg-brand-dark"
             >
-              Add
+              Create User
             </button>
+            {userError && (
+              <p className="text-red-600 text-xs bg-red-50 px-2 py-1 rounded">
+                {userError}
+              </p>
+            )}
+            {userSuccess && (
+              <p className="text-green-600 text-xs bg-green-50 px-2 py-1 rounded">
+                {userSuccess}
+              </p>
+            )}
           </div>
+
+          {/* User list */}
           <div className="space-y-1">
             {users.map((u) => (
-              <div key={u.id} className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-50">
+              <div
+                key={u.id}
+                className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-50"
+              >
                 <div>
                   <span className="text-sm font-medium">{u.name}</span>
                   <span className="text-xs text-gray-400 ml-2">
-                    {u.role} {u.department ? `· ${u.department.name}` : ""}
+                    {u.email}
                   </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`text-[10px] uppercase font-medium px-2 py-0.5 rounded ${
+                      roleBadge[u.role] || "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    {u.role}
+                  </span>
+                  {u.department && (
+                    <span className="text-xs text-gray-400">
+                      {u.department.name}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
+            {users.length === 0 && (
+              <p className="text-sm text-gray-400 text-center py-4">
+                No users yet.
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -251,7 +371,10 @@ export default function AdminPage() {
           Bulk Import (CSV)
         </h2>
         <p className="text-xs text-gray-400 mb-3">
-          Format: <code>month,grossBookedSales,gmPercent,cpPercent</code> — one row per month (1-12). Header row optional. GM% and CP% as whole numbers (e.g. 52.3 for 52.3%).
+          Format:{" "}
+          <code>month,grossBookedSales,gmPercent,cpPercent</code> — one row
+          per month (1-12). Header row optional. GM% and CP% as whole numbers
+          (e.g. 52.3 for 52.3%).
         </p>
         <div className="flex flex-wrap gap-3 mb-3">
           <select
@@ -261,7 +384,9 @@ export default function AdminPage() {
           >
             <option value="">Select department...</option>
             {departments.map((d) => (
-              <option key={d.id} value={d.id}>{d.name}</option>
+              <option key={d.id} value={d.id}>
+                {d.name}
+              </option>
             ))}
           </select>
           <select
@@ -303,7 +428,13 @@ export default function AdminPage() {
             Upload
           </button>
           {uploadMsg && (
-            <span className={`text-sm ${uploadMsg.includes("success") ? "text-green-600" : "text-red-600"}`}>
+            <span
+              className={`text-sm ${
+                uploadMsg.includes("success")
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
               {uploadMsg}
             </span>
           )}

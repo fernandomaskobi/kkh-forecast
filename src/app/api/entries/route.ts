@@ -28,6 +28,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // Get authenticated user name from middleware headers
+  const updatedBy = request.headers.get("x-user-name") || "Unknown";
+
   const body = await request.json();
   const { entries } = body as {
     entries: Array<{
@@ -38,7 +41,6 @@ export async function POST(request: NextRequest) {
       grossBookedSales: number;
       gmPercent: number;
       cpPercent: number;
-      updatedBy?: string;
     }>;
   };
 
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
         grossBookedSales: entry.grossBookedSales,
         gmPercent: entry.gmPercent,
         cpPercent: entry.cpPercent,
-        updatedBy: entry.updatedBy,
+        updatedBy,
       },
       create: {
         departmentId: entry.departmentId,
@@ -74,7 +76,7 @@ export async function POST(request: NextRequest) {
         grossBookedSales: entry.grossBookedSales,
         gmPercent: entry.gmPercent,
         cpPercent: entry.cpPercent,
-        updatedBy: entry.updatedBy,
+        updatedBy,
       },
     });
     results.push(result);
