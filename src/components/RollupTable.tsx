@@ -156,10 +156,10 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     { key: "2026a", label: "2026 (A)", year: null, style: "text-blue-600" }, // no data yet
   ];
 
-  // Render a department block (6 rows)
+  // Render a department block (8 rows: 3 data + 5 variance)
   const renderDeptBlock = (dept: { id: string; name: string } | null, label: string) => {
     const isDeptLevel = dept !== null;
-    const deptRowSpan = 6;
+    const deptRowSpan = 8;
 
     const getMonthly = (year: number, month: number) =>
       isDeptLevel ? getVal(dept!.id, year, month) : getGrandVal(year, month);
@@ -225,6 +225,29 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
               fyStr: "—",
               fyColor: "text-gray-400",
+            },
+            {
+              key: "a-vs-ly",
+              label: "A vs LY",
+              // 2026(A) vs 2025(A) — no 2026 actuals yet, so show —
+              hasData: false,
+              getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
+              fyStr: "—",
+              fyColor: "text-gray-400",
+            },
+            {
+              key: "f-vs-ly",
+              label: "F vs LY",
+              // 2026(F) vs 2025(A)
+              hasData: true,
+              getMonthVar: (month: number) => {
+                const v26 = getMonthly(2026, month);
+                const v25 = getMonthly(2025, month);
+                if (!v25 && !v26) return { str: "—", color: "text-gray-400" };
+                return { str: fmtVar(v26, v25), color: varColor(v26, v25) };
+              },
+              fyStr: fmtVar(fy26f, fy25a),
+              fyColor: varColor(fy26f, fy25a),
             },
             {
               key: "f-vs-aop",
