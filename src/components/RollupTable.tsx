@@ -38,11 +38,6 @@ function fmtVal(metric: MetricKey, value: number): string {
   return formatCurrency(value);
 }
 
-// AOP totals (same as dashboard)
-const AOP_SALES = 57_050_000;
-const AOP_GM_PCT = 0.505;
-const AOP_CP_PCT = 0.467;
-
 export default function RollupTable({ entries, metric, title }: RollupTableProps) {
   const departments = new Map<string, { name: string; id: string }>();
   for (const e of entries) {
@@ -117,19 +112,6 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     return MONTHS.reduce((s, _, i) => s + getGrandVal(year, i + 1), 0);
   };
 
-  // AOP metric value (total level only)
-  const getAopMetric = (): number => {
-    switch (metric) {
-      case "grossBookedSales": return AOP_SALES;
-      case "gmDollars": return AOP_SALES * AOP_GM_PCT;
-      case "gmPercent": return AOP_GM_PCT;
-      case "cpDollars": return AOP_SALES * AOP_CP_PCT;
-      case "cpPercent": return AOP_CP_PCT;
-      case "salesMix": return 1;
-      default: return 0;
-    }
-  };
-
   // Variance helper
   const calcVar = (val: number, base: number): number => {
     if (isPctMetric) return val - base; // difference in pct points
@@ -159,7 +141,7 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
   // Render a department block (8 rows: 3 data + 5 variance)
   const renderDeptBlock = (dept: { id: string; name: string } | null, label: string) => {
     const isDeptLevel = dept !== null;
-    const deptRowSpan = 8;
+    const deptRowSpan = 6;
 
     const getMonthly = (year: number, month: number) =>
       isDeptLevel ? getVal(dept!.id, year, month) : getGrandVal(year, month);
@@ -204,19 +186,8 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
         {(() => {
           const fy26f = getFy(2026);
           const fy25a = getFy(2025);
-          // AOP only available at total level
-          const aopVal = isDeptLevel ? null : getAopMetric();
 
           const varRows = [
-            {
-              key: "a-vs-aop",
-              label: "A vs AOP",
-              // 2026(A) vs AOP — no actuals yet, so show —
-              hasData: false,
-              getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
-              fyStr: "—",
-              fyColor: "text-gray-400",
-            },
             {
               key: "a-vs-fcst",
               label: "A vs Fcst",
@@ -248,21 +219,6 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               },
               fyStr: fmtVar(fy26f, fy25a),
               fyColor: varColor(fy26f, fy25a),
-            },
-            {
-              key: "f-vs-aop",
-              label: "F vs AOP",
-              // 2026(F) vs AOP — only at total level
-              hasData: !isDeptLevel && aopVal !== null,
-              getMonthVar: (month: number) => {
-                if (isDeptLevel || aopVal === null) return { str: "—", color: "text-gray-400" };
-                const v26 = getGrandVal(2026, month);
-                // For monthly AOP, distribute evenly (AOP / 12)
-                const monthAop = isPctMetric ? aopVal : aopVal / 12;
-                return { str: fmtVar(v26, monthAop), color: varColor(v26, monthAop) };
-              },
-              fyStr: (!isDeptLevel && aopVal !== null) ? fmtVar(fy26f, aopVal) : "—",
-              fyColor: (!isDeptLevel && aopVal !== null) ? varColor(fy26f, aopVal) : "text-gray-400",
             },
           ];
 
