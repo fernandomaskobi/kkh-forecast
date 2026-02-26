@@ -118,6 +118,21 @@ export default function AdminPage() {
     loadData();
   };
 
+  const changeRole = async (id: string, newRole: string) => {
+    const res = await fetch("/api/users", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, role: newRole }),
+    });
+    if (!res.ok) {
+      const data = await res.json();
+      setUserError(data.error || "Failed to change role");
+      setTimeout(() => setUserError(""), 3000);
+      return;
+    }
+    loadData();
+  };
+
   const seedData = async () => {
     setSeeding(true);
     await fetch("/api/seed", { method: "POST" });
@@ -353,13 +368,22 @@ export default function AdminPage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span
-                    className={`text-[10px] uppercase font-medium px-2 py-0.5 rounded ${
+                  <select
+                    value={u.role}
+                    onChange={(e) => changeRole(u.id, e.target.value)}
+                    className={`text-[10px] uppercase font-medium px-1.5 py-0.5 rounded border-0 cursor-pointer appearance-none pr-4 ${
                       roleBadge[u.role] || "bg-gray-100 text-gray-600"
                     }`}
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath fill='%23666' d='M0 2l4 4 4-4z'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "right 4px center",
+                    }}
                   >
-                    {u.role}
-                  </span>
+                    <option value="viewer">Viewer</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Admin</option>
+                  </select>
                   {u.department && (
                     <span className="text-xs text-gray-400">
                       {u.department.name}

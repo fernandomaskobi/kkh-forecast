@@ -87,6 +87,46 @@ export async function POST(request: NextRequest) {
   }
 }
 
+/** PATCH /api/users — Update a user's role (admin-only, enforced by middleware) */
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { id, role } = body as { id: string; role: string };
+
+    if (!id || !role) {
+      return NextResponse.json(
+        { error: "User ID and role are required" },
+        { status: 400 }
+      );
+    }
+
+    if (!["admin", "editor", "viewer"].includes(role)) {
+      return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+    }
+
+    const user = await prisma.user.findUnique({ where: { id } });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    const updated = await prisma.user.update({
+      where: { id },
+      data: { role },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      id: updated.id,
+      name: updated.name,
+      email: updated.email,
+      role: updated.role,
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
+
 /** DELETE /api/users?id=xxx — Remove a user (admin-only, enforced by middleware) */
 export async function DELETE(request: NextRequest) {
   try {
