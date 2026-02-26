@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import RollupTable from "@/components/RollupTable";
 import ForecastChart from "@/components/ForecastChart";
 import SalesMixTable from "@/components/SalesMixTable";
+import T12TrendChart from "@/components/T12TrendChart";
+import BudgetFcstWaterfall from "@/components/BudgetFcstWaterfall";
 import { METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
 import { exportDashboardToExcel } from "@/lib/exportExcel";
 
@@ -235,6 +237,12 @@ export default function Dashboard() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* T12 Trend + Budget vs Forecast Waterfall */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        <T12TrendChart entries={entries} metric={activeMetric} />
+        <BudgetFcstWaterfall entries={entries} />
       </div>
 
       {/* Rollup Table */}

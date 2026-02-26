@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MONTHS, formatCurrency, formatPct, formatVariance, type MetricKey } from "@/lib/constants";
+import { MONTHS, CURRENT_MONTH, formatCurrency, formatPct, formatVariance, type MetricKey } from "@/lib/constants";
 
 type EntryData = {
   departmentId: string;
@@ -112,6 +112,37 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     return MONTHS.reduce((s, _, i) => s + getGrandVal(year, i + 1), 0);
   };
 
+  // YTD helpers (through current month)
+  const ytdMonth = CURRENT_MONTH; // e.g., 2 for February
+
+  const getYtd = (deptId: string, year: number): number => {
+    if (isPctMetric) {
+      if (metric === "salesMix") {
+        const deptYtd = entries.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
+        const totalYtd = entries.filter((e) => e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
+        return totalYtd ? deptYtd / totalYtd : 0;
+      }
+      const deptEntries = entries.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth);
+      const ts = deptEntries.reduce((s, e) => s + e.grossBookedSales, 0);
+      return ts ? deptEntries.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
+    }
+    let sum = 0;
+    for (let m = 1; m <= ytdMonth; m++) sum += getVal(deptId, year, m);
+    return sum;
+  };
+
+  const getGrandYtd = (year: number): number => {
+    if (isPctMetric) {
+      if (metric === "salesMix") return 1;
+      const ye = entries.filter((e) => e.year === year && e.month <= ytdMonth);
+      const ts = ye.reduce((s, e) => s + e.grossBookedSales, 0);
+      return ts ? ye.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
+    }
+    let sum = 0;
+    for (let m = 1; m <= ytdMonth; m++) sum += getGrandVal(year, m);
+    return sum;
+  };
+
   // Variance helper
   const calcVar = (val: number, base: number): number => {
     if (isPctMetric) return val - base; // difference in pct points
@@ -147,6 +178,8 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
       isDeptLevel ? getVal(dept!.id, year, month) : getGrandVal(year, month);
     const getFy = (year: number) =>
       isDeptLevel ? getFyTotal(dept!.id, year) : getGrandFy(year);
+    const getYtdVal = (year: number) =>
+      isDeptLevel ? getYtd(dept!.id, year) : getGrandYtd(year);
 
     const bgClass = isDeptLevel ? "" : "bg-gray-100 font-semibold";
     const stickyBg = isDeptLevel ? "bg-white" : "bg-gray-100";
@@ -156,6 +189,7 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
         {/* Data rows: 2025(A), 2026(F), 2026(A) */}
         {dataRows.map((row, rowIdx) => {
           const monthlyVals = MONTHS.map((_, i) => row.year ? getMonthly(row.year, i + 1) : 0);
+          const ytdVal = row.year ? getYtdVal(row.year) : 0;
           const fyVal = row.year ? getFy(row.year) : 0;
 
           return (
@@ -175,6 +209,9 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
                   {row.year === null ? "—" : (val ? fmtVal(metric, val) : "—")}
                 </td>
               ))}
+              <td className="px-2 py-1.5 border text-right font-semibold bg-blue-50">
+                {row.year === null ? "—" : (ytdVal ? fmtVal(metric, ytdVal) : "—")}
+              </td>
               <td className="px-2 py-1.5 border text-right font-semibold bg-gray-50">
                 {row.year === null ? "—" : (fyVal ? fmtVal(metric, fyVal) : "—")}
               </td>
@@ -186,30 +223,33 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
         {(() => {
           const fy26f = getFy(2026);
           const fy25a = getFy(2025);
+          const ytd26f = getYtdVal(2026);
+          const ytd25a = getYtdVal(2025);
 
           const varRows = [
             {
               key: "a-vs-fcst",
               label: "A vs Fcst",
-              // 2026(A) vs 2026(F) — no actuals yet, so show —
               hasData: false,
               getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
+              ytdStr: "—",
+              ytdColor: "text-gray-400",
               fyStr: "—",
               fyColor: "text-gray-400",
             },
             {
               key: "a-vs-ly",
               label: "A vs LY",
-              // 2026(A) vs 2025(A) — no 2026 actuals yet, so show —
               hasData: false,
               getMonthVar: () => ({ str: "—", color: "text-gray-400" }),
+              ytdStr: "—",
+              ytdColor: "text-gray-400",
               fyStr: "—",
               fyColor: "text-gray-400",
             },
             {
               key: "f-vs-ly",
               label: "F vs LY",
-              // 2026(F) vs 2025(A)
               hasData: true,
               getMonthVar: (month: number) => {
                 const v26 = getMonthly(2026, month);
@@ -217,6 +257,8 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
                 if (!v25 && !v26) return { str: "—", color: "text-gray-400" };
                 return { str: fmtVar(v26, v25), color: varColor(v26, v25) };
               },
+              ytdStr: fmtVar(ytd26f, ytd25a),
+              ytdColor: varColor(ytd26f, ytd25a),
               fyStr: fmtVar(fy26f, fy25a),
               fyColor: varColor(fy26f, fy25a),
             },
@@ -232,6 +274,9 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
                 const { str, color } = vr.getMonthVar(i + 1);
                 return <td key={i} className={`px-2 py-1 border text-right text-[10px] ${color}`}>{str}</td>;
               })}
+              <td className={`px-2 py-1 border text-right text-[10px] font-semibold bg-blue-50 ${vr.ytdColor}`}>
+                {vr.ytdStr}
+              </td>
               <td className={`px-2 py-1 border text-right text-[10px] font-semibold ${vr.fyColor}`}>
                 {vr.fyStr}
               </td>
@@ -254,6 +299,7 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               {MONTHS.map((m) => (
                 <th key={m} className="px-2 py-2 border text-center font-medium">{m}</th>
               ))}
+              <th className="px-2 py-2 border text-center font-semibold bg-blue-100">YTD</th>
               <th className="px-2 py-2 border text-center font-semibold bg-gray-200">FY Total</th>
             </tr>
           </thead>
