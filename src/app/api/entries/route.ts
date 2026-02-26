@@ -2,20 +2,29 @@ import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const departmentId = searchParams.get("departmentId");
-  const year = searchParams.get("year");
+  try {
+    const { searchParams } = new URL(request.url);
+    const departmentId = searchParams.get("departmentId");
+    const year = searchParams.get("year");
 
-  const where: Record<string, unknown> = {};
-  if (departmentId) where.departmentId = departmentId;
-  if (year) where.year = parseInt(year);
+    const where: Record<string, unknown> = {};
+    if (departmentId) where.departmentId = departmentId;
+    if (year) where.year = parseInt(year);
 
-  const entries = await prisma.monthlyEntry.findMany({
-    where,
-    include: { department: true },
-    orderBy: [{ year: "asc" }, { month: "asc" }],
-  });
-  return NextResponse.json(entries);
+    const entries = await prisma.monthlyEntry.findMany({
+      where,
+      include: { department: true },
+      orderBy: [{ year: "asc" }, { month: "asc" }],
+    });
+    return NextResponse.json(entries);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("GET /api/entries error:", message);
+    return NextResponse.json(
+      { error: message, tursoUrl: process.env.TURSO_DATABASE_URL ? "set" : "NOT SET" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
