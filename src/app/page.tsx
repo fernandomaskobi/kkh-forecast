@@ -154,9 +154,11 @@ export default function Dashboard() {
   const gmVsAop = (s26.gmPct - aopGmPct) * 100; // pp
   const cpVsAop = (s26.cpPct - aopCpPct) * 100; // pp
 
+  const selectedDeptName = !isAllDepts ? deptMap.get(selectedDept) : null;
+
   const kpiCards = [
     {
-      label: "2026 Forecast Sales",
+      label: selectedDeptName ? `${selectedDeptName} — Sales` : "2026 Forecast Sales",
       value: formatCurrency(s26.totalSales),
       badge: isAllDepts ? `${salesVsAop >= 0 ? "+" : ""}${salesVsAop.toFixed(1)}% vs AOP` : `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}% vs LY`,
       badgeColor: (isAllDepts ? salesVsAop : salesVsLy) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -169,7 +171,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: "Gross Margin %",
+      label: selectedDeptName ? `${selectedDeptName} — GM %` : "Gross Margin %",
       value: formatPct(s26.gmPct),
       badge: isAllDepts ? `${gmVsAop >= 0 ? "+" : ""}${gmVsAop.toFixed(1)}pp vs AOP` : `${((s26.gmPct - s25.gmPct) * 100) >= 0 ? "+" : ""}${((s26.gmPct - s25.gmPct) * 100).toFixed(1)}pp vs LY`,
       badgeColor: (isAllDepts ? gmVsAop : (s26.gmPct - s25.gmPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -182,7 +184,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: "Contribution Profit %",
+      label: selectedDeptName ? `${selectedDeptName} — CP %` : "Contribution Profit %",
       value: formatPct(s26.cpPct),
       badge: isAllDepts ? `${cpVsAop >= 0 ? "+" : ""}${cpVsAop.toFixed(1)}pp vs AOP` : `${((s26.cpPct - s25.cpPct) * 100) >= 0 ? "+" : ""}${((s26.cpPct - s25.cpPct) * 100).toFixed(1)}pp vs LY`,
       badgeColor: (isAllDepts ? cpVsAop : (s26.cpPct - s25.cpPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -195,7 +197,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: "YoY Growth",
+      label: selectedDeptName ? `${selectedDeptName} — YoY` : "YoY Growth",
       value: `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}%`,
       badge: `${formatCurrency(s26.totalSales - s25.totalSales)} delta`,
       badgeColor: salesVsLy >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -224,7 +226,7 @@ export default function Dashboard() {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">
             FY Forecast Dashboard
@@ -257,6 +259,32 @@ export default function Dashboard() {
             Export
           </button>
         </div>
+      </div>
+
+      {/* Department Filter Bar */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">View:</span>
+        <select
+          value={selectedDept}
+          onChange={(e) => setSelectedDept(e.target.value)}
+          className="text-xs font-medium border border-gray-200 rounded-lg px-3 py-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[200px] cursor-pointer shadow-sm"
+        >
+          <option value="all">All Departments</option>
+          {deptOptions.map((d) => (
+            <option key={d.id} value={d.id}>{d.name}</option>
+          ))}
+        </select>
+        {!isAllDepts && (
+          <button
+            onClick={() => setSelectedDept("all")}
+            className="text-[10px] font-medium text-gray-400 hover:text-gray-700 transition-colors flex items-center gap-1"
+          >
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Clear filter
+          </button>
+        )}
       </div>
 
       {/* Hero KPI Cards */}
@@ -296,18 +324,8 @@ export default function Dashboard() {
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-gray-800">
-              FY Summary
+              FY Summary {selectedDeptName && <span className="text-brand font-normal text-xs">— {selectedDeptName}</span>}
             </h3>
-            <select
-              value={selectedDept}
-              onChange={(e) => setSelectedDept(e.target.value)}
-              className="text-[10px] font-medium uppercase tracking-wider border border-gray-200 rounded-lg px-3 py-1.5 text-gray-600 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[160px] cursor-pointer"
-            >
-              <option value="all">All Departments</option>
-              {deptOptions.map((d) => (
-                <option key={d.id} value={d.id}>{d.name}</option>
-              ))}
-            </select>
           </div>
           <table className="w-full text-xs">
             <thead>
