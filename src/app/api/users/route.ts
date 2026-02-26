@@ -86,3 +86,39 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+
+/** DELETE /api/users?id=xxx — Remove a user (admin-only, enforced by middleware) */
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+    }
+
+    // Get requesting user from middleware headers
+    const requestingUserId = request.headers.get("x-user-id");
+
+    // Prevent self-deletion
+    if (id === requestingUserId) {
+      return NextResponse.json(
+        { error: "You cannot remove yourself" },
+        { status: 400 }
+      );
+    }
+
+    // Check user exists
+    const user = await prisma.user.findUnique({ where: { id } });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    await prisma.user.delete({ where: { id } });
+
+    return NextResponse.json({ ok: true, deleted: user.email });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}

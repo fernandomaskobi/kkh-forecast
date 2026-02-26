@@ -106,6 +106,18 @@ export default function AdminPage() {
     setTimeout(() => setUserSuccess(""), 3000);
   };
 
+  const deleteUser = async (id: string, name: string, email: string) => {
+    if (!confirm(`Remove ${name} (${email})?`)) return;
+    const res = await fetch(`/api/users?id=${id}`, { method: "DELETE" });
+    const data = await res.json();
+    if (!res.ok) {
+      setUserError(data.error || "Failed to remove user");
+      setTimeout(() => setUserError(""), 3000);
+      return;
+    }
+    loadData();
+  };
+
   const seedData = async () => {
     setSeeding(true);
     await fetch("/api/seed", { method: "POST" });
@@ -353,6 +365,13 @@ export default function AdminPage() {
                       {u.department.name}
                     </span>
                   )}
+                  <button
+                    onClick={() => deleteUser(u.id, u.name, u.email)}
+                    className="text-xs text-red-400 hover:text-red-600 transition-colors ml-1"
+                    title={`Remove ${u.name}`}
+                  >
+                    ✕
+                  </button>
                 </div>
               </div>
             ))}
