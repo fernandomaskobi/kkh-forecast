@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 type EntryData = {
   departmentName: string;
@@ -21,11 +21,16 @@ export default function AiInsights({ entries }: AiInsightsProps) {
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [context, setContext] = useState("");
+  const abortRef = useRef<AbortController | null>(null);
 
   const generateInsights = async () => {
     setLoading(true);
     setError(null);
     setInsights(null);
+
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 55000); // 55s client timeout
 
     try {
       const res = await fetch("/api/insights", {
@@ -42,16 +47,34 @@ export default function AiInsights({ entries }: AiInsightsProps) {
           })),
           context: context.trim() || undefined,
         }),
+        signal: controller.signal,
       });
-      const data = await res.json();
+
+      clearTimeout(timeout);
+
+      let data: { insights?: string; error?: string };
+      try {
+        data = await res.json();
+      } catch {
+        setError("Server returned an invalid response. The request may have timed out — please try again.");
+        return;
+      }
+
       if (!res.ok) {
         setError(data.error || "Failed to generate insights");
-      } else {
+      } else if (data.insights) {
         setInsights(data.insights);
+      } else {
+        setError("Received an empty response — please try again.");
       }
-    } catch {
-      setError("Network error — could not reach the AI service");
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError("Request timed out. The AI service took too long — please try again.");
+      } else {
+        setError("Network error — could not reach the AI service. Check your connection.");
+      }
     } finally {
+      clearTimeout(timeout);
       setLoading(false);
     }
   };
@@ -184,13 +207,21 @@ export default function AiInsights({ entries }: AiInsightsProps) {
       )}
 
       {loading && (
-        <div className="flex items-center justify-center gap-3 py-6">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "0ms" }} />
-            <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "150ms" }} />
-            <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+        <div className="flex flex-col items-center gap-3 py-6">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1">
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+            </div>
+            <span className="text-xs text-gray-400">Analyzing your forecast data...</span>
           </div>
-          <span className="text-xs text-gray-400">Analyzing your forecast data...</span>
+          <button
+            onClick={() => { abortRef.current?.abort(); setLoading(false); setError("Analysis cancelled."); }}
+            className="text-[10px] text-gray-400 hover:text-gray-600 underline transition-colors"
+          >
+            Cancel
+          </button>
         </div>
       )}
 
