@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MONTHS, CURRENT_MONTH, formatCurrency, formatPct, formatVariance, type MetricKey } from "@/lib/constants";
+import AnnotationBubble from "./AnnotationBubble";
 
 type EntryData = {
   departmentId: string;
@@ -38,7 +39,52 @@ function fmtVal(metric: MetricKey, value: number): string {
   return formatCurrency(value);
 }
 
+type AnnotationType = {
+  id: string;
+  departmentId: string;
+  year: number;
+  month: number;
+  text: string;
+  author: string;
+  createdAt: string;
+};
+
 export default function RollupTable({ entries, metric, title }: RollupTableProps) {
+  const [annotations, setAnnotations] = useState<AnnotationType[]>([]);
+
+  const loadAnnotations = useCallback(async () => {
+    try {
+      const res = await fetch("/api/annotations");
+      if (res.ok) {
+        const data = await res.json();
+        setAnnotations(data);
+      }
+    } catch { /* silently fail */ }
+  }, []);
+
+  useEffect(() => {
+    loadAnnotations();
+  }, [loadAnnotations]);
+
+  const addAnnotation = async (departmentId: string, year: number, month: number, text: string) => {
+    const res = await fetch("/api/annotations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ departmentId, year, month, text }),
+    });
+    if (res.ok) {
+      await loadAnnotations();
+    }
+  };
+
+  const deleteAnnotation = async (id: string) => {
+    await fetch(`/api/annotations?id=${id}`, { method: "DELETE" });
+    await loadAnnotations();
+  };
+
+  const getAnnotations = (deptId: string, year: number, month: number) =>
+    annotations.filter((a) => a.departmentId === deptId && a.year === year && a.month === month);
+
   const departments = new Map<string, { name: string; id: string }>();
   for (const e of entries) {
     if (!departments.has(e.departmentId)) {
@@ -203,7 +249,22 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
               <td className={`px-2 py-1.5 text-center text-[9px] font-semibold uppercase tracking-wider whitespace-nowrap border-r border-gray-100 ${row.style}`}>{row.label}</td>
               {monthlyVals.map((val, i) => (
                 <td key={i} className="px-2 py-1.5 text-right tabular-nums">
-                  {row.year === null ? <span className="text-gray-300">—</span> : (val ? fmtVal(metric, val) : <span className="text-gray-300">—</span>)}
+                  <div className="flex items-center justify-end gap-0.5">
+                    {is2026f && isDeptLevel && (
+                      <AnnotationBubble
+                        departmentId={dept!.id}
+                        departmentName={label}
+                        year={2026}
+                        month={i + 1}
+                        annotations={getAnnotations(dept!.id, 2026, i + 1)}
+                        onAdd={(text) => addAnnotation(dept!.id, 2026, i + 1, text)}
+                        onDelete={deleteAnnotation}
+                      />
+                    )}
+                    <span>
+                      {row.year === null ? <span className="text-gray-300">—</span> : (val ? fmtVal(metric, val) : <span className="text-gray-300">—</span>)}
+                    </span>
+                  </div>
                 </td>
               ))}
               <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-brand-50/60" : "bg-blue-50/40"} border-l border-gray-100`}>

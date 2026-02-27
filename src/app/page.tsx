@@ -6,8 +6,10 @@ import ForecastChart from "@/components/ForecastChart";
 import SalesMixTable from "@/components/SalesMixTable";
 import T12TrendChart from "@/components/T12TrendChart";
 import BudgetFcstWaterfall from "@/components/BudgetFcstWaterfall";
+import AiInsights from "@/components/AiInsights";
 import { METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
 import { exportDashboardToExcel } from "@/lib/exportExcel";
+import { exportDashboardToPdf } from "@/lib/exportPdf";
 
 type EntryData = {
   departmentId: string;
@@ -251,12 +253,23 @@ export default function Dashboard() {
           </div>
           <button
             onClick={() => exportDashboardToExcel(entries, activeMetric)}
-            className="px-4 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-gray-900 text-white hover:bg-gray-700 transition-colors shadow-sm flex items-center gap-1.5"
+            className="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-gray-900 text-white hover:bg-gray-700 transition-colors shadow-sm flex items-center gap-1.5"
+            title="Export to Excel"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            Export
+            Excel
+          </button>
+          <button
+            onClick={() => exportDashboardToPdf(entries, activeMetric)}
+            className="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-rose-700 text-white hover:bg-rose-600 transition-colors shadow-sm flex items-center gap-1.5"
+            title="Export to PDF"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H6.75S5.25 2.25 5.25 3.75v16.5c0 1.5 1.5 1.5 1.5 1.5h10.5c1.5 0 1.5-1.5 1.5-1.5v-.75" />
+            </svg>
+            PDF
           </button>
         </div>
       </div>
@@ -392,6 +405,11 @@ export default function Dashboard() {
       {/* Sales Mix Comparison */}
       <div className="animate-fade-in">
         <SalesMixTable entries={entries} />
+      </div>
+
+      {/* AI Insights */}
+      <div className="animate-fade-in mb-6">
+        <AiInsights entries={entries} />
       </div>
     </div>
   );

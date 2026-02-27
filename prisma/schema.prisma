@@ -45,3 +45,16 @@ model MonthlyEntry {
 
   @@unique([departmentId, year, month, type])
 }
+
+model Annotation {
+  id           String   @id @default(cuid())
+  departmentId String
+  year         Int
+  month        Int      // 1-12
+  text         String
+  author       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([departmentId, year, month])
+}
