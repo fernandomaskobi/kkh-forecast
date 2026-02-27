@@ -361,14 +361,14 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
         </span>
       </div>
       <div className="card overflow-hidden">
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[70vh]">
           <table className="w-full text-[11px] border-collapse">
-            <thead>
+            <thead className="sticky top-0 z-20">
               <tr className="bg-gray-900 text-white">
-                <th className="text-left px-3 py-2.5 font-semibold sticky left-0 bg-gray-900 z-10 min-w-[130px] text-[10px] uppercase tracking-wider">Department</th>
-                <th className="px-2 py-2.5 font-semibold text-center min-w-[60px] text-[10px] uppercase tracking-wider border-l border-gray-700"></th>
+                <th className="text-left px-3 py-2.5 font-semibold sticky left-0 bg-gray-900 z-30 min-w-[130px] text-[10px] uppercase tracking-wider">Department</th>
+                <th className="px-2 py-2.5 font-semibold text-center min-w-[60px] text-[10px] uppercase tracking-wider border-l border-gray-700 bg-gray-900"></th>
                 {MONTHS.map((m) => (
-                  <th key={m} className="px-2 py-2.5 text-center font-semibold text-[10px] uppercase tracking-wider">{m}</th>
+                  <th key={m} className="px-2 py-2.5 text-center font-semibold text-[10px] uppercase tracking-wider bg-gray-900">{m}</th>
                 ))}
                 <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-brand-dark border-l border-brand/30">YTD</th>
                 <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-gray-800 border-l border-gray-700">FY</th>
