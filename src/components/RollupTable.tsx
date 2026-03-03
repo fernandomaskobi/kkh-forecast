@@ -173,36 +173,45 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     return MONTHS.reduce((s, _, i) => s + getGrandVal(year, i + 1, entryType), 0);
   };
 
-  // YTD helpers (through current month)
+  // YTD helpers
+  // For actuals: only sum months that have actual data
+  const maxActualMonth = actualEntries.length > 0
+    ? Math.max(...actualEntries.filter((e) => e.year === 2026).map((e) => e.month))
+    : 0;
   const ytdMonth = CURRENT_MONTH;
 
   const getYtd = (deptId: string, year: number, entryType?: string): number => {
     const source = entryType === "actual" ? actualEntries : forecastEntries;
+    // For actuals, YTD only sums months with actual data
+    const cutoff = entryType === "actual" ? maxActualMonth : ytdMonth;
+    if (cutoff === 0) return 0;
     if (isPctMetric) {
       if (metric === "salesMix") {
-        const deptYtd = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
-        const totalYtd = source.filter((e) => e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
+        const deptYtd = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= cutoff).reduce((s, e) => s + e.grossBookedSales, 0);
+        const totalYtd = source.filter((e) => e.year === year && e.month <= cutoff).reduce((s, e) => s + e.grossBookedSales, 0);
         return totalYtd ? deptYtd / totalYtd : 0;
       }
-      const de = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth);
+      const de = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= cutoff);
       const ts = de.reduce((s, e) => s + e.grossBookedSales, 0);
       return ts ? de.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
     let sum = 0;
-    for (let m = 1; m <= ytdMonth; m++) sum += getVal(deptId, year, m, entryType);
+    for (let m = 1; m <= cutoff; m++) sum += getVal(deptId, year, m, entryType);
     return sum;
   };
 
   const getGrandYtd = (year: number, entryType?: string): number => {
     const source = entryType === "actual" ? actualEntries : forecastEntries;
+    const cutoff = entryType === "actual" ? maxActualMonth : ytdMonth;
+    if (cutoff === 0) return 0;
     if (isPctMetric) {
       if (metric === "salesMix") return 1;
-      const ye = source.filter((e) => e.year === year && e.month <= ytdMonth);
+      const ye = source.filter((e) => e.year === year && e.month <= cutoff);
       const ts = ye.reduce((s, e) => s + e.grossBookedSales, 0);
       return ts ? ye.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
     let sum = 0;
-    for (let m = 1; m <= ytdMonth; m++) sum += getGrandVal(year, m, entryType);
+    for (let m = 1; m <= cutoff; m++) sum += getGrandVal(year, m, entryType);
     return sum;
   };
 
@@ -400,7 +409,9 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
                 {MONTHS.map((m) => (
                   <th key={m} className="px-2 py-2.5 text-center font-semibold text-[10px] uppercase tracking-wider bg-gray-900">{m}</th>
                 ))}
-                <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-brand-dark border-l border-brand/30">YTD</th>
+                <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-brand-dark border-l border-brand/30">
+                  YTD{maxActualMonth > 0 && <span className="block text-[8px] font-normal opacity-70">A: thru {MONTHS[maxActualMonth - 1]}</span>}
+                </th>
                 <th className="px-2 py-2.5 text-center font-bold text-[10px] uppercase tracking-wider bg-gray-800 border-l border-gray-700">FY</th>
               </tr>
             </thead>
