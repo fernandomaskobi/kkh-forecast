@@ -9,6 +9,7 @@ type EntryData = {
   departmentName: string;
   year: number;
   month: number;
+  type: string; // "actual" | "forecast"
   grossBookedSales: number;
   gmPercent: number;
   cpPercent: number;
@@ -96,21 +97,32 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
 
   const isPctMetric = metric === "gmPercent" || metric === "cpPercent" || metric === "salesMix";
 
-  // Sales totals for mix calculations
+  // Separate forecast and actual entries
+  const forecastEntries = entries.filter((e) => e.type !== "actual");
+  const actualEntries = entries.filter((e) => e.type === "actual");
+
+  // Sales totals for mix calculations (by type)
   const monthTotals: Record<string, number> = {};
-  for (const e of entries) {
+  for (const e of forecastEntries) {
     const key = `${e.year}-${e.month}`;
     monthTotals[key] = (monthTotals[key] || 0) + e.grossBookedSales;
   }
+  const actualMonthTotals: Record<string, number> = {};
+  for (const e of actualEntries) {
+    const key = `${e.year}-${e.month}`;
+    actualMonthTotals[key] = (actualMonthTotals[key] || 0) + e.grossBookedSales;
+  }
 
-  // Get metric value for a dept/year/month
-  const getVal = (deptId: string, year: number, month: number): number => {
-    const matching = entries.filter(
+  // Get metric value for a dept/year/month with type filter
+  const getVal = (deptId: string, year: number, month: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
+    const totals = entryType === "actual" ? actualMonthTotals : monthTotals;
+    const matching = source.filter(
       (e) => e.departmentId === deptId && e.year === year && e.month === month
     );
     if (matching.length === 0) return 0;
     if (metric === "salesMix") {
-      const total = monthTotals[`${year}-${month}`] || 0;
+      const total = totals[`${year}-${month}`] || 0;
       const deptSales = matching.reduce((s, e) => s + e.grossBookedSales, 0);
       return total ? deptSales / total : 0;
     }
@@ -123,69 +135,74 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
   };
 
   // FY total for a dept/year
-  const getFyTotal = (deptId: string, year: number): number => {
+  const getFyTotal = (deptId: string, year: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
     if (isPctMetric) {
       if (metric === "salesMix") {
-        const deptTotal = entries.filter((e) => e.departmentId === deptId && e.year === year).reduce((s, e) => s + e.grossBookedSales, 0);
-        const yearTotal = entries.filter((e) => e.year === year).reduce((s, e) => s + e.grossBookedSales, 0);
+        const deptTotal = source.filter((e) => e.departmentId === deptId && e.year === year).reduce((s, e) => s + e.grossBookedSales, 0);
+        const yearTotal = source.filter((e) => e.year === year).reduce((s, e) => s + e.grossBookedSales, 0);
         return yearTotal ? deptTotal / yearTotal : 0;
       }
-      const deptEntries = entries.filter((e) => e.departmentId === deptId && e.year === year);
-      const ts = deptEntries.reduce((s, e) => s + e.grossBookedSales, 0);
-      return ts ? deptEntries.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
+      const de = source.filter((e) => e.departmentId === deptId && e.year === year);
+      const ts = de.reduce((s, e) => s + e.grossBookedSales, 0);
+      return ts ? de.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
-    return MONTHS.reduce((s, _, i) => s + getVal(deptId, year, i + 1), 0);
+    return MONTHS.reduce((s, _, i) => s + getVal(deptId, year, i + 1, entryType), 0);
   };
 
   // Grand total across all depts for a year/month
-  const getGrandVal = (year: number, month: number): number => {
+  const getGrandVal = (year: number, month: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
     if (isPctMetric && metric !== "salesMix") {
-      const yearMonth = entries.filter((e) => e.year === year && e.month === month);
+      const yearMonth = source.filter((e) => e.year === year && e.month === month);
       const ts = yearMonth.reduce((s, e) => s + e.grossBookedSales, 0);
       return ts ? yearMonth.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
     if (metric === "salesMix") return 1;
-    return deptList.reduce((sum, dept) => sum + getVal(dept.id, year, month), 0);
+    return deptList.reduce((sum, dept) => sum + getVal(dept.id, year, month, entryType), 0);
   };
 
-  const getGrandFy = (year: number): number => {
+  const getGrandFy = (year: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
     if (isPctMetric) {
       if (metric === "salesMix") return 1;
-      const ye = entries.filter((e) => e.year === year);
+      const ye = source.filter((e) => e.year === year);
       const ts = ye.reduce((s, e) => s + e.grossBookedSales, 0);
       return ts ? ye.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
-    return MONTHS.reduce((s, _, i) => s + getGrandVal(year, i + 1), 0);
+    return MONTHS.reduce((s, _, i) => s + getGrandVal(year, i + 1, entryType), 0);
   };
 
   // YTD helpers (through current month)
   const ytdMonth = CURRENT_MONTH;
 
-  const getYtd = (deptId: string, year: number): number => {
+  const getYtd = (deptId: string, year: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
     if (isPctMetric) {
       if (metric === "salesMix") {
-        const deptYtd = entries.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
-        const totalYtd = entries.filter((e) => e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
+        const deptYtd = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
+        const totalYtd = source.filter((e) => e.year === year && e.month <= ytdMonth).reduce((s, e) => s + e.grossBookedSales, 0);
         return totalYtd ? deptYtd / totalYtd : 0;
       }
-      const deptEntries = entries.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth);
-      const ts = deptEntries.reduce((s, e) => s + e.grossBookedSales, 0);
-      return ts ? deptEntries.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
+      const de = source.filter((e) => e.departmentId === deptId && e.year === year && e.month <= ytdMonth);
+      const ts = de.reduce((s, e) => s + e.grossBookedSales, 0);
+      return ts ? de.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
     let sum = 0;
-    for (let m = 1; m <= ytdMonth; m++) sum += getVal(deptId, year, m);
+    for (let m = 1; m <= ytdMonth; m++) sum += getVal(deptId, year, m, entryType);
     return sum;
   };
 
-  const getGrandYtd = (year: number): number => {
+  const getGrandYtd = (year: number, entryType?: string): number => {
+    const source = entryType === "actual" ? actualEntries : forecastEntries;
     if (isPctMetric) {
       if (metric === "salesMix") return 1;
-      const ye = entries.filter((e) => e.year === year && e.month <= ytdMonth);
+      const ye = source.filter((e) => e.year === year && e.month <= ytdMonth);
       const ts = ye.reduce((s, e) => s + e.grossBookedSales, 0);
       return ts ? ye.reduce((s, e) => s + e.grossBookedSales * computeMetric(e, metric), 0) / ts : 0;
     }
     let sum = 0;
-    for (let m = 1; m <= ytdMonth; m++) sum += getGrandVal(year, m);
+    for (let m = 1; m <= ytdMonth; m++) sum += getGrandVal(year, m, entryType);
     return sum;
   };
 
@@ -205,9 +222,9 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
 
   // Row config for data rows
   const dataRows = [
-    { key: "2025a", label: "2025 (A)", year: 2025, style: "text-gray-400" },
-    { key: "2026f", label: "2026 (F)", year: 2026, style: "text-gray-900" },
-    { key: "2026a", label: "2026 (A)", year: null, style: "text-blue-600" },
+    { key: "2025a", label: "2025 (A)", year: 2025, entryType: undefined as string | undefined, style: "text-gray-400" },
+    { key: "2026f", label: "2026 (F)", year: 2026, entryType: "forecast" as string | undefined, style: "text-gray-900" },
+    { key: "2026a", label: "2026 (A)", year: 2026, entryType: "actual" as string | undefined, style: "text-blue-600 font-medium" },
   ];
 
   // Render a department block
@@ -215,12 +232,12 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
     const isDeptLevel = dept !== null;
     const deptRowSpan = 6;
 
-    const getMonthly = (year: number, month: number) =>
-      isDeptLevel ? getVal(dept!.id, year, month) : getGrandVal(year, month);
-    const getFy = (year: number) =>
-      isDeptLevel ? getFyTotal(dept!.id, year) : getGrandFy(year);
-    const getYtdVal = (year: number) =>
-      isDeptLevel ? getYtd(dept!.id, year) : getGrandYtd(year);
+    const getMonthly = (year: number, month: number, entryType?: string) =>
+      isDeptLevel ? getVal(dept!.id, year, month, entryType) : getGrandVal(year, month, entryType);
+    const getFy = (year: number, entryType?: string) =>
+      isDeptLevel ? getFyTotal(dept!.id, year, entryType) : getGrandFy(year, entryType);
+    const getYtdVal = (year: number, entryType?: string) =>
+      isDeptLevel ? getYtd(dept!.id, year, entryType) : getGrandYtd(year, entryType);
 
     const isEvenDept = deptIdx % 2 === 0;
     const baseBg = !isDeptLevel ? "bg-gray-800/[0.03]" : (isEvenDept ? "" : "bg-gray-50/50");
@@ -230,10 +247,11 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
       <React.Fragment key={label}>
         {/* Data rows: 2025(A), 2026(F), 2026(A) */}
         {dataRows.map((row, rowIdx) => {
-          const monthlyVals = MONTHS.map((_, i) => row.year ? getMonthly(row.year, i + 1) : 0);
-          const ytdVal = row.year ? getYtdVal(row.year) : 0;
-          const fyVal = row.year ? getFy(row.year) : 0;
+          const monthlyVals = MONTHS.map((_, i) => row.year ? getMonthly(row.year, i + 1, row.entryType) : 0);
+          const ytdVal = row.year ? getYtdVal(row.year, row.entryType) : 0;
+          const fyVal = row.year ? getFy(row.year, row.entryType) : 0;
           const is2026f = row.key === "2026f";
+          const is2026a = row.key === "2026a";
 
           return (
             <tr key={`${label}-${row.key}`} className={`${baseBg} ${row.style} ${is2026f && isDeptLevel ? "font-medium" : ""}`}>
@@ -262,16 +280,16 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
                       />
                     )}
                     <span>
-                      {row.year === null ? <span className="text-gray-300">—</span> : (val ? fmtVal(metric, val) : <span className="text-gray-300">—</span>)}
+                      {val ? fmtVal(metric, val) : <span className="text-gray-300">—</span>}
                     </span>
                   </div>
                 </td>
               ))}
-              <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-brand-50/60" : "bg-blue-50/40"} border-l border-gray-100`}>
-                {row.year === null ? <span className="text-gray-300">—</span> : (ytdVal ? fmtVal(metric, ytdVal) : <span className="text-gray-300">—</span>)}
+              <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-brand-50/60" : is2026a ? "bg-blue-50/40" : "bg-blue-50/40"} border-l border-gray-100`}>
+                {ytdVal ? fmtVal(metric, ytdVal) : <span className="text-gray-300">—</span>}
               </td>
               <td className={`px-2 py-1.5 text-right font-semibold tabular-nums ${is2026f ? "bg-gray-100/60" : "bg-gray-50/60"} border-l border-gray-100`}>
-                {row.year === null ? <span className="text-gray-300">—</span> : (fyVal ? fmtVal(metric, fyVal) : <span className="text-gray-300">—</span>)}
+                {fyVal ? fmtVal(metric, fyVal) : <span className="text-gray-300">—</span>}
               </td>
             </tr>
           );
@@ -279,38 +297,50 @@ export default function RollupTable({ entries, metric, title }: RollupTableProps
 
         {/* Variance rows */}
         {(() => {
-          const fy26f = getFy(2026);
+          const fy26f = getFy(2026, "forecast");
           const fy25a = getFy(2025);
-          const ytd26f = getYtdVal(2026);
+          const fy26a = getFy(2026, "actual");
+          const ytd26f = getYtdVal(2026, "forecast");
           const ytd25a = getYtdVal(2025);
+          const ytd26a = getYtdVal(2026, "actual");
 
           const varRows = [
             {
               key: "a-vs-fcst",
               label: "A vs Fcst",
-              hasData: false,
-              getMonthVar: () => ({ str: "—", color: "text-gray-300" }),
-              ytdStr: "—",
-              ytdColor: "text-gray-300",
-              fyStr: "—",
-              fyColor: "text-gray-300",
+              hasData: true,
+              getMonthVar: (month: number) => {
+                const va = getMonthly(2026, month, "actual");
+                const vf = getMonthly(2026, month, "forecast");
+                if (!va) return { str: "—", color: "text-gray-300" };
+                return { str: fmtVar(va, vf), color: varColor(va, vf) };
+              },
+              ytdStr: ytd26a ? fmtVar(ytd26a, ytd26f) : "—",
+              ytdColor: ytd26a ? varColor(ytd26a, ytd26f) : "text-gray-300",
+              fyStr: fy26a ? fmtVar(fy26a, fy26f) : "—",
+              fyColor: fy26a ? varColor(fy26a, fy26f) : "text-gray-300",
             },
             {
               key: "a-vs-ly",
               label: "A vs LY",
-              hasData: false,
-              getMonthVar: () => ({ str: "—", color: "text-gray-300" }),
-              ytdStr: "—",
-              ytdColor: "text-gray-300",
-              fyStr: "—",
-              fyColor: "text-gray-300",
+              hasData: true,
+              getMonthVar: (month: number) => {
+                const va = getMonthly(2026, month, "actual");
+                const v25 = getMonthly(2025, month);
+                if (!va) return { str: "—", color: "text-gray-300" };
+                return { str: fmtVar(va, v25), color: varColor(va, v25) };
+              },
+              ytdStr: ytd26a ? fmtVar(ytd26a, ytd25a) : "—",
+              ytdColor: ytd26a ? varColor(ytd26a, ytd25a) : "text-gray-300",
+              fyStr: fy26a ? fmtVar(fy26a, fy25a) : "—",
+              fyColor: fy26a ? varColor(fy26a, fy25a) : "text-gray-300",
             },
             {
               key: "f-vs-ly",
               label: "F vs LY",
               hasData: true,
               getMonthVar: (month: number) => {
-                const v26 = getMonthly(2026, month);
+                const v26 = getMonthly(2026, month, "forecast");
                 const v25 = getMonthly(2025, month);
                 if (!v25 && !v26) return { str: "—", color: "text-gray-300" };
                 return { str: fmtVar(v26, v25), color: varColor(v26, v25) };

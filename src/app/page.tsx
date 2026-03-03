@@ -16,6 +16,7 @@ type EntryData = {
   departmentName: string;
   year: number;
   month: number;
+  type: string; // "actual" | "forecast"
   grossBookedSales: number;
   gmPercent: number;
   cpPercent: number;
@@ -26,6 +27,7 @@ type RawEntry = {
   department: { name: string };
   year: number;
   month: number;
+  type: string;
   grossBookedSales: number;
   gmPercent: number;
   cpPercent: number;
@@ -35,14 +37,28 @@ const METRIC_KEYS: MetricKey[] = [
   "grossBookedSales", "gmDollars", "gmPercent", "cpDollars", "cpPercent", "salesMix",
 ];
 
-function computeSummary(entries: EntryData[], year: number) {
-  const yearEntries = entries.filter((e) => e.year === year);
+function computeSummary(entries: EntryData[], year: number, typeFilter?: string) {
+  let yearEntries = entries.filter((e) => e.year === year);
+  if (typeFilter) yearEntries = yearEntries.filter((e) => e.type === typeFilter);
   const totalSales = yearEntries.reduce((s, e) => s + e.grossBookedSales, 0);
   const totalGmDollars = yearEntries.reduce((s, e) => s + e.grossBookedSales * e.gmPercent, 0);
   const totalCpDollars = yearEntries.reduce((s, e) => s + e.grossBookedSales * e.cpPercent, 0);
   const gmPct = totalSales ? totalGmDollars / totalSales : 0;
   const cpPct = totalSales ? totalCpDollars / totalSales : 0;
   return { totalSales, totalGmDollars, totalCpDollars, gmPct, cpPct };
+}
+
+// Build blended entries: use actuals where available, forecast otherwise
+function blendEntries(entries: EntryData[]): EntryData[] {
+  const actualKeys = new Set<string>();
+  for (const e of entries) {
+    if (e.type === "actual") actualKeys.add(`${e.departmentId}-${e.year}-${e.month}`);
+  }
+  return entries.filter((e) => {
+    if (e.type === "actual") return true;
+    // Include forecast only if no actual exists for this dept/year/month
+    return !actualKeys.has(`${e.departmentId}-${e.year}-${e.month}`);
+  });
 }
 
 // AOP (Annual Operating Plan) targets
@@ -71,6 +87,7 @@ export default function Dashboard() {
       departmentName: e.department.name,
       year: e.year,
       month: e.month,
+      type: e.type || "forecast",
       grossBookedSales: e.grossBookedSales,
       gmPercent: e.gmPercent,
       cpPercent: e.cpPercent,
@@ -148,8 +165,11 @@ export default function Dashboard() {
     return data.filter((e) => e.month === month);
   };
 
-  const summaryEntries = deptEntries; // full year for charts/table
-  const periodEntries = filterByPeriod(deptEntries); // period-filtered for KPIs
+  const summaryEntries = deptEntries; // all entries for RollupTable (needs both types)
+  // For charts: use only forecast for 2026, all 2025
+  const chartEntries = deptEntries.filter((e) => e.year === 2025 || e.type !== "actual");
+  const blendedDeptEntries = blendEntries(deptEntries); // actuals where available, forecast otherwise
+  const periodEntries = filterByPeriod(blendedDeptEntries); // period-filtered for KPIs
 
   const s25 = computeSummary(periodEntries, 2025);
   const s26 = computeSummary(periodEntries, 2026);
@@ -360,7 +380,7 @@ export default function Dashboard() {
       {/* Charts + Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6 animate-fade-in">
         <ForecastChart
-          entries={summaryEntries}
+          entries={chartEntries}
           metric={activeMetric}
           title={`${METRIC_LABELS[activeMetric]} — 2025 vs 2026${!isAllDepts ? ` (${deptMap.get(selectedDept)})` : ""}`}
         />
@@ -419,8 +439,8 @@ export default function Dashboard() {
 
       {/* T12 Trend + Budget vs Forecast Waterfall */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6 animate-fade-in">
-        <T12TrendChart entries={entries} metric={activeMetric} />
-        <BudgetFcstWaterfall entries={entries} />
+        <T12TrendChart entries={chartEntries} metric={activeMetric} />
+        <BudgetFcstWaterfall entries={chartEntries} />
       </div>
 
       {/* Rollup Table */}
