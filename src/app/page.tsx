@@ -7,7 +7,7 @@ import SalesMixTable from "@/components/SalesMixTable";
 import T12TrendChart from "@/components/T12TrendChart";
 import BudgetFcstWaterfall from "@/components/BudgetFcstWaterfall";
 import AiInsights from "@/components/AiInsights";
-import { METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
+import { MONTHS, CURRENT_MONTH, METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
 import { exportDashboardToExcel } from "@/lib/exportExcel";
 import { exportDashboardToPdf } from "@/lib/exportPdf";
 
@@ -55,6 +55,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [activeMetric, setActiveMetric] = useState<MetricKey>("grossBookedSales");
   const [selectedDept, setSelectedDept] = useState<string>("all");
+  const [selectedPeriod, setSelectedPeriod] = useState<string>("fy");
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -135,16 +136,32 @@ export default function Dashboard() {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   // Filter entries for summary based on selected department
-  const summaryEntries = selectedDept === "all"
+  const deptEntries = selectedDept === "all"
     ? entries
     : entries.filter((e) => e.departmentId === selectedDept);
 
-  const s25 = computeSummary(summaryEntries, 2025);
-  const s26 = computeSummary(summaryEntries, 2026);
+  // Filter by selected period for KPI cards and summary
+  const filterByPeriod = (data: EntryData[]): EntryData[] => {
+    if (selectedPeriod === "fy") return data;
+    if (selectedPeriod === "ytd") return data.filter((e) => e.month <= CURRENT_MONTH);
+    const month = parseInt(selectedPeriod);
+    return data.filter((e) => e.month === month);
+  };
+
+  const summaryEntries = deptEntries; // full year for charts/table
+  const periodEntries = filterByPeriod(deptEntries); // period-filtered for KPIs
+
+  const s25 = computeSummary(periodEntries, 2025);
+  const s26 = computeSummary(periodEntries, 2026);
+
+  // Period label for display
+  const periodLabel = selectedPeriod === "fy" ? "FY" : selectedPeriod === "ytd" ? "YTD" : MONTHS[parseInt(selectedPeriod) - 1];
 
   const isAllDepts = selectedDept === "all";
 
-  const aopSales = AOP_SALES;
+  // Prorate AOP based on selected period (percentages stay the same, dollar amounts scale)
+  const periodMonthCount = selectedPeriod === "fy" ? 12 : selectedPeriod === "ytd" ? CURRENT_MONTH : 1;
+  const aopSales = AOP_SALES * (periodMonthCount / 12);
   const aopGmPct = AOP_GM_PCT;
   const aopGmDollars = aopSales * aopGmPct;
   const aopCpPct = AOP_CP_PCT;
@@ -158,9 +175,11 @@ export default function Dashboard() {
 
   const selectedDeptName = !isAllDepts ? deptMap.get(selectedDept) : null;
 
+  const periodSuffix = selectedPeriod !== "fy" ? ` (${periodLabel})` : "";
+
   const kpiCards = [
     {
-      label: selectedDeptName ? `${selectedDeptName} — Sales` : "2026 Forecast Sales",
+      label: selectedDeptName ? `${selectedDeptName} — Sales${periodSuffix}` : `2026 Forecast Sales${periodSuffix}`,
       value: formatCurrency(s26.totalSales),
       badge: isAllDepts ? `${salesVsAop >= 0 ? "+" : ""}${salesVsAop.toFixed(1)}% vs AOP` : `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}% vs LY`,
       badgeColor: (isAllDepts ? salesVsAop : salesVsLy) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -173,7 +192,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: selectedDeptName ? `${selectedDeptName} — GM %` : "Gross Margin %",
+      label: selectedDeptName ? `${selectedDeptName} — GM %${periodSuffix}` : `Gross Margin %${periodSuffix}`,
       value: formatPct(s26.gmPct),
       badge: isAllDepts ? `${gmVsAop >= 0 ? "+" : ""}${gmVsAop.toFixed(1)}pp vs AOP` : `${((s26.gmPct - s25.gmPct) * 100) >= 0 ? "+" : ""}${((s26.gmPct - s25.gmPct) * 100).toFixed(1)}pp vs LY`,
       badgeColor: (isAllDepts ? gmVsAop : (s26.gmPct - s25.gmPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -186,7 +205,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: selectedDeptName ? `${selectedDeptName} — CP %` : "Contribution Profit %",
+      label: selectedDeptName ? `${selectedDeptName} — CP %${periodSuffix}` : `Contribution Profit %${periodSuffix}`,
       value: formatPct(s26.cpPct),
       badge: isAllDepts ? `${cpVsAop >= 0 ? "+" : ""}${cpVsAop.toFixed(1)}pp vs AOP` : `${((s26.cpPct - s25.cpPct) * 100) >= 0 ? "+" : ""}${((s26.cpPct - s25.cpPct) * 100).toFixed(1)}pp vs LY`,
       badgeColor: (isAllDepts ? cpVsAop : (s26.cpPct - s25.cpPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -199,7 +218,7 @@ export default function Dashboard() {
       ),
     },
     {
-      label: selectedDeptName ? `${selectedDeptName} — YoY` : "YoY Growth",
+      label: selectedDeptName ? `${selectedDeptName} — YoY${periodSuffix}` : `YoY Growth${periodSuffix}`,
       value: `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}%`,
       badge: `${formatCurrency(s26.totalSales - s25.totalSales)} delta`,
       badgeColor: salesVsLy >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
@@ -274,8 +293,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Department Filter Bar */}
-      <div className="flex items-center gap-3 mb-6">
+      {/* Filter Bar */}
+      <div className="flex items-center gap-3 mb-6 flex-wrap">
         <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">View:</span>
         <select
           value={selectedDept}
@@ -287,15 +306,26 @@ export default function Dashboard() {
             <option key={d.id} value={d.id}>{d.name}</option>
           ))}
         </select>
-        {!isAllDepts && (
+        <select
+          value={selectedPeriod}
+          onChange={(e) => setSelectedPeriod(e.target.value)}
+          className="text-xs font-medium border border-gray-200 rounded-lg px-3 py-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[120px] cursor-pointer shadow-sm"
+        >
+          <option value="fy">Full Year</option>
+          <option value="ytd">YTD (thru {MONTHS[CURRENT_MONTH - 1]})</option>
+          {MONTHS.map((m, i) => (
+            <option key={m} value={String(i + 1)}>{m}</option>
+          ))}
+        </select>
+        {(!isAllDepts || selectedPeriod !== "fy") && (
           <button
-            onClick={() => setSelectedDept("all")}
+            onClick={() => { setSelectedDept("all"); setSelectedPeriod("fy"); }}
             className="text-[10px] font-medium text-gray-400 hover:text-gray-700 transition-colors flex items-center gap-1"
           >
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
-            Clear filter
+            Clear filters
           </button>
         )}
       </div>
@@ -337,7 +367,7 @@ export default function Dashboard() {
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-gray-800">
-              FY Summary {selectedDeptName && <span className="text-brand font-normal text-xs">— {selectedDeptName}</span>}
+              {periodLabel} Summary {selectedDeptName && <span className="text-brand font-normal text-xs">— {selectedDeptName}</span>}
             </h3>
           </div>
           <table className="w-full text-xs">
