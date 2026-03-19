@@ -1,0 +1,7448 @@
+{
+  "metadata": {
+    "extractedAt": "2026-03-11T19:33:31.171652+00:00",
+    "sourceFile": "KKH_FCST_2026_vWIP.xlsx"
+  },
+  "periods": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Q1",
+    "Apr",
+    "May",
+    "Jun",
+    "Q2",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Q3",
+    "Oct",
+    "Nov",
+    "Dec",
+    "Q4",
+    "FY"
+  ],
+  "lineItems": [
+    {
+      "id": "gross_booked_sales",
+      "label": "Gross Booked Sales",
+      "row": 7,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 4644.4975,
+          "fcst": null,
+          "aop": 5022.7464,
+          "ly": 4975.0814
+        },
+        "Feb": {
+          "actuals": 5555.9435,
+          "fcst": 5007.8851,
+          "aop": 5098.2462,
+          "ly": 5049.8647
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 5499.5079,
+          "aop": 5462.993,
+          "ly": 5411.1501
+        },
+        "Q1": {
+          "actuals": 10200.441,
+          "fcst": 15151.8906,
+          "aop": 15583.9855,
+          "ly": 15436.0961
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 4479.9853,
+          "aop": 4985.8966,
+          "ly": 4938.5813
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 5824.339,
+          "aop": 6256.8197,
+          "ly": 6197.4436
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 3740.7623,
+          "aop": 3866.7264,
+          "ly": 3830.0318
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 14045.0866,
+          "aop": 15109.4428,
+          "ly": 14966.0567
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 4879.3863,
+          "aop": 4438.1865,
+          "ly": 4396.0689
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 5249.256,
+          "aop": 5809.5604,
+          "ly": 5754.4287
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 5008.4812,
+          "aop": 5473.0408,
+          "ly": 5421.1025
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 15137.1235,
+          "aop": 15720.7877,
+          "ly": 15571.6001
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 6718.4797,
+          "aop": 5823.4291,
+          "ly": 5768.1657
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 6226.3523,
+          "aop": 6738.4755,
+          "ly": 6674.5285
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 4563.3143,
+          "aop": 4249.4444,
+          "ly": 4209.1179
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 17508.1463,
+          "aop": 16811.3489,
+          "ly": 16651.8121
+        },
+        "FY": {
+          "actuals": 10200.441,
+          "fcst": 61842.2469,
+          "aop": 63225.565,
+          "ly": 62625.565
+        }
+      }
+    },
+    {
+      "id": "gbs_shipping",
+      "label": "GBS Shipping",
+      "row": 8,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 137.6435,
+          "fcst": null,
+          "aop": 231.0463,
+          "ly": 212.6769
+        },
+        "Feb": {
+          "actuals": 122.2615,
+          "fcst": 140.2208,
+          "aop": 229.4211,
+          "ly": 207.2875
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 153.9862,
+          "aop": 267.6867,
+          "ly": 391.4403
+        },
+        "Q1": {
+          "actuals": 259.905,
+          "fcst": 431.8505,
+          "aop": 728.1541,
+          "ly": 811.4047
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 125.4396,
+          "aop": 240.2794,
+          "ly": 237.9991
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 163.0815,
+          "aop": 307.3517,
+          "ly": 304.435
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 104.7413,
+          "aop": 237.0671,
+          "ly": 234.8174
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 393.2624,
+          "aop": 784.6982,
+          "ly": 777.2515
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 136.6228,
+          "aop": 313.1908,
+          "ly": 310.2187
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 146.9792,
+          "aop": 270.8005,
+          "ly": 268.2306
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 140.2375,
+          "aop": 284.2601,
+          "ly": 281.5625
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 423.8395,
+          "aop": 868.2513,
+          "ly": 860.0118
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 188.1174,
+          "aop": 277.3778,
+          "ly": 252.9893
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 174.3379,
+          "aop": 256.2835,
+          "ly": 244.2688
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 127.7728,
+          "aop": 211.8576,
+          "ly": 136.2767
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 490.2281,
+          "aop": 745.5188,
+          "ly": 633.5348
+        },
+        "FY": {
+          "actuals": 259.905,
+          "fcst": 1739.1805,
+          "aop": 3126.6224,
+          "ly": 3082.2028
+        }
+      }
+    },
+    {
+      "id": "gbs_white_glove",
+      "label": "GBS White Glove",
+      "row": 9,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 199.7405,
+          "fcst": null,
+          "aop": 77.2502,
+          "ly": 76.5171
+        },
+        "Feb": {
+          "actuals": 209.018,
+          "fcst": 230.3627,
+          "aop": 83.8874,
+          "ly": 83.0913
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 252.9774,
+          "aop": 65.5559,
+          "ly": 121.403
+        },
+        "Q1": {
+          "actuals": 408.7585,
+          "fcst": 683.0806,
+          "aop": 226.6935,
+          "ly": 281.0114
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 206.0793,
+          "aop": 79.2345,
+          "ly": 78.4826
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 267.9196,
+          "aop": 114.8408,
+          "ly": 113.751
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 172.0751,
+          "aop": 66.917,
+          "ly": 66.282
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 646.074,
+          "aop": 260.9923,
+          "ly": 258.5156
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 224.4518,
+          "aop": 85.675,
+          "ly": 84.862
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 241.4658,
+          "aop": 111.2649,
+          "ly": 110.209
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 230.3901,
+          "aop": 113.5799,
+          "ly": 112.502
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 696.3077,
+          "aop": 310.5198,
+          "ly": 307.573
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 309.0501,
+          "aop": 107.6724,
+          "ly": 109.3965
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 286.4122,
+          "aop": 151.6119,
+          "ly": 126.2567
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 209.9125,
+          "aop": 125.3304,
+          "ly": 156.1065
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 805.3747,
+          "aop": 384.6147,
+          "ly": 391.7597
+        },
+        "FY": {
+          "actuals": 408.7585,
+          "fcst": 2830.837,
+          "aop": 1182.8203,
+          "ly": 1238.8597
+        }
+      }
+    },
+    {
+      "id": "gbs_consolidations",
+      "label": "GBS Consolidations",
+      "row": 10,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 3.2287,
+          "fcst": null,
+          "aop": 50.6554,
+          "ly": 50.1747
+        },
+        "Feb": {
+          "actuals": 28.7722,
+          "fcst": 35.4439,
+          "aop": 36.0834,
+          "ly": 35.741
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 43.9961,
+          "aop": 43.7039,
+          "ly": 147.0427
+        },
+        "Q1": {
+          "actuals": 32.0009,
+          "fcst": 82.6686,
+          "aop": 130.4428,
+          "ly": 232.9584
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 44.9933,
+          "aop": 50.0742,
+          "ly": 49.599
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 37.0274,
+          "aop": 39.7768,
+          "ly": 39.3993
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 45.6285,
+          "aop": 47.1649,
+          "ly": 46.7173
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 127.6491,
+          "aop": 137.0159,
+          "ly": 135.7157
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 1.6244
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 33.6929,
+          "aop": 37.2893,
+          "ly": 36.9354
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 27.0503,
+          "aop": 29.5594,
+          "ly": 29.2789
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 60.7432,
+          "aop": 66.8487,
+          "ly": 67.8387
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 26.2632
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 37.4781
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 15.4536
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 79.1949
+        },
+        "FY": {
+          "actuals": 32.0009,
+          "fcst": 271.0609,
+          "aop": 334.3073,
+          "ly": 515.7077
+        }
+      }
+    },
+    {
+      "id": "gbs_assembly",
+      "label": "GBS Assembly",
+      "row": 11,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -0.396,
+          "fcst": null,
+          "aop": 12.6952,
+          "ly": 12.5747
+        },
+        "Feb": {
+          "actuals": -0.099,
+          "fcst": 15.1193,
+          "aop": 15.3921,
+          "ly": 15.246
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 20.3245,
+          "aop": 20.1896,
+          "ly": 19.998
+        },
+        "Q1": {
+          "actuals": -0.495,
+          "fcst": 35.0478,
+          "aop": 48.2768,
+          "ly": 47.8187
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 12.1668,
+          "aop": 13.5407,
+          "ly": 13.4123
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 13.8629,
+          "aop": 14.8923,
+          "ly": 14.751
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 10.9263,
+          "aop": 11.2942,
+          "ly": 11.187
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 36.956,
+          "aop": 39.7273,
+          "ly": 39.3502
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 13.296,
+          "aop": 12.0938,
+          "ly": 11.979
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 14.5397,
+          "aop": 16.0917,
+          "ly": 15.939
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 15.3661,
+          "aop": 16.7913,
+          "ly": 16.632
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 43.2018,
+          "aop": 44.9768,
+          "ly": 44.55
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 24.1745,
+          "aop": 20.9539,
+          "ly": 16.236
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 7.6632,
+          "aop": 8.2935,
+          "ly": 18.315
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 7.8246,
+          "aop": 7.2864,
+          "ly": 4.158
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 39.6622,
+          "aop": 36.5337,
+          "ly": 38.709
+        },
+        "FY": {
+          "actuals": -0.495,
+          "fcst": 154.8678,
+          "aop": 169.5146,
+          "ly": 170.4279
+        }
+      }
+    },
+    {
+      "id": "discounts",
+      "label": "Gross Sales Discounts",
+      "row": 12,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -466.8358,
+          "fcst": null,
+          "aop": -490.22,
+          "ly": -329.7116
+        },
+        "Feb": {
+          "actuals": -567.8628,
+          "fcst": -488.7696,
+          "aop": -497.5888,
+          "ly": -468.717
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -536.752,
+          "aop": -533.1881,
+          "ly": -674.248
+        },
+        "Q1": {
+          "actuals": -1034.6986,
+          "fcst": -1492.3573,
+          "aop": -1520.997,
+          "ly": -1472.6766
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -437.2466,
+          "aop": -486.6235,
+          "ly": -748.0214
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -568.4555,
+          "aop": -610.6656,
+          "ly": -608.7557
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -365.0984,
+          "aop": -377.3925,
+          "ly": -519.7856
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -1370.8005,
+          "aop": -1474.6816,
+          "ly": -1876.5627
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -476.2281,
+          "aop": -433.167,
+          "ly": -564.1931
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -512.3274,
+          "aop": -567.0131,
+          "ly": -644.0627
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -488.8278,
+          "aop": -534.1688,
+          "ly": -750.8107
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -1477.3833,
+          "aop": -1534.3489,
+          "ly": -1959.0664
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -655.7236,
+          "aop": -568.3667,
+          "ly": -692.5475
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -607.692,
+          "aop": -657.6752,
+          "ly": -656.3421
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -445.3795,
+          "aop": -414.7458,
+          "ly": -399.9385
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -1708.7951,
+          "aop": -1640.7877,
+          "ly": -1748.8281
+        },
+        "FY": {
+          "actuals": -1034.6986,
+          "fcst": -6049.3361,
+          "aop": -6170.8151,
+          "ly": -7057.1337
+        }
+      }
+    },
+    {
+      "id": "concessions",
+      "label": "Miscellaneous Concessions",
+      "row": 13,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -19.7506,
+          "fcst": null,
+          "aop": -2.8372,
+          "ly": -2.8103
+        },
+        "Feb": {
+          "actuals": -7.7212,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -0.2968,
+          "aop": -0.2948,
+          "ly": -0.292
+        },
+        "Q1": {
+          "actuals": -27.4718,
+          "fcst": -20.0474,
+          "aop": -3.132,
+          "ly": -3.1023
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -3.7064,
+          "aop": -4.1249,
+          "ly": -4.0858
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -9.1196,
+          "aop": -9.7968,
+          "ly": -9.7038
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -0.4044,
+          "aop": -0.418,
+          "ly": -0.414
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -13.2303,
+          "aop": -14.3397,
+          "ly": -14.2036
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -2.851,
+          "aop": -2.5932,
+          "ly": -2.5686
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -6.6651,
+          "aop": -7.3766,
+          "ly": -7.3066
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -2.1739,
+          "aop": -2.3756,
+          "ly": -2.353
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -11.6901,
+          "aop": -12.3453,
+          "ly": -12.2282
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -21.0687,
+          "aop": -18.2618,
+          "ly": -15.8789
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -25.7994,
+          "aop": -27.9214,
+          "ly": -7.5745
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -14.0134,
+          "aop": -13.0495,
+          "ly": -8.2948
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -60.8814,
+          "aop": -59.2328,
+          "ly": -31.7481
+        },
+        "FY": {
+          "actuals": -27.4718,
+          "fcst": -105.8492,
+          "aop": -89.0498,
+          "ly": -61.2822
+        }
+      }
+    },
+    {
+      "id": "damages",
+      "label": "Damages",
+      "row": 14,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -80.828,
+          "fcst": null,
+          "aop": -68.1071,
+          "ly": -82.386
+        },
+        "Feb": {
+          "actuals": -62.1436,
+          "fcst": -46.6003,
+          "aop": -47.4412,
+          "ly": -46.991
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -50.2765,
+          "aop": -49.9427,
+          "ly": -49.4687
+        },
+        "Q1": {
+          "actuals": -142.9716,
+          "fcst": -177.7048,
+          "aop": -165.491,
+          "ly": -178.8457
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -34.8522,
+          "aop": -38.788,
+          "ly": -38.4199
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -63.5613,
+          "aop": -68.281,
+          "ly": -67.633
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -40.4589,
+          "aop": -41.8213,
+          "ly": -41.4245
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -138.8724,
+          "aop": -148.8903,
+          "ly": -147.4773
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -68.5366,
+          "aop": -62.3394,
+          "ly": -66.1439
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -54.313,
+          "aop": -60.1103,
+          "ly": -59.5399
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -61.6731,
+          "aop": -67.3936,
+          "ly": -72.1751
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -184.5227,
+          "aop": -189.8433,
+          "ly": -197.8589
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -73.9033,
+          "aop": -64.0577,
+          "ly": -88.2998
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -68.4899,
+          "aop": -74.1232,
+          "ly": -90.7693
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -54.7598,
+          "aop": -50.9933,
+          "ly": -17.4257
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -197.1529,
+          "aop": -189.1743,
+          "ly": -196.4947
+        },
+        "FY": {
+          "actuals": -142.9716,
+          "fcst": -698.2528,
+          "aop": -693.3988,
+          "ly": -720.6767
+        }
+      }
+    },
+    {
+      "id": "cancels",
+      "label": "Cancels",
+      "row": 15,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -295.3532,
+          "fcst": null,
+          "aop": -325.0628,
+          "ly": -321.978
+        },
+        "Feb": {
+          "actuals": -392.0658,
+          "fcst": -340.5362,
+          "aop": -346.6807,
+          "ly": -375.4962
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -357.468,
+          "aop": -355.0945,
+          "ly": -525.6804
+        },
+        "Q1": {
+          "actuals": -687.4191,
+          "fcst": -993.3574,
+          "aop": -1026.8381,
+          "ly": -1223.1546
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -277.6579,
+          "aop": -309.013,
+          "ly": -306.0805
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -343.437,
+          "aop": -368.9386,
+          "ly": -303.4629
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -254.3718,
+          "aop": -262.9374,
+          "ly": -338.2961
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -875.4667,
+          "aop": -940.8889,
+          "ly": -947.8396
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -335.6617,
+          "aop": -305.3108,
+          "ly": -302.4134
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -239.1828,
+          "aop": -264.7131,
+          "ly": -262.201
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -385.6531,
+          "aop": -421.4241,
+          "ly": -449.6818
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -960.4975,
+          "aop": -991.448,
+          "ly": -1014.2962
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -419.6641,
+          "aop": -363.7556,
+          "ly": -294.1
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -403.0896,
+          "aop": -436.2441,
+          "ly": -262.6008
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -319.432,
+          "aop": -297.4611,
+          "ly": -318.5345
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -1142.1858,
+          "aop": -1097.4608,
+          "ly": -875.2353
+        },
+        "FY": {
+          "actuals": -687.4191,
+          "fcst": -3971.5075,
+          "aop": -4056.6358,
+          "ly": -4060.5257
+        }
+      }
+    },
+    {
+      "id": "returns",
+      "label": "Returns",
+      "row": 16,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -124.4656,
+          "fcst": null,
+          "aop": -213.9186,
+          "ly": -211.8886
+        },
+        "Feb": {
+          "actuals": -101.2476,
+          "fcst": -177.4846,
+          "aop": -180.6871,
+          "ly": -178.9724
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -174.941,
+          "aop": -173.7794,
+          "ly": -172.1303
+        },
+        "Q1": {
+          "actuals": -225.7133,
+          "fcst": -476.8912,
+          "aop": -568.3851,
+          "ly": -562.9913
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -106.6637,
+          "aop": -118.7089,
+          "ly": -117.5824
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -121.2298,
+          "aop": -130.2316,
+          "ly": -128.9958
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -109.0038,
+          "aop": -112.6744,
+          "ly": -153.4436
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -336.8974,
+          "aop": -361.6149,
+          "ly": -400.0217
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -115.6898,
+          "aop": -105.229,
+          "ly": -172.9429
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -131.2314,
+          "aop": -145.239,
+          "ly": -126.0123
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -145.4743,
+          "aop": -158.9677,
+          "ly": -157.4591
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -392.3955,
+          "aop": -409.4357,
+          "ly": -456.4143
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -194.8359,
+          "aop": -168.8794,
+          "ly": -179.8997
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -255.2804,
+          "aop": -276.2775,
+          "ly": -118.3002
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -141.4627,
+          "aop": -131.7328,
+          "ly": -158.5717
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -591.5791,
+          "aop": -576.8897,
+          "ly": -456.7716
+        },
+        "FY": {
+          "actuals": -225.7133,
+          "fcst": -1797.7632,
+          "aop": -1916.3255,
+          "ly": -1876.1989
+        }
+      }
+    },
+    {
+      "id": "net_booked",
+      "label": "Net Booked",
+      "row": 17,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 3997.4809,
+          "fcst": null,
+          "aop": 4223.3034,
+          "ly": 4463.4465
+        },
+        "Feb": {
+          "actuals": 4784.8551,
+          "fcst": 4329.0407,
+          "aop": 4343.1911,
+          "ly": 4368.0449
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 4800.4847,
+          "aop": 4697.5921,
+          "ly": 4718.9755
+        },
+        "Q1": {
+          "actuals": 8782.336,
+          "fcst": 13127.0063,
+          "aop": 13264.0866,
+          "ly": 13368.5189
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 3969.9789,
+          "aop": 4368.8543,
+          "ly": 4146.39
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 5127.7463,
+          "aop": 5467.69,
+          "ly": 5628.5654
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 3263.9327,
+          "aop": 3391.6868,
+          "ly": 3177.5104
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 12361.6579,
+          "aop": 13228.2311,
+          "ly": 12790.7849
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 4183.4022,
+          "aop": 3875.5741,
+          "ly": 3765.2037
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 4681.2358,
+          "aop": 5133.0677,
+          "ly": 5153.4667
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 4273.876,
+          "aop": 4663.1325,
+          "ly": 4503.1263
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 13138.514,
+          "aop": 13671.7744,
+          "ly": 13211.7096
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 5779.6542,
+          "aop": 4963.7923,
+          "ly": 5006.5035
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 5240.1249,
+          "aop": 5580.3782,
+          "ly": 6063.604
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 3865.0036,
+          "aop": 3621.8934,
+          "ly": 3644.068
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 14884.7827,
+          "aop": 14166.0639,
+          "ly": 14485.9327
+        },
+        "FY": {
+          "actuals": 8782.336,
+          "fcst": 53411.3822,
+          "aop": 54330.156,
+          "ly": 54638.9048
+        }
+      }
+    },
+    {
+      "id": "rev_rec_pct",
+      "label": "Rev Rec %",
+      "row": 19,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 1.0876,
+          "fcst": null,
+          "aop": 1,
+          "ly": 1.062
+        },
+        "Feb": {
+          "actuals": 0.8176,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.9839
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.8463
+        },
+        "Q1": {
+          "actuals": 0.9405,
+          "fcst": 1.0267,
+          "aop": 1.0,
+          "ly": 0.9748
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.9392
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.7726
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 1.1045
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1.0,
+          "ly": 0.9188
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.9502
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.9,
+          "aop": 0.9,
+          "ly": 0.7599
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 1.1,
+          "aop": 1.1,
+          "ly": 1.0356
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.9969,
+          "aop": 0.9966,
+          "ly": 0.9202
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.9904
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.95,
+          "aop": 0.95,
+          "ly": 0.9277
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1,
+          "aop": 1,
+          "ly": 0.8931
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.9824,
+          "aop": 0.9803,
+          "ly": 0.9553
+        },
+        "FY": {
+          "actuals": 0.9405,
+          "fcst": 1.0028,
+          "aop": 0.994,
+          "ly": 0.9294
+        }
+      }
+    },
+    {
+      "id": "gross_shipped_sales",
+      "label": "Gross Shipped Sales",
+      "row": 20,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 4347.4757,
+          "fcst": null,
+          "aop": 4223.3034,
+          "ly": 4740.1901
+        },
+        "Feb": {
+          "actuals": 3912.0282,
+          "fcst": 4329.0407,
+          "aop": 4343.1911,
+          "ly": 4297.7477
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 4800.4847,
+          "aop": 4697.5921,
+          "ly": 3993.6739
+        },
+        "Q1": {
+          "actuals": 8259.5039,
+          "fcst": 13477.0011,
+          "aop": 13264.0866,
+          "ly": 13031.6116
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 3969.9789,
+          "aop": 4368.8543,
+          "ly": 3894.1251
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 5127.7463,
+          "aop": 5467.69,
+          "ly": 4348.7965
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 3263.9327,
+          "aop": 3391.6868,
+          "ly": 3509.6231
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 12361.6579,
+          "aop": 13228.2311,
+          "ly": 11752.5447
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 4183.4022,
+          "aop": 3875.5741,
+          "ly": 3577.7223
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 4213.1122,
+          "aop": 4619.761,
+          "ly": 3916.1252
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 4701.2636,
+          "aop": 5129.4458,
+          "ly": 4663.4398
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 13097.778,
+          "aop": 13624.7808,
+          "ly": 12157.2874
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 5779.6542,
+          "aop": 4963.7923,
+          "ly": 4958.2811
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 4978.1186,
+          "aop": 5301.3593,
+          "ly": 5625.1508
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 3865.0036,
+          "aop": 3621.8934,
+          "ly": 3254.4797
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 14622.7764,
+          "aop": 13887.045,
+          "ly": 13837.9116
+        },
+        "FY": {
+          "actuals": 8259.5039,
+          "fcst": 53559.2134,
+          "aop": 54004.1436,
+          "ly": 50779.3553
+        }
+      }
+    },
+    {
+      "id": "shipping_revenue",
+      "label": "Shipping Revenue",
+      "row": 22,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 161.897,
+          "fcst": null,
+          "aop": 304.9707,
+          "ly": 259.1193
+        },
+        "Feb": {
+          "actuals": 124.5928,
+          "fcst": 140.2208,
+          "aop": 309.5549,
+          "ly": 210.9657
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 153.9862,
+          "aop": 344.1686,
+          "ly": 322.0157
+        },
+        "Q1": {
+          "actuals": 286.4897,
+          "fcst": 456.104,
+          "aop": 958.6942,
+          "ly": 792.1007
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 125.4396,
+          "aop": 302.7333,
+          "ly": 305.6343
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 163.0815,
+          "aop": 312.841,
+          "ly": 247.5332
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 104.7413,
+          "aop": 251.3372,
+          "ly": 255.8847
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 393.2624,
+          "aop": 866.9115,
+          "ly": 809.0522
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 136.6228,
+          "aop": 279.6058,
+          "ly": 304.7912
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 146.9792,
+          "aop": 284.6685,
+          "ly": 276.3755
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 140.2375,
+          "aop": 290.0712,
+          "ly": 280.7578
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 423.8395,
+          "aop": 854.3454,
+          "ly": 861.9245
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 188.1174,
+          "aop": 320.2886,
+          "ly": 287.8195
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 174.3379,
+          "aop": 409.1463,
+          "ly": 283.1294
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 127.7728,
+          "aop": 258.0175,
+          "ly": 161.5046
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 490.2281,
+          "aop": 987.4523,
+          "ly": 732.4535
+        },
+        "FY": {
+          "actuals": 286.4897,
+          "fcst": 1763.434,
+          "aop": 3667.4034,
+          "ly": 3195.5309
+        }
+      }
+    },
+    {
+      "id": "shipping_income_consol",
+      "label": "Shipping Income Consolidations",
+      "row": 23,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 17.2511,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Feb": {
+          "actuals": 6.0589,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Q1": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "May": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "FY": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        }
+      }
+    },
+    {
+      "id": "shipping_income_wg",
+      "label": "Shipping Income WG",
+      "row": 24,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 192.4238,
+          "fcst": null,
+          "aop": 65.2957,
+          "ly": 74.9465
+        },
+        "Feb": {
+          "actuals": 173.4503,
+          "fcst": 230.3627,
+          "aop": 66.2772,
+          "ly": 79.7873
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 252.9774,
+          "aop": 71.0189,
+          "ly": 65.722
+        },
+        "Q1": {
+          "actuals": 365.8741,
+          "fcst": 675.7639,
+          "aop": 202.5918,
+          "ly": 220.4558
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 206.0793,
+          "aop": 64.8167,
+          "ly": 71.5606
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 267.9196,
+          "aop": 81.3387,
+          "ly": 86.552
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 172.0751,
+          "aop": 50.2674,
+          "ly": 70.188
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 646.074,
+          "aop": 196.4228,
+          "ly": 228.3006
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 224.4518,
+          "aop": 57.6964,
+          "ly": 72.039
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 241.4658,
+          "aop": 75.5243,
+          "ly": 79.2995
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 230.3901,
+          "aop": 71.1495,
+          "ly": 107.3896
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 696.3077,
+          "aop": 204.3702,
+          "ly": 258.7281
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 309.0501,
+          "aop": 75.7046,
+          "ly": 112.5213
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 286.4122,
+          "aop": 87.6002,
+          "ly": 118.1185
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 209.9125,
+          "aop": 55.2428,
+          "ly": 91.9202
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 805.3747,
+          "aop": 218.5475,
+          "ly": 322.56
+        },
+        "FY": {
+          "actuals": 365.8741,
+          "fcst": 2823.5203,
+          "aop": 821.9323,
+          "ly": 1030.0445
+        }
+      }
+    },
+    {
+      "id": "assembly_income",
+      "label": "Assembly Income",
+      "row": 25,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 5.9015,
+          "fcst": null,
+          "aop": 11.3996,
+          "ly": 12.672
+        },
+        "Feb": {
+          "actuals": 1.7499,
+          "fcst": 15.1193,
+          "aop": 11.571,
+          "ly": 13.5647
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 20.3245,
+          "aop": 12.3988,
+          "ly": 11.88
+        },
+        "Q1": {
+          "actuals": 7.6514,
+          "fcst": 41.3453,
+          "aop": 35.3694,
+          "ly": 38.1167
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 12.1668,
+          "aop": 11.316,
+          "ly": 12.2242
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 13.8629,
+          "aop": 14.2005,
+          "ly": 12.177
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 10.9263,
+          "aop": 8.7759,
+          "ly": 11.187
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 36.956,
+          "aop": 34.2923,
+          "ly": 35.5882
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 13.296,
+          "aop": 10.0729,
+          "ly": 11.4627
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 14.5397,
+          "aop": 13.1854,
+          "ly": 11.2982
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 15.3661,
+          "aop": 12.4216,
+          "ly": 13.2251
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 43.2018,
+          "aop": 35.6798,
+          "ly": 35.9859
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 24.1745,
+          "aop": 13.2168,
+          "ly": 15.9312
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 7.6632,
+          "aop": 15.2936,
+          "ly": 15.9604
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 7.8246,
+          "aop": 9.6445,
+          "ly": 7.3213
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 39.6622,
+          "aop": 38.155,
+          "ly": 39.2128
+        },
+        "FY": {
+          "actuals": 7.6514,
+          "fcst": 161.1653,
+          "aop": 143.4965,
+          "ly": 148.9037
+        }
+      }
+    },
+    {
+      "id": "design_service_fee",
+      "label": "Interior Design Service Fee",
+      "row": 26,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 16.35,
+          "fcst": null,
+          "aop": 51.9255,
+          "ly": 65.0375
+        },
+        "Feb": {
+          "actuals": 30,
+          "fcst": 51.9255,
+          "aop": 52.706,
+          "ly": 34.025
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 52.706,
+          "aop": 56.4768,
+          "ly": 32.575
+        },
+        "Q1": {
+          "actuals": 46.35,
+          "fcst": 120.9815,
+          "aop": 161.1083,
+          "ly": 131.6375
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 56.4768,
+          "aop": 51.5445,
+          "ly": 22.415
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 51.5445,
+          "aop": 64.6834,
+          "ly": 24.41
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 64.6834,
+          "aop": 39.9745,
+          "ly": 19.985
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 172.7047,
+          "aop": 156.2024,
+          "ly": 66.81
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 39.9745,
+          "aop": 45.8823,
+          "ly": 5.625
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 45.8823,
+          "aop": 60.0596,
+          "ly": 12.4
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 60.0596,
+          "aop": 56.5807,
+          "ly": 13.65
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 145.9164,
+          "aop": 162.5225,
+          "ly": 31.675
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 56.5807,
+          "aop": 60.203,
+          "ly": 51.96
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 60.203,
+          "aop": 69.6628,
+          "ly": 25.975
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 69.6628,
+          "aop": 43.931,
+          "ly": 33.415
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 186.4465,
+          "aop": 173.7968,
+          "ly": 111.35
+        },
+        "FY": {
+          "actuals": 46.35,
+          "fcst": 626.049,
+          "aop": 653.6301,
+          "ly": 341.4725
+        }
+      }
+    },
+    {
+      "id": "other_income",
+      "label": "Other Income",
+      "row": 27,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 5.9578,
+          "fcst": null,
+          "aop": 2.1726,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": 0.7641,
+          "fcst": 2.1661,
+          "aop": 2.2052,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2.3788,
+          "aop": 2.363,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": 6.7219,
+          "fcst": 10.5027,
+          "aop": 6.7407,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1.9378,
+          "aop": 2.1566,
+          "ly": 0
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2.5193,
+          "aop": 2.7063,
+          "ly": 0
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1.618,
+          "aop": 1.6725,
+          "ly": 0
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 6.0751,
+          "aop": 6.5355,
+          "ly": 0
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2.1105,
+          "aop": 1.9197,
+          "ly": 0
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2.2705,
+          "aop": 2.5129,
+          "ly": 0
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2.1664,
+          "aop": 2.3673,
+          "ly": 0
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 6.5474,
+          "aop": 6.7999,
+          "ly": 0
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2.906,
+          "aop": 2.5189,
+          "ly": 0
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 2.6932,
+          "aop": 2.9147,
+          "ly": 0
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1.9738,
+          "aop": 1.8381,
+          "ly": 1
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 7.573,
+          "aop": 7.2716,
+          "ly": 1
+        },
+        "FY": {
+          "actuals": 6.7219,
+          "fcst": 30.6983,
+          "aop": 27.3477,
+          "ly": 1
+        }
+      }
+    },
+    {
+      "id": "net_shipped_sales",
+      "label": "Net Shipped Sales $",
+      "row": 28,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 4522.2127,
+          "fcst": null,
+          "aop": 4374.2045,
+          "ly": 4940.1473
+        },
+        "Feb": {
+          "actuals": 4077.6079,
+          "fcst": 4544.7501,
+          "aop": 4557.3771,
+          "ly": 4457.1856
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 5057.3434,
+          "aop": 4960.0013,
+          "ly": 4253.8335
+        },
+        "Q1": {
+          "actuals": 8599.8206,
+          "fcst": 14124.3061,
+          "aop": 13891.5829,
+          "ly": 13651.1663
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 4226.8569,
+          "aop": 4639.7995,
+          "ly": 4188.4737
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 5432.7634,
+          "aop": 5735.1505,
+          "ly": 4590.5498
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 3468.1097,
+          "aop": 3588.8007,
+          "ly": 3713.5172
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 13127.73,
+          "aop": 13963.7508,
+          "ly": 12492.5407
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 4412.7805,
+          "aop": 4100.5896,
+          "ly": 3798.8027
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 4472.0402,
+          "aop": 4842.9857,
+          "ly": 4169.5769
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 4940.1619,
+          "aop": 5333.2992,
+          "ly": 4921.0864
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 13824.9825,
+          "aop": 14276.8744,
+          "ly": 12889.466
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 6070.675,
+          "aop": 5184.5252,
+          "ly": 5246.694
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 5159.8583,
+          "aop": 5507.6547,
+          "ly": 5950.1052
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 4071.9141,
+          "aop": 3794.7916,
+          "ly": 3391.147
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 15302.4475,
+          "aop": 14486.9715,
+          "ly": 14587.9462
+        },
+        "FY": {
+          "actuals": 8599.8206,
+          "fcst": 56379.4662,
+          "aop": 56619.1796,
+          "ly": 53621.1192
+        }
+      }
+    },
+    {
+      "id": "mom_qoq",
+      "label": "MoM/QoQ (%)",
+      "row": 29,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Feb": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": null
+        },
+        "Q1": {
+          "actuals": null,
+          "fcst": 0.0176,
+          "aop": 0.0176,
+          "ly": null
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": -0.0154
+        },
+        "May": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.096
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": -0.1911
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": -0.0706,
+          "aop": 0.1178,
+          "ly": null
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.023
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.0976
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.1802
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.1076,
+          "aop": 0.1076,
+          "ly": null
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.0662
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": 0.1341
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": null,
+          "aop": null,
+          "ly": -0.4301
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": -0.0069,
+          "aop": -0.0069,
+          "ly": null
+        },
+        "FY": {
+          "actuals": null,
+          "fcst": 0.0514,
+          "aop": 0.0559,
+          "ly": null
+        }
+      }
+    },
+    {
+      "id": "gross_cogs",
+      "label": "Gross COGS",
+      "row": 31,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 2277.3896,
+          "fcst": null,
+          "aop": 2090.539,
+          "ly": 2375.5894
+        },
+        "Feb": {
+          "actuals": 1876.4008,
+          "fcst": 2116.9009,
+          "aop": 2149.8836,
+          "ly": 2232.8337
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2361.8385,
+          "aop": 2325.3124,
+          "ly": 1959.6442
+        },
+        "Q1": {
+          "actuals": 4153.7904,
+          "fcst": 6756.1289,
+          "aop": 6565.735,
+          "ly": 6568.0674
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1984.9894,
+          "aop": 2162.5869,
+          "ly": 2139.2019
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2497.2125,
+          "aop": 2706.5116,
+          "ly": 2446.1053
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1645.0221,
+          "aop": 1678.8881,
+          "ly": 1677.7507
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 6127.224,
+          "aop": 6547.9865,
+          "ly": 6263.0579
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2049.8671,
+          "aop": 1918.4127,
+          "ly": 1979.8334
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2279.7618,
+          "aop": 2540.8732,
+          "ly": 1988.2046
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2094.1992,
+          "aop": 2308.2549,
+          "ly": 2482.9288
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 6423.8281,
+          "aop": 6767.5408,
+          "ly": 6450.9668
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2843.5899,
+          "aop": 2457.0818,
+          "ly": 2413.2608
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 2588.6217,
+          "aop": 2762.2923,
+          "ly": 2881.5913
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1889.9868,
+          "aop": 1792.8405,
+          "ly": 1712.3859
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 7322.1983,
+          "aop": 7012.2146,
+          "ly": 7007.238
+        },
+        "FY": {
+          "actuals": 4153.7904,
+          "fcst": 26629.3794,
+          "aop": 26893.477,
+          "ly": 26289.3301
+        }
+      }
+    },
+    {
+      "id": "gm_dollars",
+      "label": "GM$",
+      "row": 32,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 2070.0862,
+          "fcst": null,
+          "aop": 2132.7643,
+          "ly": 2364.6006
+        },
+        "Feb": {
+          "actuals": 2035.6274,
+          "fcst": 2212.1398,
+          "aop": 2193.3075,
+          "ly": 2064.914
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2438.6462,
+          "aop": 2372.2797,
+          "ly": 2034.0297
+        },
+        "Q1": {
+          "actuals": 4105.7135,
+          "fcst": 6720.8722,
+          "aop": 6698.3516,
+          "ly": 6463.5443
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1984.9894,
+          "aop": 2206.2674,
+          "ly": 1754.9232
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2630.5339,
+          "aop": 2761.1785,
+          "ly": 1902.6912
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1618.9106,
+          "aop": 1712.7987,
+          "ly": 1831.8724
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 6234.4339,
+          "aop": 6680.2446,
+          "ly": 5489.4868
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2133.5351,
+          "aop": 1957.1614,
+          "ly": 1597.889
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2401.474,
+          "aop": 2592.1945,
+          "ly": 1927.9207
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2179.6768,
+          "aop": 2354.8776,
+          "ly": 2180.511
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 6714.6858,
+          "aop": 6904.2335,
+          "ly": 5706.3206
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2936.0643,
+          "aop": 2506.7106,
+          "ly": 2545.0203
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 2651.5032,
+          "aop": 2818.0859,
+          "ly": 2743.5594
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1975.0168,
+          "aop": 1829.0528,
+          "ly": 1542.0938
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 7562.5844,
+          "aop": 7153.8493,
+          "ly": 6830.6735
+        },
+        "FY": {
+          "actuals": 4105.7135,
+          "fcst": 27232.5763,
+          "aop": 27436.679,
+          "ly": 24490.0252
+        }
+      }
+    },
+    {
+      "id": "gm_percent",
+      "label": "GM%",
+      "row": 33,
+      "format": "%",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 0.4762,
+          "fcst": null,
+          "aop": 0.505,
+          "ly": 0.4988
+        },
+        "Feb": {
+          "actuals": 0.5204,
+          "fcst": 0.511,
+          "aop": 0.505,
+          "ly": 0.4805
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.508,
+          "aop": 0.505,
+          "ly": 0.5093
+        },
+        "Q1": {
+          "actuals": 0.4971,
+          "fcst": 0.4987,
+          "aop": 0.505,
+          "ly": 0.496
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.5,
+          "aop": 0.505,
+          "ly": 0.4507
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.513,
+          "aop": 0.505,
+          "ly": 0.4375
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.496,
+          "aop": 0.505,
+          "ly": 0.522
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.5043,
+          "aop": 0.505,
+          "ly": 0.4671
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.51,
+          "aop": 0.505,
+          "ly": 0.4466
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.57,
+          "aop": 0.5611,
+          "ly": 0.4923
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.4636,
+          "aop": 0.4591,
+          "ly": 0.4676
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.5127,
+          "aop": 0.5067,
+          "ly": 0.4694
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.508,
+          "aop": 0.505,
+          "ly": 0.5133
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.5326,
+          "aop": 0.5316,
+          "ly": 0.4877
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.511,
+          "aop": 0.505,
+          "ly": 0.4738
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.5172,
+          "aop": 0.5151,
+          "ly": 0.4936
+        },
+        "FY": {
+          "actuals": 0.4971,
+          "fcst": 0.5085,
+          "aop": 0.508,
+          "ly": 0.4823
+        }
+      }
+    },
+    {
+      "id": "product_gm_pct",
+      "label": "Product GM %",
+      "row": 35,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.505,
+          "fcst": null,
+          "aop": 0.505,
+          "ly": 0.4988
+        },
+        "Feb": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4805
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.5093
+        },
+        "Q1": {
+          "actuals": 0.4971,
+          "fcst": 0.4987,
+          "aop": 0.505,
+          "ly": 0.496
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4507
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4375
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.522
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.5043,
+          "aop": 0.505,
+          "ly": 0.4671
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4466
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4923
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.4676
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.5127,
+          "aop": 0.5067,
+          "ly": 0.4694
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.5133
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.519
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.505,
+          "aop": 0.505,
+          "ly": 0.411
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.5172,
+          "aop": 0.5151,
+          "ly": 0.4936
+        },
+        "FY": {
+          "actuals": 0.4971,
+          "fcst": 0.5085,
+          "aop": 0.508,
+          "ly": 0.4823
+        }
+      }
+    },
+    {
+      "id": "cogs_interior_design",
+      "label": "COGS Interior Design",
+      "row": 37,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0,
+          "fcst": null,
+          "aop": 0,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "FY": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        }
+      }
+    },
+    {
+      "id": "marketing_cogs",
+      "label": "Marketing COGS",
+      "row": 38,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -1.4479,
+          "fcst": null,
+          "aop": 0,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": -2.0045,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": -3.4524,
+          "fcst": -1.4479,
+          "aop": 0,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -1.0496,
+          "ly": -1.0496
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": -1.0496,
+          "ly": -1.0496
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -1.4426,
+          "ly": -1.4426
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -0.4407,
+          "ly": -0.4407
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -2.2429,
+          "ly": -2.2429
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": -4.1262,
+          "ly": -4.1262
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -1.5311,
+          "ly": -1.5311
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -2.673,
+          "ly": -2.673
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": -2.0054,
+          "ly": -2.0054
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": -6.2095,
+          "ly": -6.2095
+        },
+        "FY": {
+          "actuals": -3.4524,
+          "fcst": -1.4479,
+          "aop": -11.3854,
+          "ly": -11.3854
+        }
+      }
+    },
+    {
+      "id": "claims_cogs",
+      "label": "Claims COGS",
+      "row": 39,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -57.3448,
+          "fcst": null,
+          "aop": -64.1589,
+          "ly": -64.4959
+        },
+        "Feb": {
+          "actuals": -50.1496,
+          "fcst": -63.9691,
+          "aop": -65.1233,
+          "ly": -65.0818
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": -70.2489,
+          "aop": -69.7825,
+          "ly": -50.9951
+        },
+        "Q1": {
+          "actuals": -107.4944,
+          "fcst": -191.5628,
+          "aop": -199.0647,
+          "ly": -180.5729
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -57.2259,
+          "aop": -63.6882,
+          "ly": -60.9971
+        },
+        "May": {
+          "actuals": null,
+          "fcst": -74.3982,
+          "aop": -79.9225,
+          "ly": -68.6736
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -47.7833,
+          "aop": -49.3923,
+          "ly": -42.1159
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -179.4073,
+          "aop": -193.003,
+          "ly": -171.7867
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": -62.3277,
+          "aop": -56.6919,
+          "ly": -50.6053
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -67.0523,
+          "aop": -74.2094,
+          "ly": -55.0378
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": -63.9767,
+          "aop": -69.9108,
+          "ly": -69.2782
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": -193.3566,
+          "aop": -200.8121,
+          "ly": -174.9212
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": -85.8196,
+          "aop": -74.3866,
+          "ly": -63.9633
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -79.5334,
+          "aop": -86.0751,
+          "ly": -66.0129
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -58.2903,
+          "aop": -54.281,
+          "ly": -66.8136
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": -223.6433,
+          "aop": -214.7426,
+          "ly": -196.7897
+        },
+        "FY": {
+          "actuals": -107.4944,
+          "fcst": -787.97,
+          "aop": -807.6225,
+          "ly": -724.0705
+        }
+      }
+    },
+    {
+      "id": "return_cogs",
+      "label": "Return COGS",
+      "row": 40,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -3.0349,
+          "fcst": null,
+          "aop": 0,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": -7.6326,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": -10.6675,
+          "fcst": -3.0349,
+          "aop": 0,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "FY": {
+          "actuals": -10.6675,
+          "fcst": -3.0349,
+          "aop": 0,
+          "ly": 0
+        }
+      }
+    },
+    {
+      "id": "cogs_tariff",
+      "label": "COGS Tariff",
+      "row": 41,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 4.8192,
+          "fcst": null,
+          "aop": 0,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": 6.0664,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": 10.8856,
+          "fcst": 4.8192,
+          "aop": 0,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 3.495,
+          "aop": 3.495,
+          "ly": 3.495
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 3.2851,
+          "aop": 3.2851,
+          "ly": 3.2851
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 2.5705,
+          "aop": 2.5705,
+          "ly": 2.5705
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 9.3506,
+          "aop": 9.3506,
+          "ly": 9.3506
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 3.6214,
+          "aop": 3.6214,
+          "ly": 3.6214
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2.8387,
+          "aop": 2.8387,
+          "ly": 2.8387
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 4.0888,
+          "aop": 4.0888,
+          "ly": 4.0888
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 10.5489,
+          "aop": 10.5489,
+          "ly": 10.5489
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2.1715,
+          "aop": 2.1715,
+          "ly": 2.1715
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 3.0537,
+          "aop": 3.0537,
+          "ly": 3.0537
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 5.9425,
+          "aop": 5.9425,
+          "ly": 5.9425
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 11.1677,
+          "aop": 11.1677,
+          "ly": 11.1677
+        },
+        "FY": {
+          "actuals": 10.8856,
+          "fcst": 35.8864,
+          "aop": 31.0672,
+          "ly": 31.0672
+        }
+      }
+    },
+    {
+      "id": "cogs_total",
+      "label": "COGS",
+      "row": 42,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 2220.3811,
+          "fcst": null,
+          "aop": 2026.3801,
+          "ly": 2311.0935
+        },
+        "Feb": {
+          "actuals": 1822.6806,
+          "fcst": 2052.9318,
+          "aop": 2084.7603,
+          "ly": 2167.7519
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2291.5896,
+          "aop": 2255.5299,
+          "ly": 1908.6491
+        },
+        "Q1": {
+          "actuals": 4043.0617,
+          "fcst": 6564.9025,
+          "aop": 6366.6703,
+          "ly": 6387.4945
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1927.7636,
+          "aop": 2098.8987,
+          "ly": 2081.6998
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2422.8143,
+          "aop": 2626.589,
+          "ly": 2380.7167
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1597.2388,
+          "aop": 1628.4462,
+          "ly": 1637.1556
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 5947.8167,
+          "aop": 6353.9338,
+          "ly": 6099.5722
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 1987.5394,
+          "aop": 1860.2782,
+          "ly": 1931.4069
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2212.7096,
+          "aop": 2466.2231,
+          "ly": 1935.5648
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2030.2226,
+          "aop": 2236.1012,
+          "ly": 2415.4966
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 6230.4715,
+          "aop": 6562.6025,
+          "ly": 6282.4682
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2757.7702,
+          "aop": 2381.1641,
+          "ly": 2349.9379
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 2509.0883,
+          "aop": 2673.5443,
+          "ly": 2815.9592
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1831.6965,
+          "aop": 1736.5542,
+          "ly": 1649.5094
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 7098.555,
+          "aop": 6791.2625,
+          "ly": 6815.4065
+        },
+        "FY": {
+          "actuals": 4043.0617,
+          "fcst": 25841.7457,
+          "aop": 26074.4691,
+          "ly": 25584.9415
+        }
+      }
+    },
+    {
+      "id": "cogs_pct",
+      "label": "COGS%",
+      "row": 43,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.509,
+          "fcst": null,
+          "aop": 0.5367,
+          "ly": 0.5322
+        },
+        "Feb": {
+          "actuals": 0.553,
+          "fcst": 0.5483,
+          "aop": 0.5426,
+          "ly": 0.5137
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.5469,
+          "aop": 0.5453,
+          "ly": 0.5513
+        },
+        "Q1": {
+          "actuals": 0.5299,
+          "fcst": 0.5352,
+          "aop": 0.5417,
+          "ly": 0.5321
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.5439,
+          "aop": 0.5476,
+          "ly": 0.503
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.554,
+          "aop": 0.542,
+          "ly": 0.4814
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.5394,
+          "aop": 0.5462,
+          "ly": 0.5591
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.5469,
+          "aop": 0.545,
+          "ly": 0.5117
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.5496,
+          "aop": 0.5463,
+          "ly": 0.4916
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.5052,
+          "aop": 0.4908,
+          "ly": 0.5358
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.589,
+          "aop": 0.5807,
+          "ly": 0.5092
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.5493,
+          "aop": 0.5403,
+          "ly": 0.5126
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.5457,
+          "aop": 0.5407,
+          "ly": 0.5521
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.5137,
+          "aop": 0.5146,
+          "ly": 0.5267
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.5502,
+          "aop": 0.5424,
+          "ly": 0.5136
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.5361,
+          "aop": 0.5312,
+          "ly": 0.5328
+        },
+        "FY": {
+          "actuals": 0.5299,
+          "fcst": 0.5416,
+          "aop": 0.5395,
+          "ly": 0.5229
+        }
+      }
+    },
+    {
+      "id": "shipping_cost",
+      "label": "Shipping cost",
+      "row": 45,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 456.3673,
+          "fcst": null,
+          "aop": 567.5703,
+          "ly": 765.5878
+        },
+        "Feb": {
+          "actuals": 173.6557,
+          "fcst": 575.9068,
+          "aop": 586.2983,
+          "ly": 698.1921
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 676.4395,
+          "aop": 529.9103,
+          "ly": 393.65
+        },
+        "Q1": {
+          "actuals": 630.023,
+          "fcst": 1708.7135,
+          "aop": 1683.779,
+          "ly": 1857.4298
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 551.0382,
+          "aop": 533.4909,
+          "ly": 599.7613
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 698.9207,
+          "aop": 619.2866,
+          "ly": 749.5143
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 448.8915,
+          "aop": 413.7397,
+          "ly": 326.4875
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 1698.8503,
+          "aop": 1566.5173,
+          "ly": 1675.7631
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 561.1294,
+          "aop": 421.6277,
+          "ly": 326.3039
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 603.6644,
+          "aop": 580.956,
+          "ly": 383.2365
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 575.9753,
+          "aop": 602.0345,
+          "ly": 454.0027
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 1740.7692,
+          "aop": 1604.6182,
+          "ly": 1163.5431
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 772.6252,
+          "aop": 611.4601,
+          "ly": 523.8118
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 716.0305,
+          "aop": 741.2323,
+          "ly": 599.092
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 524.7811,
+          "aop": 522.6817,
+          "ly": 342.0331
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 2013.4368,
+          "aop": 1875.374,
+          "ly": 1464.9369
+        },
+        "FY": {
+          "actuals": 630.023,
+          "fcst": 7161.7699,
+          "aop": 6730.2885,
+          "ly": 6161.6729
+        }
+      }
+    },
+    {
+      "id": "parcel_shipping",
+      "label": "Parcel Shipping",
+      "row": 46,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 85.4145,
+          "fcst": null,
+          "aop": 0,
+          "ly": 0
+        },
+        "Feb": {
+          "actuals": 112.1432,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q1": {
+          "actuals": 197.5577,
+          "fcst": 85.4145,
+          "aop": 0,
+          "ly": 0
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 0
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 54.7732,
+          "ly": 54.2534
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 100.7612,
+          "ly": 99.805
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 54.7304,
+          "ly": 105.9096
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 210.2648,
+          "ly": 259.9681
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 58.2343,
+          "ly": 105.6293
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 124.2827
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0,
+          "aop": 0,
+          "ly": 38.276
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 0,
+          "aop": 58.2343,
+          "ly": 268.1879
+        },
+        "FY": {
+          "actuals": 197.5577,
+          "fcst": 85.4145,
+          "aop": 268.4991,
+          "ly": 528.156
+        }
+      }
+    },
+    {
+      "id": "pallet_upcharge",
+      "label": "Pallet upcharge",
+      "row": 47,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 1.3785,
+          "fcst": null,
+          "aop": 0.8036,
+          "ly": 0.743
+        },
+        "Feb": {
+          "actuals": 1.2262,
+          "fcst": 0.8013,
+          "aop": 0.8157,
+          "ly": 1.127
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.8799,
+          "aop": 0.8741,
+          "ly": 1.064
+        },
+        "Q1": {
+          "actuals": 2.6047,
+          "fcst": 3.0597,
+          "aop": 2.4934,
+          "ly": 2.934
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.7168,
+          "aop": 0.7977,
+          "ly": 1.24
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.9319,
+          "aop": 1.0011,
+          "ly": 0.265
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.5985,
+          "aop": 0.6187,
+          "ly": 1.167
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 2.2472,
+          "aop": 2.4175,
+          "ly": 2.672
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.7807,
+          "aop": 0.7101,
+          "ly": 0.611
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.8399,
+          "aop": 0.9295,
+          "ly": 0.295
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.8014,
+          "aop": 0.8757,
+          "ly": 1.202
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 2.4219,
+          "aop": 2.5153,
+          "ly": 2.108
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 1.075,
+          "aop": 0.9317,
+          "ly": 2.4904
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.9962,
+          "aop": 1.0782,
+          "ly": 0.5472
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.7301,
+          "aop": 0.6799,
+          "ly": 2.2389
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 2.8013,
+          "aop": 2.6898,
+          "ly": 5.2765
+        },
+        "FY": {
+          "actuals": 2.6047,
+          "fcst": 10.5301,
+          "aop": 10.1161,
+          "ly": 12.9905
+        }
+      }
+    },
+    {
+      "id": "drop_ship_charge",
+      "label": "Drop Ship Charge",
+      "row": 48,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 1.92,
+          "fcst": null,
+          "aop": 3.7851,
+          "ly": 3.786
+        },
+        "Feb": {
+          "actuals": 2.2436,
+          "fcst": 2.3751,
+          "aop": 2.4179,
+          "ly": 2.395
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2.6083,
+          "aop": 2.2554,
+          "ly": 2.244
+        },
+        "Q1": {
+          "actuals": 4.1636,
+          "fcst": 6.9033,
+          "aop": 8.4585,
+          "ly": 8.425
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 2.1247,
+          "aop": 2.6981,
+          "ly": 2.7525
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2.7623,
+          "aop": 2.69,
+          "ly": 3.4495
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1.7741,
+          "aop": 3.0736,
+          "ly": 2.3544
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 6.6612,
+          "aop": 8.4617,
+          "ly": 8.5564
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2.3141,
+          "aop": 2.7895,
+          "ly": 2.763
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2.4896,
+          "aop": 2.5966,
+          "ly": 2.572
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2.3754,
+          "aop": 3.3008,
+          "ly": 3.2695
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 7.1791,
+          "aop": 8.6869,
+          "ly": 8.6045
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 3.1864,
+          "aop": 2.533,
+          "ly": 2.499
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 2.953,
+          "aop": 4.3664,
+          "ly": 2.2865
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 2.1642,
+          "aop": 3.4585,
+          "ly": 2.9096
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 8.3036,
+          "aop": 10.3579,
+          "ly": 7.6951
+        },
+        "FY": {
+          "actuals": 4.1636,
+          "fcst": 29.0472,
+          "aop": 35.965,
+          "ly": 33.2811
+        }
+      }
+    },
+    {
+      "id": "replacement_cogs",
+      "label": "Replacement COGS",
+      "row": 49,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 17.1603,
+          "fcst": null,
+          "aop": 46.5364,
+          "ly": 46.5472
+        },
+        "Feb": {
+          "actuals": 37.6569,
+          "fcst": 27.232,
+          "aop": 27.7234,
+          "ly": 27.4603
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 29.9054,
+          "aop": 47.1557,
+          "ly": 47.6682
+        },
+        "Q1": {
+          "actuals": 54.8172,
+          "fcst": 74.2977,
+          "aop": 121.4154,
+          "ly": 121.6756
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 24.3614,
+          "aop": 35.1028,
+          "ly": 34.7697
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 31.6717,
+          "aop": 56.3114,
+          "ly": 31.7866
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 20.3416,
+          "aop": 27.0671,
+          "ly": 21.5325
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 76.3747,
+          "aop": 118.4813,
+          "ly": 88.0888
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 26.5332,
+          "aop": 28.7906,
+          "ly": 28.5174
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 28.5445,
+          "aop": 35.1103,
+          "ly": 34.7771
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 27.2352,
+          "aop": 31.0249,
+          "ly": 30.7304
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 82.313,
+          "aop": 94.9258,
+          "ly": 94.025
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 36.5339,
+          "aop": 39.4938,
+          "ly": 39.119
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 33.8578,
+          "aop": 59.1248,
+          "ly": 22.3138
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 24.8145,
+          "aop": 30.6269,
+          "ly": 33.3217
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 95.2062,
+          "aop": 129.2455,
+          "ly": 94.7546
+        },
+        "FY": {
+          "actuals": 54.8172,
+          "fcst": 328.1917,
+          "aop": 464.068,
+          "ly": 398.5439
+        }
+      }
+    },
+    {
+      "id": "shipping_replacements",
+      "label": "Shipping Replacements",
+      "row": 50,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 8.332,
+          "fcst": null,
+          "aop": 10.4106,
+          "ly": 10.413
+        },
+        "Feb": {
+          "actuals": 6.7741,
+          "fcst": 13.5046,
+          "aop": 13.7483,
+          "ly": 13.6179
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 14.8304,
+          "aop": 16.3317,
+          "ly": 16.1767
+        },
+        "Q1": {
+          "actuals": 15.1062,
+          "fcst": 36.667,
+          "aop": 40.4906,
+          "ly": 40.2075
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 12.0811,
+          "aop": 15.5784,
+          "ly": 15.9419
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 15.7064,
+          "aop": 18.7705,
+          "ly": 16.9162
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 10.0876,
+          "aop": 8.1711,
+          "ly": 5.7843
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 37.8751,
+          "aop": 42.5199,
+          "ly": 38.6423
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 13.1581,
+          "aop": 11.1617,
+          "ly": 11.0558
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 14.1555,
+          "aop": 11.6191,
+          "ly": 7.3845
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 13.5063,
+          "aop": 12.7329,
+          "ly": 12.612
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 40.8199,
+          "aop": 35.5137,
+          "ly": 31.0524
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 18.1176,
+          "aop": 17.4703,
+          "ly": 13.4284
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 16.7905,
+          "aop": 19.6579,
+          "ly": 11.2401
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 12.3058,
+          "aop": 14.37,
+          "ly": 19.9259
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 47.2138,
+          "aop": 51.4982,
+          "ly": 44.5944
+        },
+        "FY": {
+          "actuals": 15.1062,
+          "fcst": 162.5758,
+          "aop": 170.0224,
+          "ly": 154.4967
+        }
+      }
+    },
+    {
+      "id": "shipping_returns",
+      "label": "Shipping Returns",
+      "row": 51,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 9.8282,
+          "fcst": null,
+          "aop": 10.4881,
+          "ly": 10.4906
+        },
+        "Feb": {
+          "actuals": 3.8249,
+          "fcst": 9.9659,
+          "aop": 10.1458,
+          "ly": 10.0495
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 10.9443,
+          "aop": 15.6778,
+          "ly": 15.529
+        },
+        "Q1": {
+          "actuals": 13.6531,
+          "fcst": 30.7384,
+          "aop": 36.3117,
+          "ly": 36.0691
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 8.9154,
+          "aop": 15.4826,
+          "ly": 15.3357
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 11.5907,
+          "aop": 10.3085,
+          "ly": 11.2519
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 7.4443,
+          "aop": 8.6358,
+          "ly": 7.5126
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 27.9504,
+          "aop": 34.427,
+          "ly": 34.1003
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 9.7102,
+          "aop": 19.3437,
+          "ly": 19.1601
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 10.4463,
+          "aop": 9.3695,
+          "ly": 9.2806
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 9.9671,
+          "aop": 10.9784,
+          "ly": 10.8742
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 30.1236,
+          "aop": 39.6916,
+          "ly": 39.3149
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 13.3701,
+          "aop": 8.0999,
+          "ly": 9.0266
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 12.3907,
+          "aop": 16.3831,
+          "ly": 7.1798
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 9.0812,
+          "aop": 11.717,
+          "ly": 9.8992
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 34.8421,
+          "aop": 36.2,
+          "ly": 26.1056
+        },
+        "FY": {
+          "actuals": 13.6531,
+          "fcst": 123.6545,
+          "aop": 146.6302,
+          "ly": 135.5899
+        }
+      }
+    },
+    {
+      "id": "handling_fees",
+      "label": "Handling Fees",
+      "row": 52,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 2.1423,
+          "fcst": null,
+          "aop": 25.6075,
+          "ly": 25.6135
+        },
+        "Feb": {
+          "actuals": 23.3204,
+          "fcst": 25.0394,
+          "aop": 25.4912,
+          "ly": 15.1351
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 27.4975,
+          "aop": 32.5426,
+          "ly": 32.2392
+        },
+        "Q1": {
+          "actuals": 25.4627,
+          "fcst": 54.6793,
+          "aop": 83.6413,
+          "ly": 72.9878
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 22.3999,
+          "aop": 13.1505,
+          "ly": 13.0422
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 29.1217,
+          "aop": 31.2841,
+          "ly": 7.6674
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 18.7038,
+          "aop": 64.7968,
+          "ly": 63.2509
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 70.2254,
+          "aop": 109.2315,
+          "ly": 83.9605
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 24.3969,
+          "aop": 39.6283,
+          "ly": 39.2523
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 26.2463,
+          "aop": 59.1159,
+          "ly": 58.5549
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 25.0424,
+          "aop": 21.7326,
+          "ly": 21.5264
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 75.6856,
+          "aop": 120.4769,
+          "ly": 119.3336
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 33.5924,
+          "aop": 29.1171,
+          "ly": 8.0438
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 31.1318,
+          "aop": 67.3848,
+          "ly": 39.3847
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 22.8166,
+          "aop": 52.5387,
+          "ly": 19.5435
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 87.5407,
+          "aop": 149.0406,
+          "ly": 66.9721
+        },
+        "FY": {
+          "actuals": 25.4627,
+          "fcst": 288.1311,
+          "aop": 462.3903,
+          "ly": 343.254
+        }
+      }
+    },
+    {
+      "id": "furniture_repair",
+      "label": "Furniture Repair",
+      "row": 53,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.5773,
+          "fcst": null,
+          "aop": 4.2351,
+          "ly": 4.2361
+        },
+        "Feb": {
+          "actuals": 0.169,
+          "fcst": 0.2993,
+          "aop": 0.3047,
+          "ly": 0.3018
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.3287,
+          "aop": 2.5134,
+          "ly": 2.4895
+        },
+        "Q1": {
+          "actuals": 0.7463,
+          "fcst": 1.2053,
+          "aop": 7.0532,
+          "ly": 7.0275
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.2678,
+          "aop": 2.0949,
+          "ly": 2.075
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.3481,
+          "aop": 0.2398,
+          "ly": 0.2375
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.2236,
+          "aop": 0.0303,
+          "ly": 0.03
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 0.8394,
+          "aop": 2.3649,
+          "ly": 2.3425
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.2916,
+          "aop": 7.0922,
+          "ly": 7.0249
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.3137,
+          "aop": 1.0143,
+          "ly": 1.0047
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.2993,
+          "aop": 3.1708,
+          "ly": 3.1407
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 0.9047,
+          "aop": 11.2773,
+          "ly": 11.1703
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.4015,
+          "aop": 0.6911,
+          "ly": 0.6846
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.3721,
+          "aop": 9.9435,
+          "ly": 1.1446
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.2727,
+          "aop": 0.4228,
+          "ly": 0.7934
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 1.0464,
+          "aop": 11.0574,
+          "ly": 2.6226
+        },
+        "FY": {
+          "actuals": 0.7463,
+          "fcst": 3.9959,
+          "aop": 31.7529,
+          "ly": 23.1629
+        }
+      }
+    },
+    {
+      "id": "freight_other",
+      "label": "Freight Other",
+      "row": 54,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 7.6472,
+          "fcst": null,
+          "aop": 1.8419,
+          "ly": 1.8423
+        },
+        "Feb": {
+          "actuals": 3.916,
+          "fcst": 2.6407,
+          "aop": 2.6883,
+          "ly": 2.6628
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 2.8999,
+          "aop": 2.3466,
+          "ly": 2.3243
+        },
+        "Q1": {
+          "actuals": 11.5632,
+          "fcst": 13.1877,
+          "aop": 6.8768,
+          "ly": 6.8294
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 2.3623,
+          "aop": 6.8902,
+          "ly": 6.8249
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 3.0712,
+          "aop": 3.7086,
+          "ly": 4.5894
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1.9725,
+          "aop": 3.7046,
+          "ly": 2.7534
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 7.406,
+          "aop": 14.3035,
+          "ly": 14.1677
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2.5729,
+          "aop": 6.6724,
+          "ly": 6.6091
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2.7679,
+          "aop": 3.3501,
+          "ly": 3.3183
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2.641,
+          "aop": 10.6202,
+          "ly": 10.5195
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 7.9818,
+          "aop": 20.6428,
+          "ly": 20.4469
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 3.5427,
+          "aop": 10.164,
+          "ly": 10.0676
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 3.2832,
+          "aop": 28.0165,
+          "ly": 4.8928
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 2.4062,
+          "aop": 2.8971,
+          "ly": 8.9481
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 9.2321,
+          "aop": 41.0776,
+          "ly": 23.9085
+        },
+        "FY": {
+          "actuals": 11.5632,
+          "fcst": 37.8076,
+          "aop": 82.9006,
+          "ly": 65.3525
+        }
+      }
+    },
+    {
+      "id": "total_cogs",
+      "label": "Total COGS",
+      "row": 55,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 2811.1486,
+          "fcst": null,
+          "aop": 2697.6588,
+          "ly": 3180.3529
+        },
+        "Feb": {
+          "actuals": 2187.6107,
+          "fcst": 2710.697,
+          "aop": 2754.3939,
+          "ly": 2938.6934
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 3057.9234,
+          "aop": 2905.1374,
+          "ly": 2422.0341
+        },
+        "Q1": {
+          "actuals": 4998.7593,
+          "fcst": 8579.769,
+          "aop": 8357.1902,
+          "ly": 8541.0803
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 2552.0311,
+          "aop": 2724.1849,
+          "ly": 2773.4429
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 3216.939,
+          "aop": 3370.1895,
+          "ly": 3206.3946
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 2107.2764,
+          "aop": 2158.2839,
+          "ly": 2068.0284
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 7876.2465,
+          "aop": 8252.6584,
+          "ly": 8047.8659
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 2628.4267,
+          "aop": 2452.8677,
+          "ly": 2426.9578
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2902.1778,
+          "aop": 3271.0459,
+          "ly": 2535.7935
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2688.066,
+          "aop": 2987.3024,
+          "ly": 3069.2836
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 8218.6705,
+          "aop": 8711.2159,
+          "ly": 8032.035
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 3640.2149,
+          "aop": 3159.3594,
+          "ly": 3064.7383
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 3326.8941,
+          "aop": 3620.7317,
+          "ly": 3628.3235
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 2431.0691,
+          "aop": 2375.9467,
+          "ly": 2127.399
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 9398.1781,
+          "aop": 9156.0379,
+          "ly": 8820.4608
+        },
+        "FY": {
+          "actuals": 4998.7593,
+          "fcst": 34072.864,
+          "aop": 34477.1023,
+          "ly": 33441.4419
+        }
+      }
+    },
+    {
+      "id": "total_cogs_pct",
+      "label": "as % of Sales",
+      "row": 56,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.6216,
+          "fcst": null,
+          "aop": 0.6167,
+          "ly": 0.6438
+        },
+        "Feb": {
+          "actuals": 0.5365,
+          "fcst": 0.5964,
+          "aop": 0.6044,
+          "ly": 0.6593
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.6047,
+          "aop": 0.5857,
+          "ly": 0.5694
+        },
+        "Q1": {
+          "actuals": 0.5813,
+          "fcst": 0.6074,
+          "aop": 0.6016,
+          "ly": 0.6257
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.6038,
+          "aop": 0.5871,
+          "ly": 0.6622
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.5921,
+          "aop": 0.5876,
+          "ly": 0.6985
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.6076,
+          "aop": 0.6014,
+          "ly": 0.5569
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.6,
+          "aop": 0.591,
+          "ly": 0.6442
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.5956,
+          "aop": 0.5982,
+          "ly": 0.6389
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.649,
+          "aop": 0.6754,
+          "ly": 0.6082
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.5441,
+          "aop": 0.5601,
+          "ly": 0.6237
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.5945,
+          "aop": 0.6102,
+          "ly": 0.6231
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.5996,
+          "aop": 0.6094,
+          "ly": 0.5841
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.6448,
+          "aop": 0.6574,
+          "ly": 0.6098
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.597,
+          "aop": 0.6261,
+          "ly": 0.6273
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.6142,
+          "aop": 0.632,
+          "ly": 0.6046
+        },
+        "FY": {
+          "actuals": 0.5813,
+          "fcst": 0.6043,
+          "aop": 0.6089,
+          "ly": 0.6237
+        }
+      }
+    },
+    {
+      "id": "gross_profit",
+      "label": "Gross Profit",
+      "row": 58,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 1711.1455,
+          "fcst": null,
+          "aop": 1676.5457,
+          "ly": 1759.7944
+        },
+        "Feb": {
+          "actuals": 1889.9972,
+          "fcst": 1834.0531,
+          "aop": 1802.9832,
+          "ly": 1518.4923
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 1999.42,
+          "aop": 2054.8638,
+          "ly": 1831.7994
+        },
+        "Q1": {
+          "actuals": 3601.1427,
+          "fcst": 5544.6187,
+          "aop": 5534.3927,
+          "ly": 5110.0861
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1674.8257,
+          "aop": 1915.6146,
+          "ly": 1415.0309
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 2215.8245,
+          "aop": 2364.9609,
+          "ly": 1384.1552
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1360.8333,
+          "aop": 1430.5169,
+          "ly": 1645.4887
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 5251.4835,
+          "aop": 5711.0924,
+          "ly": 4444.6748
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 1784.3537,
+          "aop": 1647.7219,
+          "ly": 1371.8449
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 1569.8624,
+          "aop": 1571.9398,
+          "ly": 1633.7834
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 2252.0959,
+          "aop": 2345.9968,
+          "ly": 1851.8027
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 5606.3121,
+          "aop": 5565.6585,
+          "ly": 4857.431
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 2430.4601,
+          "aop": 2025.1658,
+          "ly": 2181.9557
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 1832.9642,
+          "aop": 1886.923,
+          "ly": 2321.7817
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1640.8451,
+          "aop": 1418.8449,
+          "ly": 1263.7479
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 5904.2694,
+          "aop": 5330.9336,
+          "ly": 5767.4854
+        },
+        "FY": {
+          "actuals": 3601.1427,
+          "fcst": 22306.6836,
+          "aop": 22142.0773,
+          "ly": 20179.6773
+        }
+      }
+    },
+    {
+      "id": "gross_profit_pct",
+      "label": "as % of Sales",
+      "row": 59,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.3784,
+          "fcst": null,
+          "aop": 0.3833,
+          "ly": 0.3562
+        },
+        "Feb": {
+          "actuals": 0.4635,
+          "fcst": 0.4036,
+          "aop": 0.3956,
+          "ly": 0.3407
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.3953,
+          "aop": 0.4143,
+          "ly": 0.4306
+        },
+        "Q1": {
+          "actuals": 0.4187,
+          "fcst": 0.3926,
+          "aop": 0.3984,
+          "ly": 0.3743
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.3962,
+          "aop": 0.4129,
+          "ly": 0.3378
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.4079,
+          "aop": 0.4124,
+          "ly": 0.3015
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.3924,
+          "aop": 0.3986,
+          "ly": 0.4431
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.4,
+          "aop": 0.409,
+          "ly": 0.3558
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.4044,
+          "aop": 0.4018,
+          "ly": 0.3611
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.351,
+          "aop": 0.3246,
+          "ly": 0.3918
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.4559,
+          "aop": 0.4399,
+          "ly": 0.3763
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.4055,
+          "aop": 0.3898,
+          "ly": 0.3769
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.4004,
+          "aop": 0.3906,
+          "ly": 0.4159
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.3552,
+          "aop": 0.3426,
+          "ly": 0.3902
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.403,
+          "aop": 0.3739,
+          "ly": 0.3727
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.3858,
+          "aop": 0.368,
+          "ly": 0.3954
+        },
+        "FY": {
+          "actuals": 0.4187,
+          "fcst": 0.3957,
+          "aop": 0.3911,
+          "ly": 0.3763
+        }
+      }
+    },
+    {
+      "id": "channels",
+      "label": "Channels",
+      "row": 61,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 504.1296,
+          "fcst": null,
+          "aop": 569.1478,
+          "ly": 600.0758
+        },
+        "Feb": {
+          "actuals": 582.2801,
+          "fcst": 586.1108,
+          "aop": 586.1108,
+          "ly": 604.5443
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 524.2248,
+          "aop": 524.2248,
+          "ly": 563.9644
+        },
+        "Q1": {
+          "actuals": 1086.4097,
+          "fcst": 1614.4653,
+          "aop": 1679.4835,
+          "ly": 1768.5844
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 542.6318,
+          "aop": 542.6318,
+          "ly": 485.8142
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 759.3978,
+          "aop": 759.3978,
+          "ly": 775.4885
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 402.0288,
+          "aop": 402.0288,
+          "ly": 398.2315
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 1704.0585,
+          "aop": 1704.0585,
+          "ly": 1659.5343
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 586.5448,
+          "aop": 586.5448,
+          "ly": 598.6815
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 604.6618,
+          "aop": 604.6618,
+          "ly": 617.7399
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 618.4248,
+          "aop": 618.4248,
+          "ly": 589.1105
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 1809.6315,
+          "aop": 1809.6315,
+          "ly": 1805.5319
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 613.6368,
+          "aop": 613.6368,
+          "ly": 546.1994
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 733.2458,
+          "aop": 733.2458,
+          "ly": 801.2636
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 502.4208,
+          "aop": 502.4208,
+          "ly": 515.5062
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 1849.3035,
+          "aop": 1849.3035,
+          "ly": 1862.9692
+        },
+        "FY": {
+          "actuals": 1086.4097,
+          "fcst": 6977.4587,
+          "aop": 7042.477,
+          "ly": 7096.6199
+        }
+      }
+    },
+    {
+      "id": "creative_pr",
+      "label": "Creative + PR",
+      "row": 62,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 99.5701,
+          "fcst": null,
+          "aop": 73.448,
+          "ly": 44.2737
+        },
+        "Feb": {
+          "actuals": 85.6321,
+          "fcst": 46.686,
+          "aop": 46.686,
+          "ly": 48.0046
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 46.758,
+          "aop": 46.758,
+          "ly": 56.6956
+        },
+        "Q1": {
+          "actuals": 185.2021,
+          "fcst": 193.0141,
+          "aop": 166.892,
+          "ly": 148.974
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 33.933,
+          "aop": 33.933,
+          "ly": 54.5329
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 48.936,
+          "aop": 48.936,
+          "ly": 36.9798
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 68.436,
+          "aop": 68.436,
+          "ly": 51.7424
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 151.305,
+          "aop": 151.305,
+          "ly": 143.2551
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 31.258,
+          "aop": 31.258,
+          "ly": 55.1487
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 36.258,
+          "aop": 36.258,
+          "ly": 57.0728
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 89.458,
+          "aop": 89.458,
+          "ly": 71.2039
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 156.974,
+          "aop": 156.974,
+          "ly": 183.4254
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 31.258,
+          "aop": 31.258,
+          "ly": 79.9621
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 36.258,
+          "aop": 36.258,
+          "ly": 89.4774
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 38.758,
+          "aop": 38.758,
+          "ly": 69.2739
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 106.274,
+          "aop": 106.274,
+          "ly": 238.7134
+        },
+        "FY": {
+          "actuals": 185.2021,
+          "fcst": 607.5671,
+          "aop": 581.445,
+          "ly": 714.3679
+        }
+      }
+    },
+    {
+      "id": "marketing_total",
+      "label": "Marketing",
+      "row": 63,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 603.6997,
+          "fcst": null,
+          "aop": 642.5958,
+          "ly": 644.3495
+        },
+        "Feb": {
+          "actuals": 667.9121,
+          "fcst": 632.7968,
+          "aop": 632.7968,
+          "ly": 652.5489
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 570.9828,
+          "aop": 570.9828,
+          "ly": 620.66
+        },
+        "Q1": {
+          "actuals": 1271.6118,
+          "fcst": 1807.4793,
+          "aop": 1846.3755,
+          "ly": 1917.5584
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 576.5648,
+          "aop": 576.5648,
+          "ly": 540.3471
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 808.3338,
+          "aop": 808.3338,
+          "ly": 812.4683
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 470.4648,
+          "aop": 470.4648,
+          "ly": 449.974
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 1855.3635,
+          "aop": 1855.3635,
+          "ly": 1802.7894
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 617.8028,
+          "aop": 617.8028,
+          "ly": 653.8303
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 640.9198,
+          "aop": 640.9198,
+          "ly": 674.8126
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 707.8828,
+          "aop": 707.8828,
+          "ly": 660.3144
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 1966.6055,
+          "aop": 1966.6055,
+          "ly": 1988.9574
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 644.8948,
+          "aop": 644.8948,
+          "ly": 626.1615
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 769.5038,
+          "aop": 769.5038,
+          "ly": 890.741
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 541.1788,
+          "aop": 541.1788,
+          "ly": 584.7801
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 1955.5775,
+          "aop": 1955.5775,
+          "ly": 2101.6826
+        },
+        "FY": {
+          "actuals": 1271.6118,
+          "fcst": 7585.0258,
+          "aop": 7623.922,
+          "ly": 7810.9877
+        }
+      }
+    },
+    {
+      "id": "channels_pct_gross",
+      "label": "Channels % Gross Sales",
+      "row": 64,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.1085,
+          "fcst": null,
+          "aop": 0.1133,
+          "ly": 0.1206
+        },
+        "Feb": {
+          "actuals": 0.1048,
+          "fcst": 0.117,
+          "aop": 0.115,
+          "ly": 0.1197
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.0953,
+          "aop": 0.096,
+          "ly": 0.1042
+        },
+        "Q1": {
+          "actuals": 0.1065,
+          "fcst": 0.1066,
+          "aop": 0.1078,
+          "ly": 0.1146
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.1211,
+          "aop": 0.1088,
+          "ly": 0.0984
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.1304,
+          "aop": 0.1214,
+          "ly": 0.1251
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.1075,
+          "aop": 0.104,
+          "ly": 0.104
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.1213,
+          "aop": 0.1128,
+          "ly": 0.1109
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.1202,
+          "aop": 0.1322,
+          "ly": 0.1362
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.1152,
+          "aop": 0.1041,
+          "ly": 0.1074
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.1235,
+          "aop": 0.113,
+          "ly": 0.1087
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.1195,
+          "aop": 0.1151,
+          "ly": 0.116
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.0913,
+          "aop": 0.1054,
+          "ly": 0.0947
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.1178,
+          "aop": 0.1088,
+          "ly": 0.12
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.1101,
+          "aop": 0.1182,
+          "ly": 0.1225
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.1056,
+          "aop": 0.11,
+          "ly": 0.1119
+        },
+        "FY": {
+          "actuals": 0.1065,
+          "fcst": 0.1128,
+          "aop": 0.1114,
+          "ly": 0.1133
+        }
+      }
+    },
+    {
+      "id": "mktg_pct_net",
+      "label": "Mktg % Net Sales",
+      "row": 65,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.1335,
+          "fcst": null,
+          "aop": 0.1469,
+          "ly": 0.1304
+        },
+        "Feb": {
+          "actuals": 0.1638,
+          "fcst": 0.1392,
+          "aop": 0.1389,
+          "ly": 0.1464
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.1129,
+          "aop": 0.1151,
+          "ly": 0.1459
+        },
+        "Q1": {
+          "actuals": 0.1479,
+          "fcst": 0.128,
+          "aop": 0.1329,
+          "ly": 0.1405
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.1364,
+          "aop": 0.1243,
+          "ly": 0.129
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.1488,
+          "aop": 0.1409,
+          "ly": 0.177
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.1357,
+          "aop": 0.1311,
+          "ly": 0.1212
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.1413,
+          "aop": 0.1329,
+          "ly": 0.1443
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.14,
+          "aop": 0.1507,
+          "ly": 0.1721
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.1433,
+          "aop": 0.1323,
+          "ly": 0.1618
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.1433,
+          "aop": 0.1327,
+          "ly": 0.1342
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.1423,
+          "aop": 0.1377,
+          "ly": 0.1543
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.1062,
+          "aop": 0.1244,
+          "ly": 0.1193
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.1491,
+          "aop": 0.1397,
+          "ly": 0.1497
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.1329,
+          "aop": 0.1426,
+          "ly": 0.1724
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.1278,
+          "aop": 0.135,
+          "ly": 0.1441
+        },
+        "FY": {
+          "actuals": 0.1479,
+          "fcst": 0.1345,
+          "aop": 0.1347,
+          "ly": 0.1457
+        }
+      }
+    },
+    {
+      "id": "employee_costs",
+      "label": "Employee Costs",
+      "row": 67,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 800.1401,
+          "fcst": null,
+          "aop": 735.2472,
+          "ly": 756.5913
+        },
+        "Feb": {
+          "actuals": 729.2941,
+          "fcst": 731.9633,
+          "aop": 731.9633,
+          "ly": 777.933
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 889.0859,
+          "aop": 889.0859,
+          "ly": 808.4279
+        },
+        "Q1": {
+          "actuals": 1529.4342,
+          "fcst": 2421.1893,
+          "aop": 2356.2964,
+          "ly": 2342.9522
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 733.0806,
+          "aop": 733.0806,
+          "ly": 801.8705
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 726.311,
+          "aop": 726.311,
+          "ly": 753.8332
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 731.7917,
+          "aop": 731.7917,
+          "ly": 748.6904
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 2191.1833,
+          "aop": 2191.1833,
+          "ly": 2304.3941
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 741.6502,
+          "aop": 741.6502,
+          "ly": 729.6743
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 726.8006,
+          "aop": 726.8006,
+          "ly": 722.5536
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 732.2966,
+          "aop": 732.2966,
+          "ly": 703.3124
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 2200.7473,
+          "aop": 2200.7473,
+          "ly": 2155.5403
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 746.2474,
+          "aop": 746.2474,
+          "ly": 710.5344
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 726.306,
+          "aop": 726.306,
+          "ly": 683.5665
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 813.6452,
+          "aop": 813.6452,
+          "ly": 728.9675
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 2286.1985,
+          "aop": 2286.1985,
+          "ly": 2123.0685
+        },
+        "FY": {
+          "actuals": 1529.4342,
+          "fcst": 9099.3183,
+          "aop": 9034.4254,
+          "ly": 8925.9551
+        }
+      }
+    },
+    {
+      "id": "distribution_costs",
+      "label": "Distribution Costs",
+      "row": 68,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 12.96,
+          "fcst": null,
+          "aop": 17.9167,
+          "ly": 12.35
+        },
+        "Feb": {
+          "actuals": 12.96,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 11.685
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "Q1": {
+          "actuals": 25.92,
+          "fcst": 48.7933,
+          "aop": 53.75,
+          "ly": 36.995
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.9987
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 15.916
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 53.75,
+          "aop": 53.75,
+          "ly": 41.8748
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 13.44
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 53.75,
+          "aop": 53.75,
+          "ly": 39.36
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 14.26
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 17.9167,
+          "aop": 17.9167,
+          "ly": 12.96
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 53.75,
+          "aop": 53.75,
+          "ly": 40.18
+        },
+        "FY": {
+          "actuals": 25.92,
+          "fcst": 210.0433,
+          "aop": 215.0,
+          "ly": 158.4098
+        }
+      }
+    },
+    {
+      "id": "credit_card_fees",
+      "label": "Credit Card Fees",
+      "row": 69,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 139.1953,
+          "fcst": null,
+          "aop": 148.2279,
+          "ly": 137.0236
+        },
+        "Feb": {
+          "actuals": 160.8504,
+          "fcst": 150.6439,
+          "aop": 150.6439,
+          "ly": 142.4719
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 162.3158,
+          "aop": 162.3158,
+          "ly": 148.9767
+        },
+        "Q1": {
+          "actuals": 300.0457,
+          "fcst": 452.155,
+          "aop": 461.1875,
+          "ly": 428.4723
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 147.0487,
+          "aop": 147.0487,
+          "ly": 133.5847
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 187.7182,
+          "aop": 187.7182,
+          "ly": 181.9305
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 111.2352,
+          "aop": 111.2352,
+          "ly": 99.1712
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 446.0022,
+          "aop": 446.0022,
+          "ly": 414.6863
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 129.522,
+          "aop": 129.522,
+          "ly": 125.548
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 173.4059,
+          "aop": 173.4059,
+          "ly": 171.4315
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 162.6373,
+          "aop": 162.6373,
+          "ly": 155.2781
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 465.5652,
+          "aop": 465.5652,
+          "ly": 452.2575
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 173.8497,
+          "aop": 173.8497,
+          "ly": 165.3206
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 203.1312,
+          "aop": 203.1312,
+          "ly": 192.9192
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 123.4822,
+          "aop": 123.4822,
+          "ly": 136.4495
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 500.4632,
+          "aop": 500.4632,
+          "ly": 494.6893
+        },
+        "FY": {
+          "actuals": 300.0457,
+          "fcst": 1864.1855,
+          "aop": 1873.2181,
+          "ly": 1790.1054
+        }
+      }
+    },
+    {
+      "id": "it_costs",
+      "label": "IT Costs",
+      "row": 70,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 141.5143,
+          "fcst": null,
+          "aop": 76.961,
+          "ly": 72.9824
+        },
+        "Feb": {
+          "actuals": 204.7254,
+          "fcst": 86.312,
+          "aop": 86.312,
+          "ly": 133.3899
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 88.107,
+          "aop": 88.107,
+          "ly": 125.1538
+        },
+        "Q1": {
+          "actuals": 346.2396,
+          "fcst": 315.9333,
+          "aop": 251.38,
+          "ly": 331.5261
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 85.398,
+          "aop": 85.398,
+          "ly": 127.1916
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 95.8,
+          "aop": 95.8,
+          "ly": 137.1482
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 88.747,
+          "aop": 88.747,
+          "ly": 134.3509
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 269.945,
+          "aop": 269.945,
+          "ly": 398.6907
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 89.037,
+          "aop": 89.037,
+          "ly": 134.1151
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 86.157,
+          "aop": 86.157,
+          "ly": 121.271
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 91.024,
+          "aop": 91.024,
+          "ly": 138.4072
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 266.218,
+          "aop": 266.218,
+          "ly": 393.7933
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 83.687,
+          "aop": 83.687,
+          "ly": 146.2551
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 83.5,
+          "aop": 83.5,
+          "ly": 153.9468
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 83.5,
+          "aop": 83.5,
+          "ly": 186.1233
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 250.687,
+          "aop": 250.687,
+          "ly": 486.3252
+        },
+        "FY": {
+          "actuals": 346.2396,
+          "fcst": 1102.7833,
+          "aop": 1038.23,
+          "ly": 1610.3353
+        }
+      }
+    },
+    {
+      "id": "rent_occupancy",
+      "label": "Rent & Occupancy",
+      "row": 71,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 34.8891,
+          "fcst": null,
+          "aop": 34.5996,
+          "ly": 24.7626
+        },
+        "Feb": {
+          "actuals": 41.1276,
+          "fcst": 34.5117,
+          "aop": 34.5117,
+          "ly": 20.4382
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 34.2017,
+          "aop": 34.2017,
+          "ly": 20.3964
+        },
+        "Q1": {
+          "actuals": 76.0166,
+          "fcst": 103.6025,
+          "aop": 103.313,
+          "ly": 65.5972
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 39.3101,
+          "aop": 39.3101,
+          "ly": 21.114
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 34.483,
+          "aop": 34.483,
+          "ly": 27.3149
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 35.282,
+          "aop": 35.282,
+          "ly": 21.7713
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 109.0751,
+          "aop": 109.0751,
+          "ly": 70.2002
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 35.4502,
+          "aop": 35.4502,
+          "ly": 35.1263
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 39.782,
+          "aop": 39.782,
+          "ly": 35.059
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 35.5307,
+          "aop": 35.5307,
+          "ly": 34.736
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 110.7628,
+          "aop": 110.7628,
+          "ly": 104.9212
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 35.1963,
+          "aop": 35.1963,
+          "ly": 34.3909
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 35.1963,
+          "aop": 35.1963,
+          "ly": 36.0986
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 35.1963,
+          "aop": 35.1963,
+          "ly": 36.3043
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 105.5888,
+          "aop": 105.5888,
+          "ly": 106.7938
+        },
+        "FY": {
+          "actuals": 76.0166,
+          "fcst": 429.0293,
+          "aop": 428.7398,
+          "ly": 347.5125
+        }
+      }
+    },
+    {
+      "id": "travel_entertainment",
+      "label": "Travel & Entertainment",
+      "row": 72,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 10.1497,
+          "fcst": null,
+          "aop": 0.95,
+          "ly": 66.458
+        },
+        "Feb": {
+          "actuals": 4.257,
+          "fcst": 7.85,
+          "aop": 7.85,
+          "ly": 7.5887
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 11.85,
+          "aop": 11.85,
+          "ly": 20.2886
+        },
+        "Q1": {
+          "actuals": 14.4067,
+          "fcst": 29.8497,
+          "aop": 20.65,
+          "ly": 94.3352
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 37.037,
+          "aop": 37.037,
+          "ly": 9.0463
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 12.25,
+          "aop": 12.25,
+          "ly": 18.6061
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 9.3,
+          "aop": 9.3,
+          "ly": 9.5755
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 58.587,
+          "aop": 58.587,
+          "ly": 37.2279
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 3.006,
+          "aop": 3.006,
+          "ly": 10.3013
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 2.95,
+          "aop": 2.95,
+          "ly": 11.0539
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 13.291,
+          "aop": 13.291,
+          "ly": 14.8222
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 19.247,
+          "aop": 19.247,
+          "ly": 36.1774
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 29.473,
+          "aop": 29.473,
+          "ly": 32.0924
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 5.7,
+          "aop": 5.7,
+          "ly": 11.5554
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 4.55,
+          "aop": 4.55,
+          "ly": 3.1978
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 39.723,
+          "aop": 39.723,
+          "ly": 46.8456
+        },
+        "FY": {
+          "actuals": 14.4067,
+          "fcst": 147.4067,
+          "aop": 138.207,
+          "ly": 214.5861
+        }
+      }
+    },
+    {
+      "id": "professional_fees",
+      "label": "Professional Fees",
+      "row": 73,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 62.2334,
+          "fcst": null,
+          "aop": 70.036,
+          "ly": 43.5019
+        },
+        "Feb": {
+          "actuals": 59.1526,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 63.8125
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 73.536,
+          "aop": 73.536,
+          "ly": 73.9767
+        },
+        "Q1": {
+          "actuals": 121.3859,
+          "fcst": 205.8054,
+          "aop": 213.608,
+          "ly": 181.2912
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 129.9577
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 77.9709
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 91.2119
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 210.108,
+          "aop": 210.108,
+          "ly": 299.1405
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 80.5326
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": 161.2617
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 95.036,
+          "aop": 95.036,
+          "ly": 84.8731
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 235.108,
+          "aop": 235.108,
+          "ly": 326.6673
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 70.036,
+          "aop": 70.036,
+          "ly": -31.4508
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 73.536,
+          "aop": 73.536,
+          "ly": 61.3826
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 73.536,
+          "aop": 73.536,
+          "ly": 78.9103
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 217.108,
+          "aop": 217.108,
+          "ly": 108.8421
+        },
+        "FY": {
+          "actuals": 121.3859,
+          "fcst": 868.1293,
+          "aop": 875.932,
+          "ly": 915.941
+        }
+      }
+    },
+    {
+      "id": "other_expenses",
+      "label": "Other Expenses",
+      "row": 74,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 38.2481,
+          "fcst": null,
+          "aop": 30.1331,
+          "ly": 66.6735
+        },
+        "Feb": {
+          "actuals": 27.6586,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 21.8739
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 42.1481,
+          "aop": 42.1481,
+          "ly": 24.1273
+        },
+        "Q1": {
+          "actuals": 65.9066,
+          "fcst": 102.5293,
+          "aop": 94.4143,
+          "ly": 112.6746
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 32.1481,
+          "aop": 32.1481,
+          "ly": 42.2382
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 33.9575
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 21.0693
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 76.4143,
+          "aop": 76.4143,
+          "ly": 97.265
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 34.5534
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 47.1331,
+          "aop": 47.1331,
+          "ly": 10.9012
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 52.4915
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 91.3993,
+          "aop": 91.3993,
+          "ly": 97.946
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 42.9359,
+          "aop": 42.9359,
+          "ly": 27.8817
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 27.7737
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 22.1331,
+          "aop": 22.1331,
+          "ly": 31.4655
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 87.2021,
+          "aop": 87.2021,
+          "ly": 87.1209
+        },
+        "FY": {
+          "actuals": 65.9066,
+          "fcst": 357.5451,
+          "aop": 349.4301,
+          "ly": 395.0065
+        }
+      }
+    },
+    {
+      "id": "other_ga",
+      "label": "Other G&A",
+      "row": 75,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 1239.33,
+          "fcst": null,
+          "aop": 1114.0715,
+          "ly": 1180.3432
+        },
+        "Feb": {
+          "actuals": 1240.0255,
+          "fcst": 1121.3667,
+          "aop": 1121.3667,
+          "ly": 1179.1932
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 1319.1611,
+          "aop": 1319.1611,
+          "ly": 1234.3075
+        },
+        "Q1": {
+          "actuals": 2479.3555,
+          "fcst": 3679.8577,
+          "aop": 3554.5993,
+          "ly": 3593.8439
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1161.9752,
+          "aop": 1161.9752,
+          "ly": 1277.9629
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 1166.648,
+          "aop": 1166.648,
+          "ly": 1243.76
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1086.4417,
+          "aop": 1086.4417,
+          "ly": 1141.7565
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 3415.0649,
+          "aop": 3415.0649,
+          "ly": 3663.4795
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 1108.7511,
+          "aop": 1108.7511,
+          "ly": 1162.8108
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 1164.1812,
+          "aop": 1164.1812,
+          "ly": 1246.9719
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 1169.8653,
+          "aop": 1169.8653,
+          "ly": 1196.8804
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 3442.7977,
+          "aop": 3442.7977,
+          "ly": 3606.6631
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 1199.3419,
+          "aop": 1199.3419,
+          "ly": 1097.9842
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 1167.4192,
+          "aop": 1167.4192,
+          "ly": 1181.5029
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1173.9594,
+          "aop": 1173.9594,
+          "ly": 1214.3782
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 3540.7206,
+          "aop": 3540.7206,
+          "ly": 3493.8653
+        },
+        "FY": {
+          "actuals": 2479.3555,
+          "fcst": 14078.4409,
+          "aop": 13953.1824,
+          "ly": 14357.8518
+        }
+      }
+    },
+    {
+      "id": "ga_pct",
+      "label": "as % of Sales",
+      "row": 76,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.274,
+          "fcst": null,
+          "aop": 0.2547,
+          "ly": 0.2389
+        },
+        "Feb": {
+          "actuals": 0.3041,
+          "fcst": 0.2467,
+          "aop": 0.2461,
+          "ly": 0.2646
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.2608,
+          "aop": 0.266,
+          "ly": 0.2902
+        },
+        "Q1": {
+          "actuals": 0.2883,
+          "fcst": 0.2605,
+          "aop": 0.2559,
+          "ly": 0.2633
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.2749,
+          "aop": 0.2504,
+          "ly": 0.3051
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.2147,
+          "aop": 0.2034,
+          "ly": 0.2709
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.3133,
+          "aop": 0.3027,
+          "ly": 0.3075
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.2601,
+          "aop": 0.2446,
+          "ly": 0.2933
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.2513,
+          "aop": 0.2704,
+          "ly": 0.3061
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.2603,
+          "aop": 0.2404,
+          "ly": 0.2991
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.2368,
+          "aop": 0.2194,
+          "ly": 0.2432
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.249,
+          "aop": 0.2411,
+          "ly": 0.2798
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.1976,
+          "aop": 0.2313,
+          "ly": 0.2093
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.2263,
+          "aop": 0.212,
+          "ly": 0.1986
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.2883,
+          "aop": 0.3094,
+          "ly": 0.3636
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.2314,
+          "aop": 0.2444,
+          "ly": 0.2395
+        },
+        "FY": {
+          "actuals": 0.2883,
+          "fcst": 0.2497,
+          "aop": 0.2464,
+          "ly": 0.2678
+        }
+      }
+    },
+    {
+      "id": "total_sga",
+      "label": "Total SG&A",
+      "row": 78,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": 1843.0296,
+          "fcst": null,
+          "aop": 1756.6673,
+          "ly": 1824.6927
+        },
+        "Feb": {
+          "actuals": 1907.9377,
+          "fcst": 1754.1635,
+          "aop": 1754.1635,
+          "ly": 1831.7421
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 1890.144,
+          "aop": 1890.144,
+          "ly": 1854.9676
+        },
+        "Q1": {
+          "actuals": 3750.9673,
+          "fcst": 5487.3371,
+          "aop": 5400.9748,
+          "ly": 5511.4023
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 1738.54,
+          "aop": 1738.54,
+          "ly": 1818.31
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 1974.9818,
+          "aop": 1974.9818,
+          "ly": 2056.2283
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 1556.9066,
+          "aop": 1556.9066,
+          "ly": 1591.7305
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": 5270.4284,
+          "aop": 5270.4284,
+          "ly": 5466.2688
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 1726.5539,
+          "aop": 1726.5539,
+          "ly": 1816.6411
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 1805.1011,
+          "aop": 1805.1011,
+          "ly": 1921.7845
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 1877.7482,
+          "aop": 1877.7482,
+          "ly": 1857.1948
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 5409.4031,
+          "aop": 5409.4031,
+          "ly": 5595.6205
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 1844.2368,
+          "aop": 1844.2368,
+          "ly": 1724.1457
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 1936.9231,
+          "aop": 1936.9231,
+          "ly": 2072.2438
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 1715.1383,
+          "aop": 1715.1383,
+          "ly": 1799.1583
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 5496.2981,
+          "aop": 5496.2981,
+          "ly": 5595.5479
+        },
+        "FY": {
+          "actuals": 3750.9673,
+          "fcst": 21663.4667,
+          "aop": 21577.1044,
+          "ly": 22168.8395
+        }
+      }
+    },
+    {
+      "id": "sga_pct",
+      "label": "as % of Net Sales",
+      "row": 79,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": 0.4075,
+          "fcst": null,
+          "aop": 0.4016,
+          "ly": 0.3694
+        },
+        "Feb": {
+          "actuals": 0.4679,
+          "fcst": 0.386,
+          "aop": 0.3849,
+          "ly": 0.411
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.3737,
+          "aop": 0.3811,
+          "ly": 0.4361
+        },
+        "Q1": {
+          "actuals": 0.4362,
+          "fcst": 0.3885,
+          "aop": 0.3888,
+          "ly": 0.4037
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": 0.4113,
+          "aop": 0.3747,
+          "ly": 0.4341
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.3635,
+          "aop": 0.3444,
+          "ly": 0.4479
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": 0.4489,
+          "aop": 0.4338,
+          "ly": 0.4286
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": 0.4015,
+          "aop": 0.3774,
+          "ly": 0.4376
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.3913,
+          "aop": 0.4211,
+          "ly": 0.4782
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": 0.4036,
+          "aop": 0.3727,
+          "ly": 0.4609
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.3801,
+          "aop": 0.3521,
+          "ly": 0.3774
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.3913,
+          "aop": 0.3789,
+          "ly": 0.4341
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.3038,
+          "aop": 0.3557,
+          "ly": 0.3286
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": 0.3754,
+          "aop": 0.3517,
+          "ly": 0.3483
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": 0.4212,
+          "aop": 0.452,
+          "ly": 0.536
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.3592,
+          "aop": 0.3794,
+          "ly": 0.3836
+        },
+        "FY": {
+          "actuals": 0.4362,
+          "fcst": 0.3842,
+          "aop": 0.3811,
+          "ly": 0.4134
+        }
+      }
+    },
+    {
+      "id": "ebitda",
+      "label": "EBITDA",
+      "row": 81,
+      "format": "$",
+      "isBold": true,
+      "data": {
+        "Jan": {
+          "actuals": -131.8841,
+          "fcst": null,
+          "aop": -80.1216,
+          "ly": -64.8983
+        },
+        "Feb": {
+          "actuals": -17.9405,
+          "fcst": 79.8897,
+          "aop": 48.8197,
+          "ly": -313.2498
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 109.276,
+          "aop": 164.7199,
+          "ly": -23.1682
+        },
+        "Q1": {
+          "actuals": -149.8245,
+          "fcst": 57.2816,
+          "aop": 133.4179,
+          "ly": -401.3162
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -63.7143,
+          "aop": 177.0746,
+          "ly": -403.2792
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 240.8426,
+          "aop": 389.9791,
+          "ly": -672.0731
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -196.0732,
+          "aop": -126.3897,
+          "ly": 53.7582
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -18.9449,
+          "aop": 440.664,
+          "ly": -1021.594
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 57.7998,
+          "aop": -78.832,
+          "ly": -444.7962
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -235.2387,
+          "aop": -233.1612,
+          "ly": -288.0011
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 374.3478,
+          "aop": 468.2486,
+          "ly": -5.3921
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 196.9089,
+          "aop": 156.2554,
+          "ly": -738.1894
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 586.2233,
+          "aop": 180.929,
+          "ly": 457.81
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -103.9589,
+          "aop": -50.0001,
+          "ly": 249.5379
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -74.2932,
+          "aop": -296.2934,
+          "ly": -535.4104
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 407.9713,
+          "aop": -165.3645,
+          "ly": 171.9375
+        },
+        "FY": {
+          "actuals": -149.8245,
+          "fcst": 643.217,
+          "aop": 564.9728,
+          "ly": -1989.1622
+        }
+      }
+    },
+    {
+      "id": "adjusted_ebitda",
+      "label": "Adjusted EBITDA",
+      "row": 82,
+      "format": "$",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": null,
+          "fcst": null,
+          "aop": -80.1216,
+          "ly": null
+        },
+        "Feb": {
+          "actuals": null,
+          "fcst": 79.8897,
+          "aop": 48.8197,
+          "ly": null
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 109.276,
+          "aop": 164.7199,
+          "ly": null
+        },
+        "Q1": {
+          "actuals": -149.8245,
+          "fcst": 57.2816,
+          "aop": 133.4179,
+          "ly": -401.3162
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -63.7143,
+          "aop": 177.0746,
+          "ly": null
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 240.8426,
+          "aop": 389.9791,
+          "ly": null
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -196.0732,
+          "aop": -126.3897,
+          "ly": null
+        },
+        "Q2": {
+          "actuals": 0,
+          "fcst": -18.9449,
+          "aop": 440.664,
+          "ly": -1021.594
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 57.7998,
+          "aop": -78.832,
+          "ly": null
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -235.2387,
+          "aop": -233.1612,
+          "ly": null
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 374.3478,
+          "aop": 468.2486,
+          "ly": null
+        },
+        "Q3": {
+          "actuals": 0,
+          "fcst": 196.9089,
+          "aop": 156.2554,
+          "ly": -738.1894
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 586.2233,
+          "aop": 180.929,
+          "ly": null
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -103.9589,
+          "aop": -50.0001,
+          "ly": null
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -74.2932,
+          "aop": -296.2934,
+          "ly": null
+        },
+        "Q4": {
+          "actuals": 0,
+          "fcst": 407.9713,
+          "aop": -165.3645,
+          "ly": 171.9375
+        },
+        "FY": {
+          "actuals": -149.8245,
+          "fcst": 643.217,
+          "aop": 564.9728,
+          "ly": -1989.1622
+        }
+      }
+    },
+    {
+      "id": "ebitda_pct",
+      "label": "as % of Sales",
+      "row": 83,
+      "format": "%",
+      "isBold": false,
+      "data": {
+        "Jan": {
+          "actuals": -0.0292,
+          "fcst": null,
+          "aop": -0.0183,
+          "ly": -0.0131
+        },
+        "Feb": {
+          "actuals": -0.0044,
+          "fcst": 0.0176,
+          "aop": 0.0107,
+          "ly": -0.0703
+        },
+        "Mar": {
+          "actuals": null,
+          "fcst": 0.0216,
+          "aop": 0.0332,
+          "ly": -0.0054
+        },
+        "Q1": {
+          "actuals": -0.0174,
+          "fcst": 0.0041,
+          "aop": 0.0096,
+          "ly": -0.0294
+        },
+        "Apr": {
+          "actuals": null,
+          "fcst": -0.0151,
+          "aop": 0.0382,
+          "ly": -0.0963
+        },
+        "May": {
+          "actuals": null,
+          "fcst": 0.0443,
+          "aop": 0.068,
+          "ly": -0.1464
+        },
+        "Jun": {
+          "actuals": null,
+          "fcst": -0.0565,
+          "aop": -0.0352,
+          "ly": 0.0145
+        },
+        "Q2": {
+          "actuals": null,
+          "fcst": -0.0014,
+          "aop": 0.0316,
+          "ly": -0.0818
+        },
+        "Jul": {
+          "actuals": null,
+          "fcst": 0.0131,
+          "aop": -0.0192,
+          "ly": -0.1171
+        },
+        "Aug": {
+          "actuals": null,
+          "fcst": -0.0526,
+          "aop": -0.0481,
+          "ly": -0.0691
+        },
+        "Sep": {
+          "actuals": null,
+          "fcst": 0.0758,
+          "aop": 0.0878,
+          "ly": -0.0011
+        },
+        "Q3": {
+          "actuals": null,
+          "fcst": 0.0142,
+          "aop": 0.0109,
+          "ly": -0.0573
+        },
+        "Oct": {
+          "actuals": null,
+          "fcst": 0.0966,
+          "aop": 0.0349,
+          "ly": 0.0873
+        },
+        "Nov": {
+          "actuals": null,
+          "fcst": -0.0201,
+          "aop": -0.0091,
+          "ly": 0.0419
+        },
+        "Dec": {
+          "actuals": null,
+          "fcst": -0.0182,
+          "aop": -0.0781,
+          "ly": -0.1634
+        },
+        "Q4": {
+          "actuals": null,
+          "fcst": 0.0267,
+          "aop": -0.0114,
+          "ly": 0.0118
+        },
+        "FY": {
+          "actuals": -0.0174,
+          "fcst": 0.0114,
+          "aop": 0.01,
+          "ly": -0.0371
+        }
+      }
+    }
+  ],
+  "bridges": {
+    "sales": {
+      "title": "Net Shipped Sales Bridge",
+      "subtitle": "LY to Forecast (FY)",
+      "items": [
+        {
+          "name": "LY Net Shipped Sales",
+          "value": 53621.1192,
+          "isTotal": true
+        },
+        {
+          "name": "Shipped Sales",
+          "value": 2779.8581,
+          "isTotal": false
+        },
+        {
+          "name": "Shipping Revenue",
+          "value": -1432.0969,
+          "isTotal": false
+        },
+        {
+          "name": "Other",
+          "value": 1410.5858,
+          "isTotal": false
+        },
+        {
+          "name": "Fcst Net Shipped Sales",
+          "value": 56379.4662,
+          "isTotal": true
+        }
+      ]
+    },
+    "grossProfit": {
+      "title": "Gross Profit Bridge",
+      "subtitle": "LY to Forecast (FY)",
+      "items": [
+        {
+          "name": "LY Gross Profit",
+          "value": 20179.6773,
+          "isTotal": true
+        },
+        {
+          "name": "Revenue",
+          "value": 2758.347,
+          "isTotal": false
+        },
+        {
+          "name": "COGS",
+          "value": -631.4221,
+          "isTotal": false
+        },
+        {
+          "name": "Other",
+          "value": 0.0814,
+          "isTotal": false
+        },
+        {
+          "name": "Fcst Gross Profit",
+          "value": 22306.6836,
+          "isTotal": true
+        }
+      ]
+    },
+    "ebitda": {
+      "title": "EBITDA Bridge",
+      "subtitle": "LY to Forecast (FY)",
+      "items": [
+        {
+          "name": "LY EBITDA",
+          "value": -1989.1622,
+          "isTotal": true
+        },
+        {
+          "name": "Gross Profit",
+          "value": 2127.0063,
+          "isTotal": false
+        },
+        {
+          "name": "Marketing",
+          "value": 225.9619,
+          "isTotal": false
+        },
+        {
+          "name": "G&A",
+          "value": 279.411,
+          "isTotal": false
+        },
+        {
+          "name": "Fcst EBITDA",
+          "value": 643.217,
+          "isTotal": true
+        }
+      ]
+    }
+  }
+}

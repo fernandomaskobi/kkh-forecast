@@ -8,7 +8,7 @@ import T12TrendChart from "@/components/T12TrendChart";
 import BudgetFcstWaterfall from "@/components/BudgetFcstWaterfall";
 import AiInsights from "@/components/AiInsights";
 import { MONTHS, CURRENT_MONTH, METRIC_LABELS, formatCurrency, formatPct, type MetricKey } from "@/lib/constants";
-import { exportDashboardToExcel } from "@/lib/exportExcel";
+import { exportDashboardToExcel, exportAllMetricsToExcel } from "@/lib/exportExcel";
 import { exportDashboardToPdf } from "@/lib/exportPdf";
 
 type EntryData = {
@@ -107,15 +107,15 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="card p-5">
-              <div className="shimmer h-3 w-20 rounded mb-3" />
-              <div className="shimmer h-7 w-28 rounded mb-2" />
-              <div className="shimmer h-3 w-16 rounded" />
+              <div className="shimmer h-3 w-20 mb-3" />
+              <div className="shimmer h-7 w-28 mb-2" />
+              <div className="shimmer h-3 w-16" />
             </div>
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="card p-4"><div className="shimmer h-[280px] rounded" /></div>
-          <div className="card p-4"><div className="shimmer h-[280px] rounded" /></div>
+          <div className="card p-4"><div className="shimmer h-[280px]" /></div>
+          <div className="card p-4"><div className="shimmer h-[280px]" /></div>
         </div>
       </div>
     );
@@ -124,18 +124,18 @@ export default function Dashboard() {
   if (entries.length === 0) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+        <h1 className="text-3xl text-kkh-charcoal mb-2">
           KKH Rolling Forecast
         </h1>
-        <p className="text-gray-500 mb-6">
+        <p className="text-kkh-mid mb-6">
           No data yet. Start by seeding departments in Admin, then enter numbers
           on the Input page.
         </p>
         <div className="flex gap-3 justify-center">
-          <a href="/admin" className="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-neutral-800 transition-colors">
+          <a href="/admin" className="btn-brand inline-block">
             Go to Admin
           </a>
-          <a href="/input" className="bg-brand text-white px-4 py-2 rounded text-sm font-medium hover:bg-brand-dark transition-colors">
+          <a href="/input" className="btn-brand btn-brand-sage inline-block">
             Go to Input
           </a>
         </div>
@@ -157,10 +157,17 @@ export default function Dashboard() {
     ? entries
     : entries.filter((e) => e.departmentId === selectedDept);
 
+  // Compute latest actualized month from actual entries
+  const actualEntries2026 = entries.filter((e) => e.type === "actual" && e.year === 2026);
+  const maxActualMonth = actualEntries2026.length > 0
+    ? Math.max(...actualEntries2026.map((e) => e.month))
+    : 0;
+
   // Filter by selected period for KPI cards and summary
+  // YTD uses maxActualMonth (only actualized months), not CURRENT_MONTH
   const filterByPeriod = (data: EntryData[]): EntryData[] => {
     if (selectedPeriod === "fy") return data;
-    if (selectedPeriod === "ytd") return data.filter((e) => e.month <= CURRENT_MONTH);
+    if (selectedPeriod === "ytd") return data.filter((e) => e.month <= maxActualMonth);
     const month = parseInt(selectedPeriod);
     return data.filter((e) => e.month === month);
   };
@@ -174,13 +181,18 @@ export default function Dashboard() {
   const s25 = computeSummary(periodEntries, 2025);
   const s26 = computeSummary(periodEntries, 2026);
 
+  // YTD Actuals: sum only actual entries thru maxActualMonth (for the summary table)
+  const ytdActualEntries = deptEntries.filter((e) => e.type === "actual" && e.year === 2026 && e.month <= maxActualMonth);
+  const s26a = computeSummary(ytdActualEntries, 2026, "actual");
+
   // Period label for display
-  const periodLabel = selectedPeriod === "fy" ? "FY" : selectedPeriod === "ytd" ? "YTD" : MONTHS[parseInt(selectedPeriod) - 1];
+  const ytdLabel = maxActualMonth > 0 ? `YTD thru ${MONTHS[maxActualMonth - 1]}` : "YTD";
+  const periodLabel = selectedPeriod === "fy" ? "FY" : selectedPeriod === "ytd" ? ytdLabel : MONTHS[parseInt(selectedPeriod) - 1];
 
   const isAllDepts = selectedDept === "all";
 
   // Prorate AOP based on selected period (percentages stay the same, dollar amounts scale)
-  const periodMonthCount = selectedPeriod === "fy" ? 12 : selectedPeriod === "ytd" ? CURRENT_MONTH : 1;
+  const periodMonthCount = selectedPeriod === "fy" ? 12 : selectedPeriod === "ytd" ? maxActualMonth : 1;
   const aopSales = AOP_SALES * (periodMonthCount / 12);
   const aopGmPct = AOP_GM_PCT;
   const aopGmDollars = aopSales * aopGmPct;
@@ -197,103 +209,106 @@ export default function Dashboard() {
 
   const periodSuffix = selectedPeriod !== "fy" ? ` (${periodLabel})` : "";
 
+  // Pre-compute vs LY deltas for all KPI cards
+  const gmVsLy = (s26.gmPct - s25.gmPct) * 100;
+  const cpVsLy = (s26.cpPct - s25.cpPct) * 100;
+  const cpDolVsAop = aopCpDollars ? ((s26.totalCpDollars - aopCpDollars) / Math.abs(aopCpDollars)) * 100 : 0;
+  const cpDolVsLy = s25.totalCpDollars ? ((s26.totalCpDollars - s25.totalCpDollars) / Math.abs(s25.totalCpDollars)) * 100 : 0;
+
   const kpiCards = [
     {
       label: selectedDeptName ? `${selectedDeptName} — Sales${periodSuffix}` : `2026 Forecast Sales${periodSuffix}`,
       value: formatCurrency(s26.totalSales),
-      badge: isAllDepts ? `${salesVsAop >= 0 ? "+" : ""}${salesVsAop.toFixed(1)}% vs AOP` : `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}% vs LY`,
-      badgeColor: (isAllDepts ? salesVsAop : salesVsLy) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
-      accent: "from-brand/20 to-brand/5",
-      iconColor: "text-brand",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      badge: `${salesVsAop >= 0 ? "+" : ""}${salesVsAop.toFixed(1)}% vs AOP`,
+      badgePositive: salesVsAop >= 0,
+      badge2: `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}% vs LY`,
+      badge2Positive: salesVsLy >= 0,
+      accentColor: "var(--accent-light)",
     },
     {
       label: selectedDeptName ? `${selectedDeptName} — GM %${periodSuffix}` : `Gross Margin %${periodSuffix}`,
       value: formatPct(s26.gmPct),
-      badge: isAllDepts ? `${gmVsAop >= 0 ? "+" : ""}${gmVsAop.toFixed(1)}pp vs AOP` : `${((s26.gmPct - s25.gmPct) * 100) >= 0 ? "+" : ""}${((s26.gmPct - s25.gmPct) * 100).toFixed(1)}pp vs LY`,
-      badgeColor: (isAllDepts ? gmVsAop : (s26.gmPct - s25.gmPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
-      accent: "from-teal-500/15 to-teal-500/5",
-      iconColor: "text-teal-600",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-        </svg>
-      ),
+      badge: `${gmVsAop >= 0 ? "+" : ""}${gmVsAop.toFixed(1)}pp vs AOP`,
+      badgePositive: gmVsAop >= 0,
+      badge2: `${gmVsLy >= 0 ? "+" : ""}${gmVsLy.toFixed(1)}pp vs LY`,
+      badge2Positive: gmVsLy >= 0,
+      accentColor: "var(--green)",
     },
     {
       label: selectedDeptName ? `${selectedDeptName} — CP %${periodSuffix}` : `Contribution Profit %${periodSuffix}`,
       value: formatPct(s26.cpPct),
-      badge: isAllDepts ? `${cpVsAop >= 0 ? "+" : ""}${cpVsAop.toFixed(1)}pp vs AOP` : `${((s26.cpPct - s25.cpPct) * 100) >= 0 ? "+" : ""}${((s26.cpPct - s25.cpPct) * 100).toFixed(1)}pp vs LY`,
-      badgeColor: (isAllDepts ? cpVsAop : (s26.cpPct - s25.cpPct)) >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
-      accent: "from-indigo-500/15 to-indigo-500/5",
-      iconColor: "text-indigo-600",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
-        </svg>
-      ),
+      badge: `${cpVsAop >= 0 ? "+" : ""}${cpVsAop.toFixed(1)}pp vs AOP`,
+      badgePositive: cpVsAop >= 0,
+      badge2: `${cpVsLy >= 0 ? "+" : ""}${cpVsLy.toFixed(1)}pp vs LY`,
+      badge2Positive: cpVsLy >= 0,
+      accentColor: "var(--mid)",
     },
     {
-      label: selectedDeptName ? `${selectedDeptName} — YoY${periodSuffix}` : `YoY Growth${periodSuffix}`,
-      value: `${salesVsLy >= 0 ? "+" : ""}${salesVsLy.toFixed(1)}%`,
-      badge: `${formatCurrency(s26.totalSales - s25.totalSales)} delta`,
-      badgeColor: salesVsLy >= 0 ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50",
-      accent: salesVsLy >= 0 ? "from-emerald-500/15 to-emerald-500/5" : "from-rose-500/15 to-rose-500/5",
-      iconColor: salesVsLy >= 0 ? "text-emerald-600" : "text-rose-600",
-      icon: salesVsLy >= 0 ? (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-        </svg>
-      ) : (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.181" />
-        </svg>
-      ),
+      label: selectedDeptName ? `${selectedDeptName} — CP $${periodSuffix}` : `Contribution Profit $${periodSuffix}`,
+      value: formatCurrency(s26.totalCpDollars),
+      badge: `${cpDolVsAop >= 0 ? "+" : ""}${cpDolVsAop.toFixed(1)}% (${formatCurrency(s26.totalCpDollars - aopCpDollars)}) vs AOP`,
+      badgePositive: cpDolVsAop >= 0,
+      badge2: `${cpDolVsLy >= 0 ? "+" : ""}${cpDolVsLy.toFixed(1)}% (${formatCurrency(s26.totalCpDollars - s25.totalCpDollars)}) vs LY`,
+      badge2Positive: cpDolVsLy >= 0,
+      accentColor: "var(--charcoal)",
     },
   ];
 
+  const hasActuals = maxActualMonth > 0;
+
   const summaryRows = [
-    { label: "Gross Booked Sales", val25: s25.totalSales, aop: aopSales, val26: s26.totalSales, fmt: formatCurrency },
-    { label: "GM $", val25: s25.totalGmDollars, aop: aopGmDollars, val26: s26.totalGmDollars, fmt: formatCurrency },
-    { label: "GM %", val25: s25.gmPct, aop: aopGmPct, val26: s26.gmPct, fmt: formatPct },
-    { label: "CP $", val25: s25.totalCpDollars, aop: aopCpDollars, val26: s26.totalCpDollars, fmt: formatCurrency },
-    { label: "CP %", val25: s25.cpPct, aop: aopCpPct, val26: s26.cpPct, fmt: formatPct },
+    { label: "Gross Booked Sales", val25: s25.totalSales, aop: aopSales, val26: s26.totalSales, ytdA: s26a.totalSales, fmt: formatCurrency },
+    { label: "GM $", val25: s25.totalGmDollars, aop: aopGmDollars, val26: s26.totalGmDollars, ytdA: s26a.totalGmDollars, fmt: formatCurrency },
+    { label: "GM %", val25: s25.gmPct, aop: aopGmPct, val26: s26.gmPct, ytdA: s26a.gmPct, fmt: formatPct },
+    { label: "CP $", val25: s25.totalCpDollars, aop: aopCpDollars, val26: s26.totalCpDollars, ytdA: s26a.totalCpDollars, fmt: formatCurrency },
+    { label: "CP %", val25: s25.cpPct, aop: aopCpPct, val26: s26.cpPct, ytdA: s26a.cpPct, fmt: formatPct },
   ];
 
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">
+          <p className="text-[0.6875rem] tracking-[0.18em] uppercase mb-2" style={{ color: "var(--accent-light)" }}>
+            Kathy Kuo Home
+          </p>
+          <h1 className="text-3xl text-kkh-charcoal leading-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             FY Forecast Dashboard
           </h1>
-          <p className="text-xs text-gray-400 mt-0.5">2026 Rolling Forecast vs 2025 Actuals</p>
+          <p className="text-[0.8125rem] mt-1" style={{ color: "var(--light-accessible)" }}>
+            2026 Rolling Forecast vs 2025 Actuals
+            {maxActualMonth > 0 && (
+              <span className="ml-1.5 font-medium" style={{ color: "var(--mid)" }}>
+                · Data as of: {MONTHS[maxActualMonth - 1]} 2026 (A)
+              </span>
+            )}
+          </p>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex gap-0.5 bg-white rounded-lg border p-1 flex-wrap shadow-sm">
+          <div className="flex gap-0.5 p-1 flex-wrap" style={{ background: "var(--warm-white)", border: "1px solid var(--border)" }}>
             {METRIC_KEYS.map((m) => (
               <button
                 key={m}
                 onClick={() => setActiveMetric(m)}
-                className={`px-3 py-1.5 rounded-md text-[10px] font-semibold uppercase tracking-wider transition-all ${
+                className={`px-3 py-1.5 text-[0.6875rem] font-normal uppercase tracking-[0.14em] transition-all ${
                   activeMetric === m
-                    ? "bg-brand text-white shadow-sm"
-                    : "text-gray-400 hover:text-gray-700 hover:bg-gray-50"
+                    ? "text-white shadow-sm"
+                    : "hover:bg-white/60"
                 }`}
+                style={
+                  activeMetric === m
+                    ? { background: "var(--charcoal)" }
+                    : { color: "var(--light-accessible)" }
+                }
               >
                 {METRIC_LABELS[m]}
               </button>
             ))}
           </div>
           <button
-            onClick={() => exportDashboardToExcel(entries, activeMetric)}
-            className="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-gray-900 text-white hover:bg-gray-700 transition-colors shadow-sm flex items-center gap-1.5"
-            title="Export to Excel"
+            onClick={() => exportDashboardToExcel(blendEntries(entries), activeMetric)}
+            className="btn-brand flex items-center gap-1.5"
+            title="Export current metric to Excel"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -301,9 +316,29 @@ export default function Dashboard() {
             Excel
           </button>
           <button
-            onClick={() => exportDashboardToPdf(entries, activeMetric)}
-            className="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-rose-700 text-white hover:bg-rose-600 transition-colors shadow-sm flex items-center gap-1.5"
+            onClick={() => exportAllMetricsToExcel(blendEntries(entries))}
+            className="btn-brand btn-brand-sage flex items-center gap-1.5"
+            title="Export all metrics (one tab per metric)"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Export All
+          </button>
+          <button
+            onClick={() => exportDashboardToPdf(blendEntries(entries), activeMetric)}
+            className="flex items-center gap-1.5"
             title="Export to PDF"
+            style={{
+              background: "var(--accent-light)",
+              color: "#fff",
+              padding: "10px 24px",
+              fontSize: "0.6875rem",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase" as const,
+              border: "1px solid var(--accent-light)",
+              cursor: "pointer",
+            }}
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H6.75S5.25 2.25 5.25 3.75v16.5c0 1.5 1.5 1.5 1.5 1.5h10.5c1.5 0 1.5-1.5 1.5-1.5v-.75" />
@@ -315,11 +350,12 @@ export default function Dashboard() {
 
       {/* Filter Bar */}
       <div className="flex items-center gap-3 mb-6 flex-wrap">
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">View:</span>
+        <span className="text-[0.6875rem] font-normal uppercase tracking-[0.18em]" style={{ color: "var(--accent-light)" }}>View:</span>
         <select
           value={selectedDept}
           onChange={(e) => setSelectedDept(e.target.value)}
-          className="text-xs font-medium border border-gray-200 rounded-lg px-3 py-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[200px] cursor-pointer shadow-sm"
+          className="text-[0.8125rem] px-3 py-2 min-w-[200px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-light"
+          style={{ border: "1px solid var(--border)", color: "var(--charcoal)", background: "var(--warm-white)" }}
         >
           <option value="all">All Departments</option>
           {deptOptions.map((d) => (
@@ -329,10 +365,11 @@ export default function Dashboard() {
         <select
           value={selectedPeriod}
           onChange={(e) => setSelectedPeriod(e.target.value)}
-          className="text-xs font-medium border border-gray-200 rounded-lg px-3 py-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand min-w-[120px] cursor-pointer shadow-sm"
+          className="text-[0.8125rem] px-3 py-2 min-w-[120px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-light"
+          style={{ border: "1px solid var(--border)", color: "var(--charcoal)", background: "var(--warm-white)" }}
         >
           <option value="fy">Full Year</option>
-          <option value="ytd">YTD (thru {MONTHS[CURRENT_MONTH - 1]})</option>
+          <option value="ytd">YTD (thru {maxActualMonth > 0 ? MONTHS[maxActualMonth - 1] : MONTHS[CURRENT_MONTH - 1]})</option>
           {MONTHS.map((m, i) => (
             <option key={m} value={String(i + 1)}>{m}</option>
           ))}
@@ -340,7 +377,8 @@ export default function Dashboard() {
         {(!isAllDepts || selectedPeriod !== "fy") && (
           <button
             onClick={() => { setSelectedDept("all"); setSelectedPeriod("fy"); }}
-            className="text-[10px] font-medium text-gray-400 hover:text-gray-700 transition-colors flex items-center gap-1"
+            className="text-[0.6875rem] font-normal transition-colors flex items-center gap-1 uppercase tracking-[0.14em]"
+            style={{ color: "var(--accent-light)" }}
           >
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -355,23 +393,42 @@ export default function Dashboard() {
         {kpiCards.map((kpi, idx) => (
           <div
             key={kpi.label}
-            className={`card p-4 relative overflow-hidden animate-fade-in-delay-${idx + 1}`}
+            className={`card p-5 relative overflow-hidden animate-fade-in-delay-${idx + 1}`}
           >
-            {/* Gradient accent background */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${kpi.accent} pointer-events-none`} />
+            {/* Accent top border */}
+            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: kpi.accentColor }} />
             <div className="relative">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+              <div className="mb-3">
+                <span className="text-[0.6875rem] font-normal uppercase tracking-[0.18em]" style={{ color: "var(--light-accessible)" }}>
                   {kpi.label}
                 </span>
-                <span className={kpi.iconColor}>{kpi.icon}</span>
               </div>
-              <div className="text-2xl font-bold text-gray-900 mb-1.5" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+              <div
+                className="text-[2.5rem] leading-none mb-3"
+                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "var(--charcoal)", fontWeight: 400 }}
+              >
                 {kpi.value}
               </div>
-              <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full ${kpi.badgeColor}`}>
-                {kpi.badge}
-              </span>
+              <div className="flex flex-wrap gap-2">
+                <span
+                  className="inline-block text-[0.6875rem] font-medium px-2 py-0.5"
+                  style={{
+                    color: kpi.badgePositive ? "var(--green)" : "#9B4444",
+                    background: kpi.badgePositive ? "rgba(93,101,86,0.1)" : "rgba(155,68,68,0.1)",
+                  }}
+                >
+                  {kpi.badge}
+                </span>
+                <span
+                  className="inline-block text-[0.6875rem] font-medium px-2 py-0.5"
+                  style={{
+                    color: kpi.badge2Positive ? "var(--green)" : "#9B4444",
+                    background: kpi.badge2Positive ? "rgba(93,101,86,0.1)" : "rgba(155,68,68,0.1)",
+                  }}
+                >
+                  {kpi.badge2}
+                </span>
+              </div>
             </div>
           </div>
         ))}
@@ -386,19 +443,20 @@ export default function Dashboard() {
         />
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-gray-800">
-              {periodLabel} Summary {selectedDeptName && <span className="text-brand font-normal text-xs">— {selectedDeptName}</span>}
+            <h3 className="text-[0.8125rem] font-medium uppercase tracking-[0.14em]" style={{ color: "var(--charcoal)" }}>
+              {periodLabel} Summary {selectedDeptName && <span style={{ color: "var(--accent-light)" }} className="font-normal text-xs normal-case tracking-normal">— {selectedDeptName}</span>}
             </h3>
           </div>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400"></th>
-                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">2025</th>
-                {isAllDepts && <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">AOP</th>}
-                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">2026 (F)</th>
-                {isAllDepts && <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">Δ Plan</th>}
-                <th className="text-right py-2.5 font-semibold text-[10px] uppercase tracking-wider text-gray-400">Δ LY</th>
+              <tr style={{ borderBottom: "2px solid var(--border)" }}>
+                <th className="text-left py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}></th>
+                <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}>2025</th>
+                {isAllDepts && <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}>AOP</th>}
+                <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}>2026 (F)</th>
+                {hasActuals && <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--accent-light)" }}>YTD (A)</th>}
+                {isAllDepts && <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}>Δ Plan</th>}
+                <th className="text-right py-2.5 text-[0.6875rem] uppercase tracking-[0.14em] font-normal" style={{ color: "var(--light-accessible)" }}>Δ LY</th>
               </tr>
             </thead>
             <tbody>
@@ -410,25 +468,26 @@ export default function Dashboard() {
                 const dvPlanStr = isPct
                   ? `${dvPlan >= 0 ? "+" : ""}${(dvPlan * 100).toFixed(1)}pp`
                   : (row.aop !== 0 ? `${dvPlan >= 0 ? "+" : ""}${dvPlan.toFixed(1)}%` : "—");
-                const dvPlanColor = dvPlan > 0 ? "text-emerald-600" : dvPlan < 0 ? "text-rose-600" : "text-gray-400";
+                const dvPlanColor = dvPlan > 0 ? "var(--green)" : dvPlan < 0 ? "#9B4444" : "var(--light-accessible)";
 
                 // Delta vs LY: 2026(F) vs 2025
                 const dvFcst = isPct ? row.val26 - row.val25 : (row.val25 !== 0 ? ((row.val26 - row.val25) / Math.abs(row.val25)) * 100 : 0);
                 const dvFcstStr = isPct
                   ? `${dvFcst >= 0 ? "+" : ""}${(dvFcst * 100).toFixed(1)}pp`
                   : (row.val25 !== 0 ? `${dvFcst >= 0 ? "+" : ""}${dvFcst.toFixed(1)}%` : "—");
-                const dvFcstColor = dvFcst > 0 ? "text-emerald-600" : dvFcst < 0 ? "text-rose-600" : "text-gray-400";
+                const dvFcstColor = dvFcst > 0 ? "var(--green)" : dvFcst < 0 ? "#9B4444" : "var(--light-accessible)";
 
                 const isLast = i === summaryRows.length - 1;
 
                 return (
-                  <tr key={row.label} className={`${!isLast ? "border-b border-gray-50" : ""} hover:bg-gray-50/50 transition-colors`}>
-                    <td className="py-3 font-semibold text-[11px] text-gray-600 uppercase tracking-wide">{row.label}</td>
-                    <td className="py-3 text-right text-gray-400 tabular-nums">{row.fmt(row.val25)}</td>
-                    {isAllDepts && <td className="py-3 text-right text-blue-600/70 font-medium tabular-nums">{row.fmt(row.aop)}</td>}
-                    <td className="py-3 text-right font-bold text-gray-900 tabular-nums">{row.fmt(row.val26)}</td>
-                    {isAllDepts && <td className={`py-3 text-right font-semibold tabular-nums ${dvPlanColor}`}>{dvPlanStr}</td>}
-                    <td className={`py-3 text-right font-semibold tabular-nums ${dvFcstColor}`}>{dvFcstStr}</td>
+                  <tr key={row.label} style={{ borderBottom: !isLast ? "1px solid var(--border)" : "none" }} className="transition-colors hover:bg-white/40">
+                    <td className="py-3 text-[0.6875rem] uppercase tracking-[0.12em] font-medium" style={{ color: "var(--accent)" }}>{row.label}</td>
+                    <td className="py-3 text-right tabular-nums" style={{ color: "var(--light-accessible)" }}>{row.fmt(row.val25)}</td>
+                    {isAllDepts && <td className="py-3 text-right font-medium tabular-nums" style={{ color: "var(--accent-light)" }}>{row.fmt(row.aop)}</td>}
+                    <td className="py-3 text-right font-bold tabular-nums" style={{ color: "var(--charcoal)" }}>{row.fmt(row.val26)}</td>
+                    {hasActuals && <td className="py-3 text-right font-semibold tabular-nums" style={{ color: "var(--accent-light)" }}>{row.fmt(row.ytdA)}</td>}
+                    {isAllDepts && <td className="py-3 text-right font-semibold tabular-nums" style={{ color: dvPlanColor }}>{dvPlanStr}</td>}
+                    <td className="py-3 text-right font-semibold tabular-nums" style={{ color: dvFcstColor }}>{dvFcstStr}</td>
                   </tr>
                 );
               })}

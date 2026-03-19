@@ -8,9 +8,9 @@ const PUBLIC_PATHS = ["/login", "/api/auth"];
 
 // Page access by role
 const ROLE_PAGE_ACCESS: Record<string, string[]> = {
-  viewer: ["/", "/department"],
-  editor: ["/", "/department", "/input"],
-  admin: ["/", "/department", "/input", "/admin"],
+  viewer: ["/", "/department", "/merch-review", "/financial-review"],
+  editor: ["/", "/department", "/input", "/merch-review", "/financial-review"],
+  admin: ["/", "/department", "/input", "/admin", "/merch-review", "/financial-review"],
 };
 
 function getSecretKey(): Uint8Array {
